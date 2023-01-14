@@ -319,6 +319,16 @@ return [
             'label_color' => 'success',
         ],
         ['header' => 'account_settings'],
+        // ここからオリジナルのページ
+        [
+            'text' => 'test',
+            'url'  => 'admin/test',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        // ここまでオリジナルのページ
+
+
+
         [
             'text' => 'profile',
             'url'  => 'admin/settings',
