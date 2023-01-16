@@ -325,6 +325,11 @@ return [
             'url'  => 'admin/test',
             'icon' => 'fas fa-fw fa-user',
         ],
+        [
+            'text' => '地域',
+            'url'  => 'admin/area',
+            'icon' => 'fas fa-fw fa-user',
+        ],
         // ここまでオリジナルのページ
 
 

@@ -18,9 +18,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth:admin')->name('home');
-Route::get('admin/test', [App\Http\Controllers\HomeController::class, 'test'])->middleware('auth:admin')->name('test');
-Route::get('admin/area', [App\Http\Controllers\iamadmin\HomeController::class, 'area'])->middleware('auth:admin')->name('area');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth:admin'])->name('home');
+Route::get('admin/test', [App\Http\Controllers\HomeController::class, 'test'])->middleware(['auth:admin'])->name('test');
+Route::get('admin/area', [App\Http\Controllers\iamadmin\HomeController::class, 'area'])->middleware(['auth:admin'])->name('area');
 
 
 // Route::group(['middleware' => 'Auth'], function(){
