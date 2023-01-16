@@ -37,24 +37,24 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/api.php'));
 
 
-            // 以下を利用する
-            Route::prefix('/')
-            ->as('user.')
-            ->middleware('web')
-            ->namespace($this->namespace) //これいるかわからない
-            ->group(base_path('routes/web.php'));
+            // // 以下を利用する
+            // Route::prefix('/')
+            // ->as('user.')
+            // ->middleware('web')
+            // ->namespace($this->namespace) //これいるかわからない
+            // ->group(base_path('routes/web.php'));
 
-            Route::prefix('owner')
-            ->as('owner.')
-            ->middleware('web')
-            ->namespace($this->namespace) //これいるかわからない
-            ->group(base_path('routes/owner.php'));
+            // Route::prefix('owner')
+            // ->as('owner.')
+            // ->middleware('web')
+            // ->namespace($this->namespace) //これいるかわからない
+            // ->group(base_path('routes/owner.php'));
 
-            Route::prefix('admin')
-            ->as('admin.')
-            ->middleware('web')
-            ->namespace($this->namespace) //これいるかわからない
-            ->group(base_path('routes/admin.php'));
+            // Route::prefix('admin')
+            // ->as('admin.')
+            // ->middleware('web')
+            // ->namespace($this->namespace) //これいるかわからない
+            // ->group(base_path('routes/admin.php'));
         });
     }
 
