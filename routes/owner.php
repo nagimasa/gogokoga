@@ -1,14 +1,14 @@
 <?php
 
-use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Admin\Auth\CAdmin\onfirmablePasswordController;
-use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
-use App\Http\Controllers\Admin\Auth\NewPasswordController;
-use App\Http\Controllers\Admin\Auth\PasswordController;
-use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Admin\Auth\RegisteredUserController;
-use App\Http\Controllers\Admin\Auth\VerifyEmailController;
+use App\Http\Controllers\Owner\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Owner\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Owner\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\Owner\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Owner\Auth\NewPasswordController;
+use App\Http\Controllers\Owner\Auth\PasswordController;
+use App\Http\Controllers\Owner\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Owner\Auth\RegisteredUserController;
+use App\Http\Controllers\Owner\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,9 +27,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth:admin'])->name('home');
-Route::get('admin/test', [App\Http\Controllers\HomeController::class, 'test'])->middleware(['auth:admin'])->name('test');
-Route::get('admin/area', [App\Http\Controllers\iamadmin\HomeController::class, 'area'])->middleware(['auth:admin'])->name('area');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth:admin')->name('home');
+Route::get('admin/test', [App\Http\Controllers\HomeController::class, 'test'])->middleware('auth:admin')->name('test');
+Route::get('admin/area', [App\Http\Controllers\iamadmin\HomeController::class, 'area'])->middleware('auth:admin')->name('area');
 
 
 // Route::group(['middleware' => 'Auth'], function(){
@@ -37,7 +37,6 @@ Route::get('admin/area', [App\Http\Controllers\iamadmin\HomeController::class, '
 //     Route::get('/admin/test', [App\Http\Controllers\HomeController::class, 'test'])->name('test');
 //     Route::get('/admin/area', [App\Http\Controllers\iamadmin\HomeController::class, 'area'])->name('area');
 // });
-
 
 
 
