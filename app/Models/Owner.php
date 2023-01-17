@@ -19,6 +19,7 @@ class Owner extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'name_kana',
         'email',
         'password',
     ];

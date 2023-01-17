@@ -23,20 +23,30 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('owner.welcome');
 });
 
-Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth:admin')->name('home');
-Route::get('admin/test', [App\Http\Controllers\HomeController::class, 'test'])->middleware('auth:admin')->name('test');
-Route::get('admin/area', [App\Http\Controllers\iamadmin\HomeController::class, 'area'])->middleware('auth:admin')->name('area');
+Route::get('/dashboard', function () {
+    return view('owner.dashboard');
+})->middleware(['auth:owners'])->name('dashboard');
+
+// Auth::routes();
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth:admin')->name('home');
+// Route::get('admin/test', [App\Http\Controllers\HomeController::class, 'test'])->middleware('auth:admin')->name('test');
+// Route::get('admin/area', [App\Http\Controllers\iamadmin\HomeController::class, 'area'])->middleware('auth:admin')->name('area');
 
 
-// Route::group(['middleware' => 'Auth'], function(){
+// Route::group(['middleware' => 'Auth:owners'], function(){
 //     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //     Route::get('/admin/test', [App\Http\Controllers\HomeController::class, 'test'])->name('test');
 //     Route::get('/admin/area', [App\Http\Controllers\iamadmin\HomeController::class, 'area'])->name('area');
 // });
+
+Route::middleware('auth:owners')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 
 
@@ -66,7 +76,7 @@ Route::middleware('guest')->group(function () {
                 ->name('password.store');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:owners')->group(function () {
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
                 ->name('verification.notice');
 
