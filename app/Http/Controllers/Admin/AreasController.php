@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class AreasController extends Controller
 {
@@ -21,7 +22,9 @@ class AreasController extends Controller
     
     public function index()
     {
-        dd('亜d民');
+        // $data_now = Carbon::now();
+        // $data_parse = Carbon::parse(now());
+        // dd($data_now->year, $data_parse);
     }
 
     /**
@@ -32,6 +35,7 @@ class AreasController extends Controller
     public function create()
     {
         //
+        return view('admin.areas.create');
     }
 
     /**
