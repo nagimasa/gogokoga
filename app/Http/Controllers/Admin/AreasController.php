@@ -41,7 +41,6 @@ class AreasController extends Controller
      */
     public function create()
     {
-        //
         return view('admin.areas.create');
     }
 
@@ -53,7 +52,7 @@ class AreasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
         $request->validate([
             'area_name'      => 'required|string|max:255',
             'area_name_kana' => 'required|string|max:255',
@@ -121,7 +120,7 @@ class AreasController extends Controller
      */
     public function destroy($id)
     {
-        $area = Area::findOrFail($id)->delete();
+        Area::findOrFail($id)->delete();
 
         return redirect()->route('admin.areas.index');
     }

@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use App\Models\Genre;
 
 class GenreController extends Controller
 {
@@ -12,9 +15,21 @@ class GenreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
+
+
     public function index()
     {
-        //
+
+        $genres = DB::table('genres')->paginate(15);
+        $count = Genre::count();
+
+        return view('admin.genres.index', compact('genres', 'count'));
     }
 
     /**
@@ -24,7 +39,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.genres.create');
     }
 
     /**
@@ -35,7 +50,19 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'genre_name'      => 'required|string|max:255',
+            'genre_name_kana' => 'required|string|max:255',
+        ]);
+
+        Genre::create([
+            'genre_name' => $request->genre_name,
+            'genre_name_kana' => $request->genre_name_kana,
+        ]);
+
+
+        return redirect()->route('admin.genres.index');
+
     }
 
     /**
@@ -46,7 +73,9 @@ class GenreController extends Controller
      */
     public function show($id)
     {
-        //
+        $genre = Genre::find($id);
+
+        return view('admin.genres.show', compact('genre'));
     }
 
     /**
@@ -57,7 +86,9 @@ class GenreController extends Controller
      */
     public function edit($id)
     {
-        //
+        $genre = Genre::findOrFail($id);
+        return view('admin.genres.edit', compact('genre'));
+
     }
 
     /**
@@ -69,7 +100,12 @@ class GenreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $genre = Genre::findOrFail($id);
+        $genre->genre_name = $request->genre_name;
+        $genre->genre_name_kana = $request->genre_name_kana;
+        $genre->save();
+
+        return redirect()->route('admin.genres.index');
     }
 
     /**
@@ -80,6 +116,9 @@ class GenreController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        Genre::findOrFail($id)->delete();
+
+        return redirect()->route('admin.genres.index');
     }
 }
