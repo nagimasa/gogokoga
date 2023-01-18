@@ -65,7 +65,7 @@ class AreasController extends Controller
         ]);
 
 
-            return redirect()->route('admin.areas.index');
+        return redirect()->route('admin.areas.index');
 
     }
 

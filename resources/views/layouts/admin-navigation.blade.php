@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('admin.areas.index')" :active="request()->routeIs('admin.areas.index')">
                         地域管理
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.payments.index')" :active="request()->routeIs('admin.payments.index')">
+                        支払い管理
+                    </x-nav-link>
                 </div>
             </div>
 

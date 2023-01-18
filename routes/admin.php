@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\AreasController;
+use App\Http\Controllers\Admin\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -36,7 +37,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth:admin')->group(function () {
     Route::resource('areas', AreasController::class);
-    Route::resource('payments', PaymentsController::class);
+    Route::resource('payments', PaymentController::class);
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
