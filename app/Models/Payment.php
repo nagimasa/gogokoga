@@ -11,4 +11,13 @@ class Payment extends Model
     protected $fillable = [
         'payment_name',
     ];
+
+
+        // 事業との多対多
+    public function services()
+    {
+        return $this->belognsToMany('App\services');
+    }
+
+
 }
