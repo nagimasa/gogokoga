@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use App\Models\Area;
+use App\Models\Payment;
 
-class AreasController extends Controller
+class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,17 +21,14 @@ class AreasController extends Controller
         $this->middleware('auth:admin');
     }
 
-    
+
     public function index()
     {
-        // $data_now = Carbon::now();
-        // $data_parse = Carbon::parse(now());
-        // dd($data_now->year, $data_parse);
 
-        $areas = DB::table('areas')->paginate(15);
-        $count = Area::count();
+        $payments = DB::table('payments')->paginate(15);
+        $count = Payment::count();
 
-        return view('admin.areas.index', compact('areas', 'count'));
+        return view('admin.payments.index', compact('payments', 'count'));
     }
 
     /**
@@ -41,8 +38,7 @@ class AreasController extends Controller
      */
     public function create()
     {
-        //
-        return view('admin.areas.create');
+        return view('admin.payments.create');
     }
 
     /**
@@ -53,20 +49,16 @@ class AreasController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $request->validate([
-            'area_name'      => 'required|string|max:255',
-            'area_name_kana' => 'required|string|max:255',
+            'payment_name'      => 'required|string|max:255',
         ]);
 
-        Area::create([
-            'area_name' => $request->area_name,
-            'area_name_kana' => $request->area_name_kana,
+        Payment::create([
+            'payment_name' => $request->payment_name,
         ]);
 
 
-        return redirect()->route('admin.areas.index');
-
+        return redirect()->route('admin.payments.index');
     }
 
     /**
@@ -77,9 +69,9 @@ class AreasController extends Controller
      */
     public function show($id)
     {
-        $area = Area::find($id);
+        $payment = Payment::find($id);
 
-        return view('admin.areas.show', compact('area'));
+        return view('admin.payments.show', compact('payment'));
     }
 
     /**
@@ -91,9 +83,8 @@ class AreasController extends Controller
     public function edit($id)
     {
 
-        $area = Area::findOrFail($id);
-        return view('admin.areas.edit', compact('area'));
-
+        $payment = Payment::findOrFail($id);
+        return view('admin.payments.edit', compact('payment'));
     }
 
     /**
@@ -105,12 +96,11 @@ class AreasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $area = Area::findOrFail($id);
-        $area->area_name = $request->area_name;
-        $area->area_name_kana = $request->area_name_kana;
-        $area->save();
+        $payment = Payment::findOrFail($id);
+        $payment->payment_name = $request->payment_name;
+        $payment->save();
 
-        return redirect()->route('admin.areas.index');
+        return redirect()->route('admin.payments.index');
     }
 
     /**
@@ -121,8 +111,8 @@ class AreasController extends Controller
      */
     public function destroy($id)
     {
-        $area = Area::findOrFail($id)->delete();
+        $payment = Payment::findOrFail($id)->delete();
 
-        return redirect()->route('admin.areas.index');
+        return redirect()->route('admin.payments.index');
     }
 }
