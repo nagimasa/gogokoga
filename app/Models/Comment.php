@@ -5,20 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 use App\Models\Service;
 
-class Area extends Model
+class Comment extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'area_name',
-        'area_name_kana',
+        'comment',
     ];
 
 
-    public function services()
+
+    public function service()
     {
-        return $this->hasMany(Service::class);
+        return $this->belongsTo(Service::class);
     }
 }

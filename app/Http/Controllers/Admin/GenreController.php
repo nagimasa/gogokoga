@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use App\Models\Area;
+use App\Models\Genre;
 
-class AreasController extends Controller
+class GenreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,17 +21,15 @@ class AreasController extends Controller
         $this->middleware('auth:admin');
     }
 
-    
+
+
     public function index()
     {
-        // $data_now = Carbon::now();
-        // $data_parse = Carbon::parse(now());
-        // dd($data_now->year, $data_parse);
 
-        $areas = DB::table('areas')->paginate(15);
-        $count = Area::count();
+        $genres = DB::table('genres')->paginate(15);
+        $count = Genre::count();
 
-        return view('admin.areas.index', compact('areas', 'count'));
+        return view('admin.genres.index', compact('genres', 'count'));
     }
 
     /**
@@ -41,7 +39,7 @@ class AreasController extends Controller
      */
     public function create()
     {
-        return view('admin.areas.create');
+        return view('admin.genres.create');
     }
 
     /**
@@ -52,19 +50,18 @@ class AreasController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
-            'area_name'      => 'required|string|max:255',
-            'area_name_kana' => 'required|string|max:255',
+            'genre_name'      => 'required|string|max:255',
+            'genre_name_kana' => 'required|string|max:255',
         ]);
 
-        Area::create([
-            'area_name' => $request->area_name,
-            'area_name_kana' => $request->area_name_kana,
+        Genre::create([
+            'genre_name' => $request->genre_name,
+            'genre_name_kana' => $request->genre_name_kana,
         ]);
 
 
-        return redirect()->route('admin.areas.index');
+        return redirect()->route('admin.genres.index');
 
     }
 
@@ -76,9 +73,9 @@ class AreasController extends Controller
      */
     public function show($id)
     {
-        $area = Area::find($id);
+        $genre = Genre::find($id);
 
-        return view('admin.areas.show', compact('area'));
+        return view('admin.genres.show', compact('genre'));
     }
 
     /**
@@ -89,9 +86,8 @@ class AreasController extends Controller
      */
     public function edit($id)
     {
-
-        $area = Area::findOrFail($id);
-        return view('admin.areas.edit', compact('area'));
+        $genre = Genre::findOrFail($id);
+        return view('admin.genres.edit', compact('genre'));
 
     }
 
@@ -104,12 +100,12 @@ class AreasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $area = Area::findOrFail($id);
-        $area->area_name = $request->area_name;
-        $area->area_name_kana = $request->area_name_kana;
-        $area->save();
+        $genre = Genre::findOrFail($id);
+        $genre->genre_name = $request->genre_name;
+        $genre->genre_name_kana = $request->genre_name_kana;
+        $genre->save();
 
-        return redirect()->route('admin.areas.index');
+        return redirect()->route('admin.genres.index');
     }
 
     /**
@@ -120,8 +116,9 @@ class AreasController extends Controller
      */
     public function destroy($id)
     {
-        Area::findOrFail($id)->delete();
 
-        return redirect()->route('admin.areas.index');
+        Genre::findOrFail($id)->delete();
+
+        return redirect()->route('admin.genres.index');
     }
 }

@@ -13,7 +13,13 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}アドミン
+                        管理者TOP
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.genres.index')" :active="request()->routeIs('admin.genres.index')">
+                        ジャンル管理
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.services.index')" :active="request()->routeIs('admin.services.index')">
+                        サービス管理
                     </x-nav-link>
                     <x-nav-link :href="route('admin.areas.index')" :active="request()->routeIs('admin.areas.index')">
                         地域管理

@@ -82,7 +82,6 @@ class PaymentController extends Controller
      */
     public function edit($id)
     {
-
         $payment = Payment::findOrFail($id);
         return view('admin.payments.edit', compact('payment'));
     }
@@ -111,7 +110,7 @@ class PaymentController extends Controller
      */
     public function destroy($id)
     {
-        $payment = Payment::findOrFail($id)->delete();
+        Payment::findOrFail($id)->delete();
 
         return redirect()->route('admin.payments.index');
     }
