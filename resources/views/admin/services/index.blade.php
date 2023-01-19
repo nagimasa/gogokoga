@@ -19,24 +19,23 @@
                     <hr>
                     <table class="w-full">
                         <tr>
-                          <th class="w-8 py-4">ID</th>
-                          <th class="">サービス名</th>
-                          <th class="">ジャンル</th>
-                          <th class="">会員種別</th>
-                          <th class="">ひと言</th>
-                          <th class="">クーポン</th>
-                          <th class="">管理者</th>
-                          <th class="">求人</th>
-                          <th class="">メニュー</th>
-                          <th class="">画像</th>
+                            <th class="w-8 py-4">ID</th>
+                            <th class="">サービス名</th>
+                            <th class="">ジャンル</th>
+                            <th class="">会員種別</th>
+                            <th class="">ひと言</th>
+                            <th class="">クーポン</th>
+                            <th class="">管理者</th>
+                            <th class="">求人</th>
+                            <th class="">メニュー</th>
+                            <th class="">画像</th>
                         </tr>
 
                         @foreach($services as $service)
                         <tr class="divide-y">
-                          <td class="w-8 py-4 text-center">{{ $service->id }}</td>
-                          <td class=" text-center"><a class="text-indigo-600 underline" href="{{ route('admin.services.show', ['service'=>$service->id])}}">{{ $service->service_name }}</a></td>
-                          <td class="text-center">{{ $service->genre->genre_name }}</td>
-                          <td class="text-center">{{ $service->area->area_name }}</td>
+                            <td class="w-8 py-4 text-center">{{ $service->id }}</td>
+                            <td class=" text-center"><a class="text-indigo-600 underline" href="{{ route('admin.services.show', ['service'=>$service->id])}}">{{ $service->service_name }}</a></td>
+                            <td class="text-center">{{ $service->genre->genre_name }}</td>
                         </tr>
                         @endforeach
                     </table>

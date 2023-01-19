@@ -123,6 +123,7 @@ class ServiceController extends Controller
 
         ]);
 
+
         return redirect()->route('admin.services.index');
 
 
@@ -136,7 +137,9 @@ class ServiceController extends Controller
      */
     public function show($id)
     {
-        //
+        $service = Service::find($id);
+
+        return view('admin.services.show', compact('service'));
     }
 
     /**
@@ -147,7 +150,12 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $service = Service::findOrFail($id);
+        
+        $genres = Genre::all()->pluck('genre_name', 'id');
+        $areas = Area::all()->pluck('area_name', 'id');
+        $payments = Payment::all()->pluck('payment_name', 'id');
+        return view('admin.services.edit', compact('service', 'genres', 'areas', 'payments'));
     }
 
     /**
@@ -159,7 +167,44 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $service = Service::findOrFail($id);
+        $service->genre_id          = $request->genre_id;
+        $service->area_id           = $request->area_id;
+        $service->service_name      = $request->service_name;
+        $service->service_name_kana = $request->service_name_kana;
+        $service->email             = $request->email;
+        $service->tel               = $request->tel;
+        $service->address           = $request->address;
+        $service->parking           = $request->parking;
+        $service->url               = $request->url;
+        $service->googlemap         = $request->googlemap;
+        $service->visualize         = $request->visualize;
+        $service->another           = $request->another;
+        $service->takeout           = $request->takeout;
+        $service->seat              = $request->seat;
+        $service->first_fee         = $request->first_fee;
+        $service->add_fee           = $request->add_fee;
+        $service->stay_fee          = $request->stay_fee;
+        $service->cancel_fee        = $request->cancel_fee;
+        $service->sunday            = $request->sunday;
+        $service->monday            = $request->monday;
+        $service->tuesday           = $request->tuesday;
+        $service->wednesday         = $request->wednesday;
+        $service->thursday          = $request->thursday;
+        $service->friday            = $request->friday;
+        $service->saturday          = $request->saturday;
+        $service->regular_holiday = $request->regular_holiday;
+        $service->save();
+
+        if(is_array($request->payments)){
+            $service = Service::findOrFail($id);
+            $service->payments()->detach();
+            $service->payments()->attach($request->payments);
+
+        }
+
+        return redirect()->route('admin.services.index');
     }
 
     /**
@@ -170,6 +215,8 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Service::findOrFail($id)->delete();
+
+        return redirect()->route('admin.services.index');
     }
 }
