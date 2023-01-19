@@ -194,7 +194,7 @@ class ServiceController extends Controller
         $service->thursday          = $request->thursday;
         $service->friday            = $request->friday;
         $service->saturday          = $request->saturday;
-        $service->regular_holiday = $request->regular_holiday;
+        $service->regular_holiday   = $request->regular_holiday;
         $service->save();
 
         if(is_array($request->payments)){
@@ -215,7 +215,9 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-        Service::findOrFail($id)->delete();
+        $service = Service::findOrFail($id);
+        $service->payments()->detach();
+        $service->delete();
 
         return redirect()->route('admin.services.index');
     }

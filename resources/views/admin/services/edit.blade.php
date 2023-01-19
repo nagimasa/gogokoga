@@ -98,13 +98,26 @@
                                 <div class="flex">
                                     @foreach($payments as $key => $val)
                                     <div class="p-6">
-                                        {{ Form::checkbox('payments[]', $key), ['id' => 'payment'.$key] }}
+                                        {{ Form::checkbox('payments[]', $key, in_array($key, $service->payments->pluck('id')->toArray())), ['id' => 'payment'.$key] }}
                                         {{ Form::label('payment'.$key, $val, ['class' => ' font-bold']) }}
                                     </div>
                                     @endforeach
                                 </div>
                             </div>
                             <hr>
+    
+                            {{-- <div class="py-6">
+                                <h4 class="font-bold">支払い方法</h4>
+                                <div class="flex">
+                                    @foreach($payments as $key => $val)
+                                    <div class="p-6">
+                                        {{ Form::checkbox('payments[]', $key), ['id' => 'payment'.$key] }}
+                                        {{ Form::label('payment'.$key, $val, ['class' => ' font-bold']) }}
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <hr> --}}
     
                             <div class="py-6">
                                 {{ Form::label('another','備考欄', ['class' => ' font-bold'])}}<br>

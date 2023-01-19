@@ -52,6 +52,15 @@
                             <p>{{ $service->url }}</p>
                         </div>
                         <hr>
+                        
+                        <div class="py-6">
+                            <p class="font-bold">支払い方法</p>
+                        @foreach($service->payments as $payment)
+                            <p>{{ $payment->payment_name }}</p>
+                        </div>
+                        <hr>
+                        @endforeach
+
                         <div class="py-6">
                             <p class="font-bold">googleMAP</p>
                             <p>{{ $service->googlemap }}</p>
@@ -103,6 +112,7 @@
 
 
                         {{-- ここから飲食店用 --}}
+                        @if($service->genre_id == 1)
                         <div class="py-6">
                             <p class="font-bold">テイクアウト</p>
                             <p>{{ $service->takeout }}</p>
@@ -113,11 +123,12 @@
                             <p>{{ $service->seat }}</p>
                         </div>
                         <hr>
+                        @endif
                         {{-- ここまで飲食店用 --}}
 
 
                         {{-- ここからタクシー・代行用 --}}
-
+                        @if($service->genre_id == 3)
                         <div class="py-6">
                             <p class="font-bold">初乗り料金</p>
                             <p>{{ $service->first_fee }}</p>
@@ -138,6 +149,7 @@
                             <p>{{ $service->cancel_fee }}</p>
                         </div>
                         <hr>
+                        @endif
                         {{-- ここまでタクシー・代行用 --}}
 
 

@@ -60,6 +60,6 @@ class Service extends Model
     // 支払い方法との多対多
     public function payments()
     {
-        return $this->belognsToMany(Payment::class);
+        return $this->belongsToMany(Payment::class);
     }
 }
