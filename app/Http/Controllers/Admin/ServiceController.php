@@ -10,6 +10,7 @@ use App\Models\Service;
 use App\Models\Genre;
 use App\Models\Area;
 use App\Models\Payment;
+use App\Models\Comment;
 
 class ServiceController extends Controller
 {
@@ -27,8 +28,7 @@ class ServiceController extends Controller
      
     public function index()
     {
-
-        $services = Service::with('genre')->paginate(15);
+        $services = Service::with('genre', 'comments')->paginate(15);
         // $services = DB::table('services')->paginate(15);
         // $services = Service::with('genre')->paginate(15);
         $count = Service::count();
@@ -120,7 +120,6 @@ class ServiceController extends Controller
             'saturday'          => $request->saturday,
             'regular_holiday'   => $request->regular_holiday,
             'another'           => $request->another,
-
         ]);
 
 

@@ -18,8 +18,8 @@ class Comment extends Model
 
 
 
-    public function services()
+    public function service()
     {
-        return $this->hasOne(Service::class);
+        return $this->belongsTo(Service::class);
     }
 }

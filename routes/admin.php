@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\AreasController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\GenreController;
+use App\Http\Controllers\Admin\CommentController;
 
 
 use App\Http\Controllers\ProfileController;
@@ -44,6 +45,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('payments', PaymentController::class);
     Route::resource('genres', GenreController::class);
     Route::resource('services', ServiceController::class);
+    Route::resource('comments', CommentController::class);
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
