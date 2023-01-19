@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('admin.genres.index')" :active="request()->routeIs('admin.genres.index')">
                         ジャンル管理
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.services.index')" :active="request()->routeIs('admin.services.index')">
+                        サービス管理
+                    </x-nav-link>
                     <x-nav-link :href="route('admin.areas.index')" :active="request()->routeIs('admin.areas.index')">
                         地域管理
                     </x-nav-link>

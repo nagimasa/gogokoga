@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 
 
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\AreasController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\GenreController;
@@ -42,6 +43,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('areas', AreasController::class);
     Route::resource('payments', PaymentController::class);
     Route::resource('genres', GenreController::class);
+    Route::resource('services', ServiceController::class);
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
