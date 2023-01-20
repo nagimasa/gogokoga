@@ -11,6 +11,7 @@ use App\Models\Genre;
 use App\Models\Area;
 use App\Models\Payment;
 use App\Models\Comment;
+use App\Models\Menu;
 
 class ServiceController extends Controller
 {
@@ -28,12 +29,12 @@ class ServiceController extends Controller
      
     public function index()
     {
-        $services = Service::with('genre', 'comments')->paginate(15);
-        // $services = DB::table('services')->paginate(15);
-        // $services = Service::with('genre')->paginate(15);
+        $services = Service::with('genre:id,genre_name', 'comments:id,service_id', 'menus:id,service_id')->paginate(15);
+        $menus = Menu::select('id', 'service_id')->get();
         $count = Service::count();
+        
         // ddd($services);
-        return view('admin.services.index', compact('services', 'count'));
+        return view('admin.services.index', compact('services', 'count',));
     }
 
     /**
