@@ -64,6 +64,12 @@ class Service extends Model
         return $this->hasMany(Menu::class);
     }
 
+    // ブログとの１対多
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class);
+    }
+
     // 支払い方法との多対多
     public function payments()
     {

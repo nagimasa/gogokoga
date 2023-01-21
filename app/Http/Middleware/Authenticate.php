@@ -11,7 +11,7 @@ class Authenticate extends Middleware
 
     protected $user_route = 'user.login';
     protected $owner_route = 'owner.login';
-    protected $admin_route = 'amdin.login';
+    protected $admin_route = 'admin.login';
     /**
      * Get the path the user should be redirected to when they are not authenticated.
      *

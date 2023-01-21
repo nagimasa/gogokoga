@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\BlogController;
 
 
 use App\Http\Controllers\ProfileController;
@@ -57,6 +58,16 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('admin/menus/edit/{id}', [MenuController::class, 'edit'])->name('menus.edit');
     Route::post('admin/menus/update/{id}', [MenuController::class, 'update'])->name('menus.update');
     Route::delete('admin/menus/delete/{id}', [MenuController::class, 'destroy'])->name('menus.destroy');
+
+
+    // Blog
+    Route::get('admin/blogs/index/{id}', [BlogController::class, 'index'])->name('blogs.index');
+    Route::get('admin/blogs/create/{id}', [BlogController::class, 'create'])->name('blogs.create');
+    Route::post('admin/blogs/store', [BlogController::class, 'store'])->name('blogs.store');
+    Route::get('admin/blogs/show/{id}', [BlogController::class, 'show'])->name('blogs.show');
+    Route::get('admin/blogs/edit/{id}', [BlogController::class, 'edit'])->name('blogs.edit');
+    Route::post('admin/blogs/update/{id}', [BlogController::class, 'update'])->name('blogs.update');
+    Route::delete('admin/blogs/delete/{id}', [BlogController::class, 'destroy'])->name('blogs.destroy');
 
 
 
