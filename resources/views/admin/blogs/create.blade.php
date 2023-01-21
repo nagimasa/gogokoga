@@ -15,12 +15,19 @@
                         
                         <div class="container">
                             <div class="card mt-3">
-                                {{ Form::open(['route' => ['admin.menus.store',  [$service->id]], 'method' => 'post']) }}
+                                {{ Form::open(['route' => ['admin.blogs.store',  [$service->id]], 'method' => 'post', 'file' => true,]) }}
                                 @csrf
                                 @method('post')
-                                    {{-- Form --}}
+                                    
+                                {{-- Form --}}
+                                    {{Form::hidden('service_id', $service->id )}}
+
+                                    {{ Form::label('blog_title','ブログタイトル', ['class' => 'form-check-label']) }}
+                                    {{ Form::text('blog_title',old('blog_title'), ['required' => 'required']) }}<br>
 
                                     {{ Form::textarea('blog_text',"", ['id' => 'ckeditor']) }}
+
+                                    {{ Form::file('blog_image_name', ) }}
 
                                     {{ Form::submit('送信', ['class' => 'btn btn-primary']) }}
                                 {{ Form::close() }}

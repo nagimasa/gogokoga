@@ -22,9 +22,14 @@ class BlogController extends Controller
      }
 
 
-    public function index()
+    public function index($id)
     {
-        //
+
+        $service = Service::findOrFail($id);
+        $blogs = Blog::where('service_id', $id)->paginate();
+        $count = Blog::where('service_id', $id)->count();
+
+        return view('admin.blogs.index', compact('blogs', 'count', 'service'));
     }
 
     /**
@@ -47,7 +52,15 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $service_id = $request->service_id;
+        Blog::create([
+            'service_id' => $request->service_id,
+            'blog_title' => $request->blog_title,
+            'blog_text' => $request->blog_text,
+            'blog_image_name' => $request->blog_iamge_name,
+        ]);
+        return redirect()->route('admin.blogs.index', $service_id);
     }
 
     /**

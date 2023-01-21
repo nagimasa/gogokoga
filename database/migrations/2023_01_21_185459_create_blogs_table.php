@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('service_id')->constrained('services'); // １対多のリレーション設定
             $table->text('blog_title');
             $table->text('blog_text');
-            $table->text('blog_image_name');
+            $table->text('blog_image_name')->nullable();
             $table->timestamps();
         });
     }

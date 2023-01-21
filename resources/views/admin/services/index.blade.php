@@ -54,7 +54,7 @@
                                 <a href="{{ route('admin.menus.show', [$service->id]) }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">確認</a>
                             </td>
                             <td class="text-center">
-                                <a href="{{ route('admin.blogs.show', [$service->id]) }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">確認</a>
+                                <a href="{{ route('admin.blogs.index', [$service->id]) }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">確認</a>
                             </td>
                             <td class="text-center"><a href="{{ route('admin.services.index') }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">編集</a></td>
 
