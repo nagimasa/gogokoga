@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Payment;
-use App\Models\Commnet;
+use App\Models\Comment;
+use App\Models\Menu;
 
 class Service extends Model
 {
@@ -55,6 +56,12 @@ class Service extends Model
     public function area()
     {
         return $this->belongsTo(Area::class);
+    }
+
+    // メニューとの１対多
+    public function menus()
+    {
+        return $this->hasMany(Menu::class);
     }
 
     // 支払い方法との多対多

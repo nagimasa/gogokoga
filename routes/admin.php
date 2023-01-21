@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\AreasController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\MenuController;
 
 
 use App\Http\Controllers\ProfileController;
@@ -46,6 +47,17 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('genres', GenreController::class);
     Route::resource('services', ServiceController::class);
     Route::resource('comments', CommentController::class);
+    // Route::resource('menus', MenuController::class);
+
+    // Menu
+    Route::get('admin/menus/index/{id}', [MenuController::class, 'index'])->name('menus.index');
+    Route::get('admin/menus/create/{id}', [MenuController::class, 'create'])->name('menus.create');
+    Route::post('admin/menus/store', [MenuController::class, 'store'])->name('menus.store');
+    Route::get('admin/menus/show/{id}', [MenuController::class, 'show'])->name('menus.show');
+    Route::get('admin/menus/edit/{id}', [MenuController::class, 'edit'])->name('menus.edit');
+    Route::post('admin/menus/update/{id}', [MenuController::class, 'update'])->name('menus.update');
+    Route::delete('admin/menus/delete/{id}', [MenuController::class, 'destroy'])->name('menus.destroy');
+
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
