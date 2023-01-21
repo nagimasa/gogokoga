@@ -55,7 +55,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('admin/menus/store', [MenuController::class, 'store'])->name('menus.store');
     Route::get('admin/menus/show/{id}', [MenuController::class, 'show'])->name('menus.show');
     Route::get('admin/menus/edit/{id}', [MenuController::class, 'edit'])->name('menus.edit');
-    Route::post('admin/menus/update/', [MenuController::class, 'update'])->name('menus.update');
+    Route::post('admin/menus/update/{id}', [MenuController::class, 'update'])->name('menus.update');
+    Route::delete('admin/menus/delete/{id}', [MenuController::class, 'destroy'])->name('menus.destroy');
 
 
 

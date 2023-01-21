@@ -115,15 +115,18 @@ class MenuController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $idっっくぁ
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $service = Service::findOrFail($id);
-        $menus = Menu::where('service_id', $id)->get();
+        // dd($id);
+        // $service = Service::findOrFail($id);
+        $menu = Menu::findOrFail($id);
+        $service = Service::findOrFail($menu->service_id)->value('service_name');
+        // dd($service);
 
-        return view('admin.menus.edit', compact('service', 'menus'));
+        return view('admin.menus.edit', compact('menu', 'service'));
     }
 
     /**
@@ -133,13 +136,14 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {  
+        $menu = Menu::findOrFail($id);
+        $menu->menu_name = $request->menu_name;
+        $menu->menu_fee = $request->menu_fee;
+        $menu->save();
 
-
-
-        return back();
-        // return redirect()->route('admin.menu.show' . $id);
+        return redirect()->route('admin.menus.show', $menu['service_id']);
     }
 
     /**
@@ -150,6 +154,8 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $menu_id = Menu::findOrFail($id)-> value('service_id');
+        $menu = Menu::findOrFail($id)->delete();
+        return redirect()->route('admin.menus.show', $menu_id);
     }
 }

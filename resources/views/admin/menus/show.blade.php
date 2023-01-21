@@ -19,7 +19,8 @@
                         @foreach($menus as $menu)
                         <tr>  
                             <td>{{ $menu->menu_name }}</td>  
-                            <td>{{ $menu->menu_fee }}</td>  
+                            <td>{{ $menu->menu_fee }}</td>
+                            <td><a href="{{ route('admin.menus.edit', [$menu->id]) }}">編集</a></td>
                         </tr>  
                         @endforeach
                     </table> 
