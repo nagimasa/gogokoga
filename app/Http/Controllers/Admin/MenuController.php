@@ -55,19 +55,45 @@ class MenuController extends Controller
     public function store(Request $request)
     {
 
+
+        // dd($request);
+        // $service = Service::findOrFail($request->id);
         $request->validate([
-            'moreFields.*.service_id' => 'required',
-            'moreFields.*.menu_name' => 'required',
-            'moreFields.*.menu_fee' => 'required',
+            'moreFields.*.service_id' => 'nullable',
+            'moreFields.*.menu_name' => 'nullable',
+            'moreFields.*.menu_fee' => 'nullable',
         ]);
-        // ddd($request);
-        
-        
-        foreach ($request->moreFields as $key => $value) {
-            Menu::create($value);
+
+
+
+        foreach($request->moreFields as $key => $value) {
+            // dd($value['menu_name']);
+            if($value['menu_name'] == true && $value['menu_fee'] == true){
+                Menu::create($value);
+            }
+            // elseif($value['id'] == true && $value['menu_name'] == true && $value['menu_fee'] == true){
+            //     Menu::find($value['id'])->fill($value->all())->save();
+            // }
+            elseif($value['menu_name'] == null || $value['menu_fee'] == null){
+                return back();
+            }
         }
-        return redirect()->route('admin.menus.index');
-        // return redirect()->route('admin.menus.create', compact('servive'));
+        
+
+        return redirect()->route('admin.menus.show', $value['service_id']);
+        // $request->validate([
+        //     'moreFields.*.service_id' => 'required',
+        //     'moreFields.*.menu_name' => 'required',
+        //     'moreFields.*.menu_fee' => 'required',
+        // ]);
+        // // ddd($request);
+        
+        
+        // foreach ($request->moreFields as $key => $value) {
+        //     Menu::create($value);
+        // }
+        // return redirect()->route('admin.menus.index');
+        // // return redirect()->route('admin.menus.create', compact('servive'));
     }
 
     /**
@@ -108,19 +134,12 @@ class MenuController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
-    {
+    {  
 
-        $request->validate([
-            'moreFields.*.service_id' => 'required',
-            'moreFields.*.menu_name' => 'required',
-            'moreFields.*.menu_fee' => 'required',
-        ]);
-        // ddd($request);
-        
-        
-        foreach ($request->moreFields as $key => $value) {
-            Menu::create($value);
-        }
+
+
+        return back();
+        // return redirect()->route('admin.menu.show' . $id);
     }
 
     /**

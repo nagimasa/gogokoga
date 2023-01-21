@@ -15,9 +15,9 @@
 
 
                     
-                    <form action="{{ route('admin.menus.update') }}" method="POST">
+                    <form action="{{ route('admin.menus.update', [$service->id]) }}" method="POST">
                         @csrf
-                        @method('post')
+                        @method('POST')
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -35,21 +35,27 @@
                         @endif
                         <table class="table table-bordered" id="dynamicAddRemove">  
                             <tr>
+                                <th></th>
+                                <th></th>
                                 <th>メニュー名</th>
                                 <th>料金</th>
+                                <th>アクション</th>
                                 <th></th>
                             </tr>
                             @foreach($menus as $menu)
                             <tr>
+                                <td><input type="text" name="moreFields[0][id]" value="{{ $menu->id }}" class="form-control" /></td>
                                 <td><input type="hidden" name="moreFields[0][service_id]" value="{{ $service->id }}" /></td>  
                                 <td><input type="text" name="moreFields[0][menu_name]" value="{{ $menu->menu_name }}" class="form-control" /></td>  
                                 <td><input type="text" name="moreFields[0][menu_fee]"  value="{{ $menu->menu_fee }}" class="form-control" /></td>  
+                                {{-- <td><input type="checkbox" name="moreFields[0][delete]" value="{{ $menu->id }}" class="form-control" />削除</td> --}}
                             </tr>
                             @endforeach
-                            <tr>  
+                            <tr> 
+                                <td><input type="text" name="moreFields[0][id]" value="" class="form-control" /></td>
                                 <td><input type="hidden" name="moreFields[0][service_id]" value="{{ $service->id }}" /></td>  
-                                <td><input type="text" name="moreFields[0][menu_name]" placeholder="サービス名" class="form-control" /></td>  
-                                <td><input type="text" name="moreFields[0][menu_fee]" placeholder="料金" class="form-control" /></td>  
+                                <td><input type="text" name="moreFields[0][menu_name]" value="" placeholder="メニュー名" class="form-control" /></td>  
+                                <td><input type="text" name="moreFields[0][menu_fee]" value="" placeholder="料金" class="form-control" /></td>  
                                 <td><button type="button" name="add" id="add-btn" class="btn btn-success">フォームを追加する</button></td>  
                             </tr>  
                         </table> 
@@ -73,7 +79,7 @@
     $("#add-btn").click(function(){
         ++i;
         $("#dynamicAddRemove").append(
-            '<tr><td><input type="hidden" name="moreFields['+i+'][service_id]" value="{{ $service->id }}" /></td><td><input type="text" name="moreFields['+i+'][menu_name]" placeholder="サービス名" class="form-control" /></td><td><input type="text" name="moreFields['+i+'][menu_fee]" placeholder="料金" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-tr">フォームを削除</button></td></tr>'
+            '<tr><td><input type="text" name="moreFields['+i+'][id]" value="" /></td><td><input type="hidden" name="moreFields['+i+'][service_id]" value="{{ $service->id }}" /></td><td><input type="text" name="moreFields['+i+'][menu_name]" placeholder="サービス名" class="form-control" /></td><td><input type="text" name="moreFields['+i+'][menu_fee]" placeholder="料金" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-tr">フォームを削除</button></td></tr>'
             );
     });
     $(document).on('click', '.remove-tr', function(){  

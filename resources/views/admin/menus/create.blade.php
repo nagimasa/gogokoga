@@ -15,7 +15,7 @@
                         
                         <div class="container">
                             <div class="card mt-3">
-                                <form action="{{ route('admin.menus.store') }}" method="POST">
+                                <form action="{{ route('admin.menus.store', [$service->id])}}" method="POST">
                                     @csrf
                                     @method('post')
                                     @if ($errors->any())

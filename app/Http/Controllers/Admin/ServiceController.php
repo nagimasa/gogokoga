@@ -34,7 +34,7 @@ class ServiceController extends Controller
         $count = Service::count();
         
         // ddd($services);
-        return view('admin.services.index', compact('services', 'count',));
+        return view('admin.services.index', compact('services', 'count'));
     }
 
     /**
