@@ -16,10 +16,10 @@
                         <div class="container">
                             <div class="card mt-3">
                                 {{ Form::open(['route' => ['admin.blogs.store',  [$service->id]], 'method' => 'post', 'file' => true,]) }}
-                                @csrf
-                                @method('post')
-                                    
-                                {{-- Form --}}
+                                    @csrf
+                                    @method('post')
+                                        
+                                    {{-- Form --}}
                                     {{Form::hidden('service_id', $service->id )}}
 
                                     {{ Form::label('blog_title','ブログタイトル', ['class' => 'form-check-label']) }}

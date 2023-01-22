@@ -71,8 +71,10 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        $service = Service::findOrFail($id);
-        $blogs = Blog::where('service_id', $id)->get();
+        // dd($id);
+        $blogs = Blog::find($id);
+        $service = Service::findOrFail($blogs->service_id);
+        // ddd($blogs);
         $count = Blog::where('service_id', $id)->count();
                     
         return view('admin.blogs.show', compact('blogs', 'service', 'count'));
@@ -86,7 +88,11 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        //
+        $blog = Blog::findOrFail($id);
+        $service = Service::findOrFail($blog->service_id);
+        // dd($service);
+
+        return view('admin.blogs.edit', compact('blog', 'service'));
     }
 
     /**
@@ -98,7 +104,14 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $blog = Blog::findOrFail($id);
+        $blog->blog_title = $request->blog_title;
+        $blog->blog_text = $request->blog_text;
+        $blog->blog_image_name = $request->blog_image_name;
+        $blog->save();
+
+        return redirect()->route('admin.blogs.show', $blog['service_id']);
     }
 
     /**
@@ -109,6 +122,8 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $blog_id = Blog::findOrFail($id)->value('service_id');
+        Blog::findOrFail($id)->delete();
+        return redirect()->route('admin.blogs.index', $blog_id);
     }
 }

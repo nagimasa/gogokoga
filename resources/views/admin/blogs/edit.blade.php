@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ $service }}の{{ $menu->menu_name }}編集
+            {{ $service->service_name }}の{{ $blog->blog_title }}編集
         </h1>
     </x-slot>
 
@@ -10,35 +10,31 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="text-gray-900">
                     <div class="flex justify-between bg-blue-600 ">
-                        <h2 class="text-xl text-white p-6">{{ $menu->menu_name }}の編集</h2>
+                        <h2 class="text-xl text-white p-6">{{ $blog->blog_title }}の編集</h2>
                         <div class=" pr-6 pt-6">
-                            {{ Form::open(['route' => ['admin.menus.destroy', $menu->id], 'method' => 'post']) }}
+                            {{ Form::open(['route' => ['admin.blogs.destroy', $blog->id], 'method' => 'post']) }}
                             @csrf
                             @method('delete')
                             {{ Form::submit('削除', ['class' => 'btn text-white bg-red-600 border-0 py-2 px-6 mb-2 hover:bg-red-700 rounded']) }}
                             {{ Form::close() }}
                         </div>
                     </div>
+                        <div class=" pr-6 pt-6">
+                            {{ Form::open(['route' => ['admin.blogs.update', $service->id], 'method' => 'post', 'file' => true,]) }}
+                            @csrf
+                            @method('post')
+                                
+                            {{-- Form --}}
+                            {{Form::hidden('service_id', $service->id )}}
 
-                    <div class="p-6">
-                        {{ Form::open(['route' => ['admin.menus.update', $menu->id], 'method' => 'post']) }}
-                    @csrf
-                    @method('POST')
-                    <div class="py-6">
-                        {{ Form::label('menu_name','メニュー名')}}<br>
-                        {{ Form::text('menu_name', $menu->menu_name, ['class' => 'w-1/2 rounded form-control ', 'id' => 'lastName', 'placeholder' => $menu->menu_name])}}
-                    </div>
-                    <hr>
-                    <div class="py-6">
-                        {{ Form::label('menu_fee','料金')}}<br>
-                        {{ Form::text('menu_fee', $menu->menu_fee, ['class' => 'w-1/2 rounded form-control ', 'id' => 'lastName', 'placeholder' => '地域名'])}}
-                    </div>
-                    <hr>
-                    <div class="py-6 flex justify-between">
-                        <a href="{{ route('admin.services.index') }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">
-                            戻る
-                        </a>
-                        {{ Form::submit('送信', ['class' => 'btn text-white bg-blue-600 border-0 py-2 px-6 mb-2 hover:bg-blue-700 rounded']) }}
+                            {{ Form::label('blog_title','ブログタイトル', ['class' => 'form-check-label']) }}
+                            {{ Form::text('blog_title', $blog->blog_title, ['required' => 'required']) }}<br>
+
+                            {{ Form::textarea('blog_text', $blog->blog_text, ['id' => 'ckeditor']) }}
+
+                            {{ Form::file('blog_image_name', ) }}
+
+                            {{ Form::submit('送信', ['class' => 'btn btn-primary']) }}
                         {{ Form::close() }}
                     </div>
                  </div>
@@ -53,6 +49,11 @@
             </div>
         </div>
     </div>
+    
 
+    <script src="{{ asset('/ckeditor/ckeditor.js')}}"></script>
+    <script>
+        CKEDITOR.replace('ckeditor');
+    </script>
 
 </x-app-layout>
