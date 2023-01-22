@@ -15,7 +15,10 @@
                         
                         <div class="container">
                             <div class="card mt-3">
-                                {{ Form::open(['route' => ['admin.blogs.store',  [$service->id]], 'method' => 'post', 'file' => true,]) }}
+                                {{ Form::open(['route' => ['admin.blogs.store',  [$service->id]], 
+                                'method' => 'post', 'file' => true,
+                                'enctype' => 'multipart/form-data',
+                                'accept' => 'iamge/png, image/jpeg, image/jpg, image/webp' ]) }}
                                     @csrf
                                     @method('post')
                                         
@@ -29,6 +32,9 @@
 
                                     {{ Form::file('blog_image_name', ) }}
 
+                                    <a href="{{ route('admin.blogs.index', $service->id) }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">
+                                        戻る
+                                    </a>
                                     {{ Form::submit('送信', ['class' => 'btn btn-primary']) }}
                                 {{ Form::close() }}
                             </div>

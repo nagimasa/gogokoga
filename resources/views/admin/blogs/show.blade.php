@@ -14,6 +14,7 @@
 
                     <h3>{{ $blogs->blog_title }}</h3>
                     <div>{!! $blogs->blog_text !!}</div>
+                    <img src="{{ asset($blogs->blog_image_name) }}">
 
                     <div class="p-6">
                         

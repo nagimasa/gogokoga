@@ -52,13 +52,18 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        $blog_images = 'blog_images';
+        $each_path = $request->service_id;
+        $image_name = $request->file('blog_image_name')->getClientOriginalName();
+        $get_image_name = $request->file('blog_image_name')->storeAs('public/' . $blog_images . '/' . $each_path, $image_name); 
+        // ddd($get_image_name);
+
         $service_id = $request->service_id;
         Blog::create([
             'service_id' => $request->service_id,
             'blog_title' => $request->blog_title,
             'blog_text' => $request->blog_text,
-            'blog_image_name' => $request->blog_iamge_name,
+            'blog_image_name' => 'storage/'. $blog_images .'/'. $each_path . '/' . $image_name,
         ]);
         return redirect()->route('admin.blogs.index', $service_id);
     }
