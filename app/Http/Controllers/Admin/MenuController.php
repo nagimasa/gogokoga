@@ -154,8 +154,11 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        $menu_id = Menu::findOrFail($id)-> value('service_id');
-        $menu = Menu::findOrFail($id)->delete();
-        return redirect()->route('admin.menus.show', $menu_id);
+
+        $menu = Menu::findOrFail($id);
+        $service_id = $menu->service_id;
+
+        Menu::findOrFail($id)->delete();
+        return redirect()->route('admin.menus.show', $service_id);
     }
 }
