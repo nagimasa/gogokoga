@@ -16,9 +16,9 @@
                         <div class="container">
                             <div class="card mt-3">
                                 {{ Form::open(['route' => ['admin.blogs.store',  [$service->id]], 
-                                'method' => 'post', 'file' => true,
+                                'method'  => 'post', 'file' => true,
                                 'enctype' => 'multipart/form-data',
-                                'accept' => 'iamge/png, image/jpeg, image/jpg, image/webp' ]) }}
+                                'accept'  => 'iamge/png, image/jpeg, image/jpg, image/webp' ]) }}
                                     @csrf
                                     @method('post')
                                         

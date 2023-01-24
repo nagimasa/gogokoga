@@ -20,19 +20,26 @@
                         </div>
                     </div>
                         <div class=" pr-6 pt-6">
-                            {{ Form::open(['route' => ['admin.blogs.update', $service->id], 'method' => 'post', 'file' => true,]) }}
+                            {{ Form::open(['route' => ['admin.blogs.update', $blog->id],
+                            'method'  => 'post',
+                            'file'    => true,
+                            'enctype' => 'multipart/form-data',
+                            'accept'  => 'iamge/png, image/jpeg, image/jpg, image/webp' ]) }}
                             @csrf
                             @method('post')
                                 
                             {{-- Form --}}
                             {{Form::hidden('service_id', $service->id )}}
+                            {{Form::hidden('id', $blog->id )}}
 
                             {{ Form::label('blog_title','ブログタイトル', ['class' => 'form-check-label']) }}
                             {{ Form::text('blog_title', $blog->blog_title, ['required' => 'required']) }}<br>
 
                             {{ Form::textarea('blog_text', $blog->blog_text, ['id' => 'ckeditor']) }}
 
+                            <img src="{{ asset($blog->blog_image_name) }}" alt="">
                             {{ Form::file('blog_image_name', ) }}
+
                             <a href="{{ route('admin.blogs.index', $service->id) }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">
                                 戻る
                             </a>
