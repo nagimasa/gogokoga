@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('service_id')->constrained('services'); // １対多のリレーション設定
+            $table->foreignId('service_id')
+            ->constrained('services')
+            ->onUpdate('cascade')
+            ->onDelete('cascade'); // １対多のリレーション設定
             $table->text('menu_name');
             $table->integer('menu_fee');
 
