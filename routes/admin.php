@@ -19,7 +19,7 @@ use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\BlogController;
-
+use App\Http\Controllers\Admin\ImageGallController;
 
 use App\Http\Controllers\ProfileController;
 /*
@@ -68,6 +68,16 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('admin/blogs/edit/{id}', [BlogController::class, 'edit'])->name('blogs.edit');
     Route::post('admin/blogs/update/{id}', [BlogController::class, 'update'])->name('blogs.update');
     Route::delete('admin/blogs/delete/{id}', [BlogController::class, 'destroy'])->name('blogs.destroy');
+
+
+    // ImageGall
+    Route::get('admin/imagegalls/index/{id}', [ImageGallController::class, 'index'])->name('imagegalls.index');
+    Route::get('admin/imagegalls/create/{id}', [ImageGallController::class, 'create'])->name('imagegalls.create');
+    Route::post('admin/imagegalls/store', [ImageGallController::class, 'store'])->name('imagegalls.store');
+    Route::get('admin/imagegalls/show/{id}', [ImageGallController::class, 'show'])->name('imagegalls.show');
+    Route::get('admin/imagegalls/edit/{id}', [ImageGallController::class, 'edit'])->name('imagegalls.edit');
+    Route::post('admin/imagegalls/update/{id}', [ImageGallController::class, 'update'])->name('imagegalls.update');
+    Route::delete('admin/imagegalls/delete/{id}', [ImageGallController::class, 'destroy'])->name('imagegalls.destroy');
 
 
 
