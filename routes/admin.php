@@ -19,7 +19,7 @@ use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\BlogController;
-use App\Http\Controllers\Admin\ImageGallController;
+use App\Http\Controllers\Admin\PhotoGallController;
 
 use App\Http\Controllers\ProfileController;
 /*
@@ -70,14 +70,14 @@ Route::middleware('auth:admin')->group(function () {
     Route::delete('admin/blogs/delete/{id}', [BlogController::class, 'destroy'])->name('blogs.destroy');
 
 
-    // ImageGall
-    Route::get('admin/imagegalls/index/{id}', [ImageGallController::class, 'index'])->name('imagegalls.index');
-    Route::get('admin/imagegalls/create/{id}', [ImageGallController::class, 'create'])->name('imagegalls.create');
-    Route::post('admin/imagegalls/store', [ImageGallController::class, 'store'])->name('imagegalls.store');
-    Route::get('admin/imagegalls/show/{id}', [ImageGallController::class, 'show'])->name('imagegalls.show');
-    Route::get('admin/imagegalls/edit/{id}', [ImageGallController::class, 'edit'])->name('imagegalls.edit');
-    Route::post('admin/imagegalls/update/{id}', [ImageGallController::class, 'update'])->name('imagegalls.update');
-    Route::delete('admin/imagegalls/delete/{id}', [ImageGallController::class, 'destroy'])->name('imagegalls.destroy');
+    // PhotoGall
+    Route::get('admin/photogalls/index/{id}', [PhotoGallController::class, 'index'])->name('photogalls.index');
+    Route::get('admin/photogalls/create/{id}', [PhotoGallController::class, 'create'])->name('photogalls.create');
+    Route::post('admin/photogalls/store', [PhotoGallController::class, 'store'])->name('photogalls.store');
+    Route::get('admin/photogalls/show/{id}', [PhotoGallController::class, 'show'])->name('photogalls.show');
+    Route::get('admin/photogalls/edit/{id}', [PhotoGallController::class, 'edit'])->name('photogalls.edit');
+    Route::post('admin/photogalls/update/{id}', [PhotoGallController::class, 'update'])->name('photogalls.update');
+    Route::delete('admin/photogalls/delete/{id}', [PhotoGallController::class, 'destroy'])->name('photogalls.destroy');
 
 
 

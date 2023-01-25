@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PhotoGall extends Model
+class Photogall extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'image_name',
-        ' image_title',
         'service_id',
     ];
 

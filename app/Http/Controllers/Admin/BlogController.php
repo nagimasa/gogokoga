@@ -92,7 +92,7 @@ class BlogController extends Controller
             'service_id' => $request->service_id,
             'blog_title' => $request->blog_title,
             'blog_text' => $request->blog_text,
-            'blog_image_name' => 'storage/'. $blog_images .'/'. $each_path . '/' . $get_image,
+            'blog_image_name' => 'storage/'. $blog_images .'/'. $each_path .  $get_image,
         ]);
         return redirect()->route('admin.blogs.index', $service_id);
     }

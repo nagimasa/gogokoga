@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('photogall', function (Blueprint $table) {
+        Schema::create('photogalls', function (Blueprint $table) {
             $table->id();
             $table->foreignId('service_id')
             ->constrained('services')
             ->onUpdate('cascade')
             ->onDelete('cascade'); // １対多のリレーション設定
-            $table->text('blog_image_name');
-            $table->text('image_title')->nullable();
+            $table->text('image_name');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('photogall');
+        Schema::dropIfExists('photogalls');
     }
 };
