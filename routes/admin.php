@@ -47,8 +47,17 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('payments', PaymentController::class);
     Route::resource('genres', GenreController::class);
     Route::resource('services', ServiceController::class);
-    Route::resource('comments', CommentController::class);
+    // Route::resource('comments', CommentController::class);
     // Route::resource('menus', MenuController::class);
+
+    // Comment
+    Route::get('admin/comments/index/{id}', [CommentController::class, 'index'])->name('mencommentsus.index');
+    Route::get('admin/comments/create/{id}', [CommentController::class, 'create'])->name('comments.create');
+    Route::post('admin/comments/store', [CommentController::class, 'store'])->name('comments.store');
+    Route::get('admin/comments/show/{id}', [CommentController::class, 'show'])->name('comments.show');
+    Route::get('admin/comments/edit/{id}', [CommentController::class, 'edit'])->name('comments.edit');
+    Route::post('admin/comments/update/{id}', [CommentController::class, 'update'])->name('comments.update');
+    Route::delete('admin/comments/delete/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
     // Menu
     Route::get('admin/menus/index/{id}', [MenuController::class, 'index'])->name('menus.index');
