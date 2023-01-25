@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Comment;
+use App\Models\Service;
 
 class CommentController extends Controller
 {
@@ -16,9 +17,20 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+     public function __construct()
+     {
+         $this->middleware('auth:admin');
+     }
+
+
+    public function index($id)
     {
-        // return view('admin.comments.index');
+
+        $service = Service::findOrFail($id);
+        $comment = Comment::where('service_id', $id)->get();
+
+        return view('admin.blogs.index', compact('comment','service'));
     }
 
     /**
@@ -51,8 +63,10 @@ class CommentController extends Controller
     public function show($id)
     {
         
-        $comment = Comment::find($id);
-        return view('admin.comments.show', compact('comment'));
+        $service = Service::find($id);
+        $comment = Comment::where('service_id', $id)->first();
+        // dd($comment);
+        return view('admin.comments.show', compact('comment', 'service'));
     }
 
     /**
@@ -63,8 +77,9 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        $comment = Comment::findOrFail($id);
-        return view('admin.comments.edit', compact('comment'));
+        $service = Service::find($id);
+        $comment = Comment::where('service_id', $id)->first();
+        return view('admin.comments.edit', compact('comment', 'service'));
     }
 
     /**
@@ -76,9 +91,21 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $comment = Comment::findOrFail($id);
-        $comment->comment = $request->comment;
-        $comment->save();
+
+        $comment = Comment::where('service_id', $id)->first();
+
+        if( empty($comment) ){
+        Comment::create([
+            'service_id' => $request->service_id,
+            'comment'    => $request->comment,
+        ]);
+        }else{
+            $comment->update([
+                'service_id' => $request->service_id,
+                'comment'    => $request->comment,
+            ]);
+        }
+
 
         return redirect()->route('admin.services.index');
     }
@@ -92,7 +119,8 @@ class CommentController extends Controller
     public function destroy($id)
     {
 
-        Comment::findOrFail($id)->delete();
-        return redirect()->route('admin.services.index');
+        $comment = Comment::where('service_id', $id)->first();
+        Comment::findOrFail($comment->id)->delete();
+        return redirect()->route('admin.comments.show', $id);
     }
 }

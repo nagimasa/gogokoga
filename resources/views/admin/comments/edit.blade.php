@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="font-semibold text-xl text-gray-800 leading-tight">
-            コメントの編集
+            コメントの設定
         </h1>
     </x-slot>
 
@@ -10,23 +10,30 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="text-gray-900">
                     <div class="flex justify-between bg-blue-600 ">
-                        <h2 class="text-xl text-white p-6">{{ $comment->service->service_name }}の登録</h2>
+                        <h2 class="text-xl text-white p-6">{{ $service->service_name }}のコメント設定</h2>
 
+                        @if(!empty($comment->comment))
                         <div class=" pr-6 pt-6">
-                            {{ Form::open(['route' => ['admin.comments.destroy', $comment->id], 'method' => 'post']) }}
+                            {{ Form::open(['route' => ['admin.comments.destroy', $service->id], 'method' => 'post']) }}
                             @csrf
                             @method('delete')
                             {{ Form::submit('削除', ['class' => 'btn text-white bg-red-600 border-0 py-2 px-6 mb-2 hover:bg-red-700 rounded']) }}
                             {{ Form::close() }}
                         </div>
+                        @endif
                     </div>
                     <div class="p-6">
-                            {{ Form::open(['route' => ['admin.comments.update', $comment->id], 'method' => 'post']) }}
+                            {{ Form::open(['route' => ['admin.comments.update', $service->id], 'method' => 'post']) }}
                         @csrf
-                        @method('PUT')
+                        @method('post')
                         <div class="py-6">
+                            {{Form::hidden('service_id', $service->id )}}
                             {{ Form::label('comment','コメント内容')}}<br>
-                            {{ Form::text('comment', $comment->comment, ['class' => 'w-1/2 rounded form-control ', 'id' => 'lastName', 'placeholder' => '地域名'])}}
+                            @if(!empty($comment->comment))
+                            {{ Form::text('comment', $comment->comment, ['class' => 'w-1/2 rounded form-control ', 'id' => 'lastName', 'placeholder' => 'コメント内容'])}}
+                            @else
+                            {{ Form::text('comment','', ['class' => 'w-1/2 rounded form-control ', 'id' => 'lastName', 'placeholder' => 'コメント内容'])}}
+                            @endif
                         </div>
                         <hr>
                         <div class="py-6 flex justify-between">
