@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('service_id')->constrained('services'); // １対多のリレーション設定
+            $table->foreignId('service_id')
+            ->constrained('services')
+            ->onUpdate('cascade')
+            ->onDelete('cascade'); // １対多のリレーション設定
             $table->text('comment');
             $table->timestamps();
         });
