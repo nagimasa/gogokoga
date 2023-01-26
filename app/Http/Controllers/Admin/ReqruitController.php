@@ -1,0 +1,194 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use App\Models\Reqruit;
+use App\Models\Service;
+
+// use InterventionImage;
+use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\Storage;
+
+class ReqruitController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function __construct()
+     {
+         $this->middleware('auth:admin');
+     }
+
+
+    public function index($id)
+    {
+        $service = Service::findOrFail($id);
+        $reqruit = Reqruit::where('service_id', $id)->get();
+
+        return view('admin.reqruits.index', compact('service','reqruit'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create($id)
+    {
+        $service = Service::findOrFail($id);
+        // ddd($service);
+        return view('admin.reqruits.create', compact('service'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $service_id = $request->service_id;
+        $reqruit_image = 'reqruit_image';
+        $each_path = $request->service_id;
+
+        // 画像を取得
+        $get_image = $request->hero_image;
+        
+        // 画像の名前を取得
+        $image_name = $request->file('hero_image')->getClientOriginalName();
+
+        // ルート情報を設定
+        $root_image = 'public/' . $reqruit_image . '/' . $each_path;
+
+        // 画像があればリサイズし保存
+        // if(!is_null($get_image) && $get_image->isValid()){
+        //     $resized_image = Image::make($get_image);
+        //     $resized_image->orientate();
+        //     $resized_image->resize(600, null,
+        //     function($constraint){
+        //         $constraint->aspectRatio();
+        //         $constraint->upsize();
+        //     })->encode();
+        //     // Storage::put($root_image . $get_image, $resized_image);
+        //     Storage::put($root_image, $resized_image);
+        // }
+
+        if(!is_null($get_image) && $get_image->isValid()){
+            $filename = now()->format('YmdHis').uniqid('', true) . "." . $get_image->extension();
+            $file = $request->file('hero_image');
+            // dd($file);
+            $file = Image::make($file)->setFileInfoFromPath($file);
+            // 圧縮
+            $file->orientate()->resize(
+                600,
+                null,
+                function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+                }
+            );
+        }
+        $file->save(storage_path(). "/app/public/". $reqruit_image ."/". $each_path ."/". "resized-{$filename}");
+
+        // dd($request);
+        // バリデーション
+        // $request->validate([
+        //     'reqruit_title'     => 'max:50',
+        //     'reqruit_text'      => 'required',
+        //     'worker_type'       => 'required',
+        //     'work_in_day'       => 'nullable',
+        //     'work_in_week'      => 'nullable',
+        //     'fee_type'          => 'required',
+        //     'fee'               => 'required',
+        //     'address'           => 'required',
+        //     'another'           => 'nullable',
+        //     'maneger_name'      => 'required',
+        //     'maneger_tel'       => 'required',
+        //     'maneger_email'     => 'email|nullable',
+        //     'maneger_name_kana' => 'required',
+        //     'visualize'         => 'required',
+        // ]);
+        // DBへの保存処理
+        Reqruit::create([
+            'hero_image'        => 'storage/' . $reqruit_image .'/' .$each_path .'/'. "resized-{$filename}",
+            'reqruit_title'     => $request->reqruit_title,
+            'reqruit_text'      => $request->reqruit_text,
+            'work_type'         => $request->work_type,
+            'work_in_day'       => $request->work_in_day,
+            'work_in_week'      => $request->work_in_week,
+            'fee_type'          => $request->fee_type,
+            'fee'               => $request->fee,
+            'address'           => $request->address,
+            'another'           => $request->another,
+            'service_id'        => $request->service_id,
+            'maneger_name'      => $request->maneger_name,
+            'maneger_tel'       => $request->maneger_tel,
+            'maneger_email'     => $request->maneger_email,
+            'maneger_name_kana' => $request->maneger_name_kana,
+            'visualize'         => $request->visualize,
+        ]);
+
+
+        return redirect()->route('admin.reqruits.show', $service_id);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $service = Service::find($id);
+        $reqruit = Reqruit::where('service_id', $id)->first();
+        // dd($comment);
+        return view('admin.reqruits.show', compact('reqruit', 'service'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $service = Service::find($id);
+        $reqruit = Reqruit::where('service_id', $id)->first();
+        return view('admin.reqruits.edit', compact('reqruit', 'service'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $reqruit = Reqruit::where('service_id', $id)->first();
+        // dd($reqruit);
+        Reqruit::findOrFail($reqruit->id)->delete();
+        return redirect()->route('admin.reqruits.show', $id);
+    }
+}

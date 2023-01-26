@@ -59,24 +59,49 @@ class PhotoGallController extends Controller
 
 
         // Udemyの方法
-        $get_images = $request->image_name;
+        // $get_images = $request->image_name;
+        $get_images = $request->file('image_name');
         $root_image = 'public/' . $gall_images . '/' . $each_path;
+        // foreach($get_images as $get_image){
+        //     if(!is_null($get_image) && $get_image->isValid()){
+        //         $resized_image = Image::make($get_image);
+        //         $resized_image->orientate();
+        //         $resized_image->resize(600, null,
+        //         function($constraint){
+        //             $constraint->aspectRatio();
+        //             $constraint->upsize();
+        //         })->encode();
+        //         Storage::put($root_image . $get_image, $resized_image);
+        //         $service_id = $request->service_id;
+
+        //         // データベースにデータを保存
+        //         Photogall::create([
+        //             'service_id' => $request->service_id,
+        //             'image_name' => 'storage/'. $gall_images .'/'. $each_path  . $get_image,
+        //         ]);
+        //     }
+        // }
         foreach($get_images as $get_image){
+            // dd($get_images, $get_image);
             if(!is_null($get_image) && $get_image->isValid()){
-                $resized_image = Image::make($get_image);
-                $resized_image->orientate();
-                $resized_image->resize(600, null,
-                function($constraint){
+                $filename = now()->format('YmdHis').uniqid('', true) . "." . $get_image->extension();
+                $file = $get_image;
+                $file = Image::make($file)->setFileInfoFromPath($file);
+                // 圧縮
+                $file->orientate()->resize(
+                    600,
+                    null,
+                    function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
-                })->encode();
-                Storage::put($root_image . $get_image, $resized_image);
+                    }
+                );
+                $file->save(storage_path(). "/app/public/". $gall_images ."/". $each_path ."/". "resized-{$filename}");
                 $service_id = $request->service_id;
-
                 // データベースにデータを保存
                 Photogall::create([
                     'service_id' => $request->service_id,
-                    'image_name' => 'storage/'. $gall_images .'/'. $each_path  . $get_image,
+                    'image_name' => 'storage/'. $gall_images .'/'. $each_path .'/'. "resized-{$filename}",
                 ]);
             }
         }

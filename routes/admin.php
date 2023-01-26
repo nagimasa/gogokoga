@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\PhotoGallController;
+use App\Http\Controllers\Admin\ReqruitController;
 
 use App\Http\Controllers\ProfileController;
 /*
@@ -50,6 +51,7 @@ Route::middleware('auth:admin')->group(function () {
     // Route::resource('comments', CommentController::class);
     // Route::resource('menus', MenuController::class);
 
+    
     // Comment
     Route::get('admin/comments/index/{id}', [CommentController::class, 'index'])->name('mencommentsus.index');
     Route::get('admin/comments/create/{id}', [CommentController::class, 'create'])->name('comments.create');
@@ -58,6 +60,17 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('admin/comments/edit/{id}', [CommentController::class, 'edit'])->name('comments.edit');
     Route::post('admin/comments/update/{id}', [CommentController::class, 'update'])->name('comments.update');
     Route::delete('admin/comments/delete/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
+
+
+    // Reqruit
+    Route::get('admin/reqruits/index/{id}', [ReqruitController::class, 'index'])->name('reqruits.index');
+    Route::get('admin/reqruits/create/{id}', [ReqruitController::class, 'create'])->name('reqruits.create');
+    Route::post('admin/reqruits/store', [ReqruitController::class, 'store'])->name('reqruits.store');
+    Route::get('admin/reqruits/show/{id}', [ReqruitController::class, 'show'])->name('reqruits.show');
+    Route::get('admin/reqruits/edit/{id}', [ReqruitController::class, 'edit'])->name('reqruits.edit');
+    Route::post('admin/reqruits/update/{id}', [ReqruitController::class, 'update'])->name('reqruits.update');
+    Route::delete('admin/reqruits/delete/{id}', [ReqruitController::class, 'destroy'])->name('reqruits.destroy');
+
 
     // Menu
     Route::get('admin/menus/index/{id}', [MenuController::class, 'index'])->name('menus.index');
