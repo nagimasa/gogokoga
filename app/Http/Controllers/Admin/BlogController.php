@@ -66,20 +66,35 @@ class BlogController extends Controller
         $get_image = $request->blog_image_name;
         // dd($get_image);
         // $root_image = 'public/' . $blog_images . '/' . $each_path . $image_name;
-        $root_image = 'public/' . $blog_images . '/' . $each_path;
+        // $root_image = 'public/' . $blog_images . '/' . $each_path;
+        // if(!is_null($get_image) && $get_image->isValid()){
+        //     // $extension = $get_image->extension();
+        //     $resized_image = Image::make($get_image);
+        //     $resized_image->orientate();
+        //     $resized_image->resize(600, null,
+        //     function($constraint){
+        //         $constraint->aspectRatio();
+        //         $constraint->upsize();
+        //     })->encode();
+        //     Storage::put($root_image . $get_image, $resized_image);
+        // }
+
         if(!is_null($get_image) && $get_image->isValid()){
-            // $extension = $get_image->extension();
-            $resized_image = Image::make($get_image);
-            $resized_image->orientate();
-            $resized_image->resize(600, null,
-            function($constraint){
+            $filename = now()->format('YmdHis').uniqid('', true) . "." . $get_image->extension();
+            $file = $request->file('blog_image_name');
+            // dd($file);
+            $file = Image::make($file)->setFileInfoFromPath($file);
+            // 圧縮
+            $file->orientate()->resize(
+                600,
+                null,
+                function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
-            })->encode();
-            Storage::put($root_image . $get_image, $resized_image);
+                }
+            );
+            $file->save(storage_path(). "/app/public/". $blog_images ."/". $each_path ."/". "resized-{$filename}");
         }
-
-
 
         // $blog_images = 'blog_images';
         // $each_path = $request->service_id;
@@ -88,12 +103,20 @@ class BlogController extends Controller
         // ddd($get_image_name);
 
         $service_id = $request->service_id;
+        if(isset($get_image)){
         Blog::create([
-            'service_id' => $request->service_id,
-            'blog_title' => $request->blog_title,
-            'blog_text' => $request->blog_text,
-            'blog_image_name' => 'storage/'. $blog_images .'/'. $each_path .  $get_image,
+            'service_id'      => $request->service_id,
+            'blog_title'      => $request->blog_title,
+            'blog_text'       => $request->blog_text,
+            'blog_image_name' => 'storage/'. $blog_images .'/'. $each_path .'/'. "resized-{$filename}",
         ]);
+        }else{
+            Blog::create([
+            'service_id'      => $request->service_id,
+            'blog_title'      => $request->blog_title,
+            'blog_text'       => $request->blog_text,
+            ]);
+        }
         return redirect()->route('admin.blogs.index', $service_id);
     }
 
@@ -152,19 +175,61 @@ class BlogController extends Controller
 
 
         // 画像がアップされていたら
+        // if(!is_null($get_image) && $get_image->isValid()){
+        //     // 既存画像を削除
+        //     Storage::delete($target_image_url);
+        //     // 新規画像の保存処理
+        //     $resized_image = Image::make($get_image);
+        //     $resized_image->orientate();
+        //     $resized_image->resize(600, null,
+        //     function($constraint){
+        //         $constraint->aspectRatio();
+        //         $constraint->upsize();
+        //     })->encode();
+        //     Storage::put($root_image . $get_image, $resized_image);
+        // }
+
+        // if(!is_null($get_image) && $get_image->isValid() && $target_image_url == true){
         if(!is_null($get_image) && $get_image->isValid()){
             // 既存画像を削除
+            if($target_image_url == true){
             Storage::delete($target_image_url);
-            // 新規画像の保存処理
-            $resized_image = Image::make($get_image);
-            $resized_image->orientate();
-            $resized_image->resize(600, null,
-            function($constraint){
+            }
+
+            $filename = now()->format('YmdHis').uniqid('', true) . "." . $get_image->extension();
+            $file = $request->file('blog_image_name');
+            $file = Image::make($file)->setFileInfoFromPath($file);
+
+            // 圧縮
+            $file->orientate()->resize(
+                600,
+                null,
+                function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
-            })->encode();
-            Storage::put($root_image . $get_image, $resized_image);
+                }
+            );
+            $file->save(storage_path(). "/app/public/". $blog_images ."/". $each_path ."/". "resized-{$filename}");
         }
+        // elseif(!is_null($get_image) && $get_image->isValid()){
+
+        //     $filename = now()->format('YmdHis').uniqid('', true) . "." . $get_image->extension();
+        //     $file = $request->file('blog_image_name');
+        //     $file = Image::make($file)->setFileInfoFromPath($file);
+
+        //     // 圧縮
+        //     $file->orientate()->resize(
+        //         600,
+        //         null,
+        //         function ($constraint) {
+        //         $constraint->aspectRatio();
+        //         $constraint->upsize();
+        //         }
+        //     );
+        //     $file->save(storage_path(). "/app/public/". $blog_images ."/". $each_path ."/". "resized-{$filename}");
+            
+        // }
+
 
         
         if(isset($get_image)){
@@ -172,7 +237,7 @@ class BlogController extends Controller
             $target_blog->update([
                 'blog_title'       => $request->blog_title,
                 'blog_text'        => $request->blog_text,
-                'blog_image_name'  => 'storage/'. $blog_images .'/'. $each_path . '/' . $get_image,
+                'blog_image_name'  => 'storage/'. $blog_images .'/'. $each_path . '/' . "resized-{$filename}",
             ]);
         }else{
             // 新規画像がなければ既存のまま

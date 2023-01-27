@@ -44,7 +44,7 @@
 
                         {{ Form::label('fee_type','お給料設定', ['class' => 'form-check-label']) }}
                         {{ Form::select('fee_type',
-                            ['hour' => '時給', 'day' => '日給', 'month' => '月給'],
+                            ['時給' => '時給', '日給' => '日給', '月給' => '月給'],
                             ['id' => ''])
                         }}
 
@@ -68,9 +68,9 @@
                         {{ Form::text('maneger_email',old('maneger_email'), ['required' => 'required', 'placeholder' => '例）reqruit@example.com']) }}<br>
 
                         {{ Form::label('another','備考欄', ['class' => 'form-check-label']) }}
-                        {{ Form::textarea('another',old('another'), ['required' => 'required', 'placeholder' => '備考欄']) }}<br>
+                        {{ Form::textarea('another',old('another'), ['placeholder' => '備考欄']) }}<br>
 
-                        {{ Form::radio('visualize', 1) }}
+                        {{ Form::radio('visualize', 1, true) }}
                         {{ Form::label('visualize', '公開') }}
                         {{ Form::radio('visualize', 0) }}
                         {{ Form::label('visualize', '非公開') }}

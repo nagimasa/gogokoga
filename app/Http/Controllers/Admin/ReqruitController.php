@@ -62,23 +62,12 @@ class ReqruitController extends Controller
         $get_image = $request->hero_image;
         
         // 画像の名前を取得
-        $image_name = $request->file('hero_image')->getClientOriginalName();
+        // $image_name = $request->file('hero_image')->getClientOriginalName();
 
         // ルート情報を設定
         $root_image = 'public/' . $reqruit_image . '/' . $each_path;
 
-        // 画像があればリサイズし保存
-        // if(!is_null($get_image) && $get_image->isValid()){
-        //     $resized_image = Image::make($get_image);
-        //     $resized_image->orientate();
-        //     $resized_image->resize(600, null,
-        //     function($constraint){
-        //         $constraint->aspectRatio();
-        //         $constraint->upsize();
-        //     })->encode();
-        //     // Storage::put($root_image . $get_image, $resized_image);
-        //     Storage::put($root_image, $resized_image);
-        // }
+
 
         if(!is_null($get_image) && $get_image->isValid()){
             $filename = now()->format('YmdHis').uniqid('', true) . "." . $get_image->extension();
@@ -94,8 +83,8 @@ class ReqruitController extends Controller
                 $constraint->upsize();
                 }
             );
+            $file->save(storage_path(). "/app/public/". $reqruit_image ."/". $each_path ."/". "resized-{$filename}");
         }
-        $file->save(storage_path(). "/app/public/". $reqruit_image ."/". $each_path ."/". "resized-{$filename}");
 
         // dd($request);
         // バリデーション
@@ -115,25 +104,47 @@ class ReqruitController extends Controller
         //     'maneger_name_kana' => 'required',
         //     'visualize'         => 'required',
         // ]);
+
+
         // DBへの保存処理
-        Reqruit::create([
-            'hero_image'        => 'storage/' . $reqruit_image .'/' .$each_path .'/'. "resized-{$filename}",
-            'reqruit_title'     => $request->reqruit_title,
-            'reqruit_text'      => $request->reqruit_text,
-            'work_type'         => $request->work_type,
-            'work_in_day'       => $request->work_in_day,
-            'work_in_week'      => $request->work_in_week,
-            'fee_type'          => $request->fee_type,
-            'fee'               => $request->fee,
-            'address'           => $request->address,
-            'another'           => $request->another,
-            'service_id'        => $request->service_id,
-            'maneger_name'      => $request->maneger_name,
-            'maneger_tel'       => $request->maneger_tel,
-            'maneger_email'     => $request->maneger_email,
-            'maneger_name_kana' => $request->maneger_name_kana,
-            'visualize'         => $request->visualize,
-        ]);
+        if(isset($get_image)){
+            Reqruit::create([
+                'hero_image'        => 'storage/' . $reqruit_image .'/' .$each_path .'/'. "resized-{$filename}",
+                'reqruit_title'     => $request->reqruit_title,
+                'reqruit_text'      => $request->reqruit_text,
+                'work_type'         => $request->work_type,
+                'work_in_day'       => $request->work_in_day,
+                'work_in_week'      => $request->work_in_week,
+                'fee_type'          => $request->fee_type,
+                'fee'               => $request->fee,
+                'address'           => $request->address,
+                'another'           => $request->another,
+                'service_id'        => $request->service_id,
+                'maneger_name'      => $request->maneger_name,
+                'maneger_tel'       => $request->maneger_tel,
+                'maneger_email'     => $request->maneger_email,
+                'maneger_name_kana' => $request->maneger_name_kana,
+                'visualize'         => $request->visualize,
+            ]);
+        }else{
+            Reqruit::create([
+                'reqruit_title'     => $request->reqruit_title,
+                'reqruit_text'      => $request->reqruit_text,
+                'work_type'         => $request->work_type,
+                'work_in_day'       => $request->work_in_day,
+                'work_in_week'      => $request->work_in_week,
+                'fee_type'          => $request->fee_type,
+                'fee'               => $request->fee,
+                'address'           => $request->address,
+                'another'           => $request->another,
+                'service_id'        => $request->service_id,
+                'maneger_name'      => $request->maneger_name,
+                'maneger_tel'       => $request->maneger_tel,
+                'maneger_email'     => $request->maneger_email,
+                'maneger_name_kana' => $request->maneger_name_kana,
+                'visualize'         => $request->visualize,
+            ]);
+        }
 
 
         return redirect()->route('admin.reqruits.show', $service_id);
@@ -175,7 +186,87 @@ class ReqruitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $target_reqruit = Reqruit::find($request->id);
+        $target_image_url = $target_reqruit->hero_image;
+        
+        $service_id = $request->service_id;
+        $reqruit_image = 'reqruit_image';
+        $each_path = $request->service_id;
+
+        // 画像を取得
+        $get_image = $request->hero_image;
+        
+        // 画像の名前を取得
+        // $image_name = $request->file('hero_image')->getClientOriginalName();
+
+        if(!is_null($get_image) && $get_image->isValid()){
+            // 既存画像を削除
+            Storage::delete($target_image_url);
+
+            $filename = now()->format('YmdHis').uniqid('', true) . "." . $get_image->extension();
+            $file = $request->file('hero_image');
+            $file = Image::make($file)->setFileInfoFromPath($file);
+
+            // 圧縮
+            $file->orientate()->resize(
+                600,
+                null,
+                function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+                }
+            );
+            $file->save(storage_path(). "/app/public/". $reqruit_image ."/". $each_path ."/". "resized-{$filename}");
+        }
+
+        
+        if(isset($get_image)){
+            // 新規画像があれば上書き保存
+            $target_reqruit->update([
+                'hero_image'        => 'storage/' . $reqruit_image .'/' .$each_path .'/'. "resized-{$filename}",
+                'reqruit_title'     => $request->reqruit_title,
+                'reqruit_text'      => $request->reqruit_text,
+                'work_type'         => $request->work_type,
+                'work_in_day'       => $request->work_in_day,
+                'work_in_week'      => $request->work_in_week,
+                'fee_type'          => $request->fee_type,
+                'fee'               => $request->fee,
+                'address'           => $request->address,
+                'another'           => $request->another,
+                'service_id'        => $request->service_id,
+                'maneger_name'      => $request->maneger_name,
+                'maneger_tel'       => $request->maneger_tel,
+                'maneger_email'     => $request->maneger_email,
+                'maneger_name_kana' => $request->maneger_name_kana,
+                'visualize'         => $request->visualize,
+            ]);
+        }else{
+            // 新規画像がなければ既存のまま
+            $target_reqruit->update([
+                'reqruit_title'     => $request->reqruit_title,
+                'reqruit_text'      => $request->reqruit_text,
+                'work_type'         => $request->work_type,
+                'work_in_day'       => $request->work_in_day,
+                'work_in_week'      => $request->work_in_week,
+                'fee_type'          => $request->fee_type,
+                'fee'               => $request->fee,
+                'address'           => $request->address,
+                'another'           => $request->another,
+                'service_id'        => $request->service_id,
+                'maneger_name'      => $request->maneger_name,
+                'maneger_tel'       => $request->maneger_tel,
+                'maneger_email'     => $request->maneger_email,
+                'maneger_name_kana' => $request->maneger_name_kana,
+                'visualize'         => $request->visualize,
+            ]);
+        }
+
+        return redirect()->route('admin.reqruits.show', $service_id);
+
+
+
+
+
     }
 
     /**

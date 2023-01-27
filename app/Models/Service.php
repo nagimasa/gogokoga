@@ -10,6 +10,7 @@ use App\Models\Genre;
 use App\Models\Payment;
 use App\Models\Comment;
 use App\Models\Menu;
+use App\Models\Reqruit;
 
 class Service extends Model
 {
@@ -79,5 +80,10 @@ class Service extends Model
     public function comments()
     {
         return $this->hasOne(Comment::class);
+    }
+    // コメントとの１対１
+    public function reqruit()
+    {
+        return $this->hasOne(Reqruit::class);
     }
 }
