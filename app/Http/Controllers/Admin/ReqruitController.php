@@ -54,26 +54,32 @@ class ReqruitController extends Controller
      */
     public function store(Request $request)
     {
+        // サービスidの取得
         $service_id = $request->service_id;
-        $reqruit_image = 'reqruit_image';
+
+
+        // ルート情報の一部を設定
+        $reqruit_images = 'reqruit_images';
+
+
+        // ディレクトリをidで分けるための準備
         $each_path = $request->service_id;
+
+
+        // ディレクトリを作成する場合に使用
+        $reqruit_directory = 'public/reqruit_images' . "/" . $each_path ."/" ;
+
 
         // 画像を取得
         $get_image = $request->hero_image;
-        
-        // 画像の名前を取得
-        // $image_name = $request->file('hero_image')->getClientOriginalName();
-
-        // ルート情報を設定
-        $root_image = 'public/' . $reqruit_image . '/' . $each_path;
 
 
-
+        // 画像があれば圧縮して保存する処理
         if(!is_null($get_image) && $get_image->isValid()){
             $filename = now()->format('YmdHis').uniqid('', true) . "." . $get_image->extension();
             $file = $request->file('hero_image');
-            // dd($file);
             $file = Image::make($file)->setFileInfoFromPath($file);
+
             // 圧縮
             $file->orientate()->resize(
                 600,
@@ -83,8 +89,14 @@ class ReqruitController extends Controller
                 $constraint->upsize();
                 }
             );
-            $file->save(storage_path(). "/app/public/". $reqruit_image ."/". $each_path ."/". "resized-{$filename}");
-        }
+
+            // 専用のディレクトリがあれば保存、なければ作成して保存
+            if(Storage::exists($reqruit_directory)){
+                $file->save(storage_path("app/" . "public/". $reqruit_images ."/". $each_path ."/". "resized-{$filename}"));
+            }else{
+                Storage::makeDirectory($reqruit_directory);
+                $file->save(storage_path("app/" . "public/". $reqruit_images ."/". $each_path ."/". "resized-{$filename}"));
+            }        }
 
         // dd($request);
         // バリデーション
@@ -109,7 +121,7 @@ class ReqruitController extends Controller
         // DBへの保存処理
         if(isset($get_image)){
             Reqruit::create([
-                'hero_image'        => 'storage/' . $reqruit_image .'/' .$each_path .'/'. "resized-{$filename}",
+                'hero_image'        => 'storage/' . $reqruit_images .'/' .$each_path .'/'. "resized-{$filename}",
                 'reqruit_title'     => $request->reqruit_title,
                 'reqruit_text'      => $request->reqruit_text,
                 'work_type'         => $request->work_type,
@@ -186,22 +198,32 @@ class ReqruitController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // 対象を設定
         $target_reqruit = Reqruit::find($request->id);
         $target_image_url = $target_reqruit->hero_image;
         
+
+        // サービスidの取得
         $service_id = $request->service_id;
-        $reqruit_image = 'reqruit_image';
+
+
+        // ルート情報の１部を設定
+        $reqruit_images = 'reqruit_images';
+
+
+        // ディレクトリをidで分けるための準備
         $each_path = $request->service_id;
+
 
         // 画像を取得
         $get_image = $request->hero_image;
         
-        // 画像の名前を取得
-        // $image_name = $request->file('hero_image')->getClientOriginalName();
 
         if(!is_null($get_image) && $get_image->isValid()){
             // 既存画像を削除
-            Storage::delete($target_image_url);
+            if($target_image_url == true){
+                Storage::delete($target_image_url);
+                }
 
             $filename = now()->format('YmdHis').uniqid('', true) . "." . $get_image->extension();
             $file = $request->file('hero_image');
@@ -216,14 +238,14 @@ class ReqruitController extends Controller
                 $constraint->upsize();
                 }
             );
-            $file->save(storage_path(). "/app/public/". $reqruit_image ."/". $each_path ."/". "resized-{$filename}");
+            $file->save(storage_path("app/" . "public/". $reqruit_images ."/". $each_path ."/". "resized-{$filename}"));
         }
 
         
         if(isset($get_image)){
             // 新規画像があれば上書き保存
             $target_reqruit->update([
-                'hero_image'        => 'storage/' . $reqruit_image .'/' .$each_path .'/'. "resized-{$filename}",
+                'hero_image'        => 'storage/' . $reqruit_images .'/' .$each_path .'/'. "resized-{$filename}",
                 'reqruit_title'     => $request->reqruit_title,
                 'reqruit_text'      => $request->reqruit_text,
                 'work_type'         => $request->work_type,

@@ -10,18 +10,17 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="text-gray-900">
                     <h2 class="text-xl bg-blue-600 text-white p-6">{{ $service->service_name }}の求人情報</h2>
-
-                    @if(!empty($reqruit))
                     <div class="p-6">
                         <div class="py-6">
-                            <p class="font-bold">公開状態</p>
-                            @if($reqruit->visualize == 1)
-                            <p>公開</p>
-                            @else
-                            <p>非公開</p>
-                            @endif
+                            <p>掲載状況</p>
+                            {{-- <?php dd($reqruit) ?> --}}
+                            @if(!empty($reqruit))
+                            <p>掲載中</p>
                         </div>
                         <hr>
+                    </div>
+
+                    <div class="p-6">
                         <div class="py-6">
                             <p class="font-bold">ジャンル</p>
                             <p>{{ $service->genre->genre_name }}</p>
@@ -48,7 +47,7 @@
                         </div>
                         <hr>
                         <div class="py-6">
-                            <p class="font-bold">１週間の勤務日数</p>
+                            <p class="font-bold">１週間の勤務時間</p>
                             <p>{{ $reqruit->work_in_week }}</p>
                         </div>
                         <hr>
@@ -87,11 +86,13 @@
                             <p>{{ $reqruit->maneger_email }}</p>
                         </div>
                         <hr>
-                        @else
                         <div class="py-6">
-                            <p>登録されていません。</p>
+                            <p class="font-bold">担当者メールアドレス</p>
+                            <img src="{{ asset($reqruit->hero_image) }}">
                         </div>
                         <hr>
+                        @else
+                        <p>求人情報は登録されていません。</p>
                         @endif
 
 

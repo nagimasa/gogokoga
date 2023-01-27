@@ -52,37 +52,30 @@ class PhotoGallController extends Controller
      */
     public function store(Request $request)
     {
+        // サービスidの取得
+        $service_id = $request->service_id;
 
-        $gall_images = 'gall_images';
+
+        // ルート情報の１部を設定
+        $photogall_images = 'photogall_images';
+
+
+        // ディレクトリをidで分けるための準備
         $each_path = $request->service_id;
 
 
+        // ディレクトリを作成する場合に使用
+        $photogall_directory = 'public/photogall_images' . "/" . $each_path ."/" ;
 
-        // Udemyの方法
-        // $get_images = $request->image_name;
+
+
+        // 画像を取得
         $get_images = $request->file('image_name');
-        $root_image = 'public/' . $gall_images . '/' . $each_path;
-        // foreach($get_images as $get_image){
-        //     if(!is_null($get_image) && $get_image->isValid()){
-        //         $resized_image = Image::make($get_image);
-        //         $resized_image->orientate();
-        //         $resized_image->resize(600, null,
-        //         function($constraint){
-        //             $constraint->aspectRatio();
-        //             $constraint->upsize();
-        //         })->encode();
-        //         Storage::put($root_image . $get_image, $resized_image);
-        //         $service_id = $request->service_id;
 
-        //         // データベースにデータを保存
-        //         Photogall::create([
-        //             'service_id' => $request->service_id,
-        //             'image_name' => 'storage/'. $gall_images .'/'. $each_path  . $get_image,
-        //         ]);
-        //     }
-        // }
+
+        // 複数画像を１つずつにする
         foreach($get_images as $get_image){
-            // dd($get_images, $get_image);
+            // 画像があれば圧縮して保存する処理
             if(!is_null($get_image) && $get_image->isValid()){
                 $filename = now()->format('YmdHis').uniqid('', true) . "." . $get_image->extension();
                 $file = $get_image;
@@ -96,12 +89,18 @@ class PhotoGallController extends Controller
                     $constraint->upsize();
                     }
                 );
-                $file->save(storage_path(). "/app/public/". $gall_images ."/". $each_path ."/". "resized-{$filename}");
-                $service_id = $request->service_id;
+
+                // 専用のディレクトリがあれば保存、なければ作成して保存
+                if(Storage::exists($photogall_directory)){
+                    $file->save(storage_path("app/" . "public/". $photogall_images ."/". $each_path ."/". "resized-{$filename}"));
+                }else{
+                    Storage::makeDirectory($photogall_directory);
+                    $file->save(storage_path("app/" . "public/". $photogall_images ."/". $each_path ."/". "resized-{$filename}"));
+                }
                 // データベースにデータを保存
                 Photogall::create([
                     'service_id' => $request->service_id,
-                    'image_name' => 'storage/'. $gall_images .'/'. $each_path .'/'. "resized-{$filename}",
+                    'image_name' => 'storage/'. $photogall_images .'/'. $each_path .'/'. "resized-{$filename}",
                 ]);
             }
         }
@@ -159,6 +158,7 @@ class PhotoGallController extends Controller
         $service_id = $photo->service_id;
 
         Photogall::findOrFail($id)->delete();
+        Storage::delete($photo->image_name);
         return redirect()->route('admin.photogalls.index', $service_id);
     }
 }
