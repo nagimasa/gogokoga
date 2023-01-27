@@ -14,7 +14,9 @@
 
                     <h3>{{ $blogs->blog_title }}</h3>
                     <div>{!! $blogs->blog_text !!}</div>
+                    @if(!empty($blogs->blog_image_name))
                     <img src="{{ asset($blogs->blog_image_name) }}">
+                    @endif
 
                     <div class="p-6">
                         

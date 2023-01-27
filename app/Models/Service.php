@@ -10,6 +10,8 @@ use App\Models\Genre;
 use App\Models\Payment;
 use App\Models\Comment;
 use App\Models\Menu;
+use App\Models\Reqruit;
+use App\Models\Coupon;
 
 class Service extends Model
 {
@@ -75,9 +77,22 @@ class Service extends Model
     {
         return $this->belongsToMany(Payment::class);
     }
+
     // コメントとの１対１
     public function comments()
     {
         return $this->hasOne(Comment::class);
+    }
+
+    // 求人との１対１
+    public function reqruit()
+    {
+        return $this->hasOne(Reqruit::class);
+    }
+
+    // クーポンとの１対１
+    public function coupon()
+    {
+        return $this->hasOne(Coupon::class);
     }
 }

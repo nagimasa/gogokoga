@@ -56,30 +56,49 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
+        // サービスidの取得
+        $service_id = $request->service_id;
 
+
+        // ルート情報の１部を設定
         $blog_images = 'blog_images';
+
+
+        // ディレクトリをidで分けるための準備
         $each_path = $request->service_id;
-        // $image_name = $request->file('blog_image_name')->getClientOriginalName();
 
 
-        // Udemyの方法
+        // ディレクトリを作成する場合に使用
+        $blog_directory = 'public/blog_images' . "/" . $each_path ."/" ;
+
+
+        // 画像を取得
         $get_image = $request->blog_image_name;
-        // dd($get_image);
-        // $root_image = 'public/' . $blog_images . '/' . $each_path . $image_name;
-        $root_image = 'public/' . $blog_images . '/' . $each_path;
+
+
+        // 画像があれば圧縮して保存する処理
         if(!is_null($get_image) && $get_image->isValid()){
-            // $extension = $get_image->extension();
-            $resized_image = Image::make($get_image);
-            $resized_image->orientate();
-            $resized_image->resize(600, null,
-            function($constraint){
+            $filename = now()->format('YmdHis').uniqid('', true) . "." . $get_image->extension();
+            $file = $request->file('blog_image_name');
+            // dd($file);
+            $file = Image::make($file)->setFileInfoFromPath($file);
+            // 圧縮
+            $file->orientate()->resize(
+                600,
+                null,
+                function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
-            })->encode();
-            Storage::put($root_image . $get_image, $resized_image);
+                }
+            );
+            // 専用のディレクトリがあれば保存、なければ作成して保存
+            if(Storage::exists($blog_directory)){
+                $file->save(storage_path("app/" . "public/". $blog_images ."/". $each_path ."/". "resized-{$filename}"));
+            }else{
+                Storage::makeDirectory($blog_directory);
+                $file->save(storage_path("app/" . "public/". $blog_images ."/". $each_path ."/". "resized-{$filename}"));
+            }
         }
-
-
 
         // $blog_images = 'blog_images';
         // $each_path = $request->service_id;
@@ -87,13 +106,20 @@ class BlogController extends Controller
         // $get_image_name = $request->file('blog_image_name')->storeAs('public/' . $blog_images . '/' . $each_path, $image_name); 
         // ddd($get_image_name);
 
-        $service_id = $request->service_id;
+        if(isset($get_image)){
         Blog::create([
-            'service_id' => $request->service_id,
-            'blog_title' => $request->blog_title,
-            'blog_text' => $request->blog_text,
-            'blog_image_name' => 'storage/'. $blog_images .'/'. $each_path .  $get_image,
+            'service_id'      => $request->service_id,
+            'blog_title'      => $request->blog_title,
+            'blog_text'       => $request->blog_text,
+            'blog_image_name' => 'storage/'. $blog_images .'/'. $each_path .'/'. "resized-{$filename}",
         ]);
+        }else{
+            Blog::create([
+            'service_id'      => $request->service_id,
+            'blog_title'      => $request->blog_title,
+            'blog_text'       => $request->blog_text,
+            ]);
+        }
         return redirect()->route('admin.blogs.index', $service_id);
     }
 
@@ -138,32 +164,52 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // 対象を設定
         $target_blog = Blog::find($request->id);
         $target_image_url = $target_blog->blog_image_name;
 
-        $blog_images = 'blog_images';
+
+        // サービスidの取得
         $each_path = $request->service_id;
 
 
-        // 画像のアップロードを取得
+        // ルート情報の１部を設定
+        $blog_images = 'blog_images';
+
+
+        // ディレクトリをidで分けるための準備
+        $each_path = $request->service_id;
+
+
+        // ディレクトリを作成する場合に使用
+        $blog_directory = 'public/blog_images' . "/" . $each_path ."/" ;
+
+
+        // 画像を取得
         $get_image = $request->blog_image_name;
-        // ルート情報を設定
-        $root_image = 'public/' . $blog_images . '/' . $each_path;
 
 
-        // 画像がアップされていたら
+        // 画像があれば圧縮して保存する処理
         if(!is_null($get_image) && $get_image->isValid()){
             // 既存画像を削除
+            if($target_image_url == true){
             Storage::delete($target_image_url);
-            // 新規画像の保存処理
-            $resized_image = Image::make($get_image);
-            $resized_image->orientate();
-            $resized_image->resize(600, null,
-            function($constraint){
+            }
+
+            $filename = now()->format('YmdHis').uniqid('', true) . "." . $get_image->extension();
+            $file = $request->file('blog_image_name');
+            $file = Image::make($file)->setFileInfoFromPath($file);
+
+            // 圧縮
+            $file->orientate()->resize(
+                600,
+                null,
+                function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
-            })->encode();
-            Storage::put($root_image . $get_image, $resized_image);
+                }
+            );
+            $file->save(storage_path("app/" . "public/". $blog_images ."/". $each_path ."/". "resized-{$filename}"));
         }
 
         
@@ -172,7 +218,7 @@ class BlogController extends Controller
             $target_blog->update([
                 'blog_title'       => $request->blog_title,
                 'blog_text'        => $request->blog_text,
-                'blog_image_name'  => 'storage/'. $blog_images .'/'. $each_path . '/' . $get_image,
+                'blog_image_name'  => 'storage/'. $blog_images .'/'. $each_path . '/' . "resized-{$filename}",
             ]);
         }else{
             // 新規画像がなければ既存のまま
