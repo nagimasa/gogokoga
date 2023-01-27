@@ -31,8 +31,8 @@ class Reqruit extends Model
     ];
 
     // 事業との多対多
-public function service()
-{
-    return $this->belongsTo(Service::class);
-}
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
 }
