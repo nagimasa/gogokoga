@@ -15,6 +15,7 @@
                             {{ Form::open(['route' => ['admin.coupons.destroy', $service->id], 'method' => 'post']) }}
                             @csrf
                             @method('delete')
+                            {{ Form::hidden('delete_image_name', $coupon->coupon_image) }}
                             {{ Form::submit('削除', ['class' => 'btn text-white bg-red-600 border-0 py-2 px-6 mb-2 hover:bg-red-700 rounded']) }}
                             {{ Form::close() }}
                         </div>

@@ -227,6 +227,30 @@ class CouponController extends Controller
     public function destroy($id)
     {
         $coupon = Coupon::where('service_id', $id)->first();
+
+
+        // $reqruit = Reqruit::findOrFail($id);
+        $service_id = $coupon->service_id;
+
+
+        // ディレクトリをidで分けるための準備
+        $each_path = $service_id;
+
+
+        // 画像のパスを取得
+        // $image_url = $reqruit->delete_image_name;
+        $image_url = $coupon->coupon_image;
+
+
+        //削除用のパスを作成 basename()でDBに登録されている名前からファイル名のみを取得 
+        $delete_path = 'coupon_images' ."/". $each_path ."/". basename($image_url);
+
+
+
+        // ディスクを指定してファイルを削除
+        Storage::disk('public')->delete($delete_path);
+
+
         Coupon::findOrFail($coupon->id)->delete();
         return redirect()->route('admin.coupons.show', $id);
     }

@@ -14,6 +14,8 @@ use App\Models\Photogall;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Storage;
 
+
+use Illuminate\Support\Facades\Log;
 class PhotoGallController extends Controller
 {
     /**
@@ -66,7 +68,8 @@ class PhotoGallController extends Controller
 
         // ディレクトリを作成する場合に使用
         $photogall_directory = 'public/photogall_images' . "/" . $each_path ."/" ;
-
+        // $photogall_directory = "/app/public". '/photogall_images' . "/" . $each_path ."/" ;
+        // dd($photogall_directory);
 
 
         // 画像を取得
@@ -92,15 +95,18 @@ class PhotoGallController extends Controller
 
                 // 専用のディレクトリがあれば保存、なければ作成して保存
                 if(Storage::exists($photogall_directory)){
-                    $file->save(storage_path("app/" . "public/". $photogall_images ."/". $each_path ."/". "resized-{$filename}"));
+                    $file->save(storage_path() ."/app/public" ."/". $photogall_images ."/". $each_path ."/". "resized-{$filename}");
+                    // $file->save(storage_path("app/" . "public/". $photogall_images ."/". $each_path ."/". "resized-{$filename}"));
                 }else{
                     Storage::makeDirectory($photogall_directory);
-                    $file->save(storage_path("app/" . "public/". $photogall_images ."/". $each_path ."/". "resized-{$filename}"));
+                    $file->save(storage_path() ."/app/public". "/". $photogall_images ."/". $each_path ."/". "resized-{$filename}");
+                    // $file->save(storage_path("app/" . "public/". $photogall_images ."/". $each_path ."/". "resized-{$filename}"));
                 }
                 // データベースにデータを保存
                 Photogall::create([
                     'service_id' => $request->service_id,
-                    'image_name' => 'storage/'. $photogall_images .'/'. $each_path .'/'. "resized-{$filename}",
+                    // 'image_name' => storage_path(). $photogall_images .'/'. $each_path .'/'. "resized-{$filename}",
+                    'image_name' => 'storage/' . $photogall_images .'/'. $each_path .'/'. "resized-{$filename}",
                 ]);
             }
         }
@@ -152,13 +158,29 @@ class PhotoGallController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $photo = Photogall::findOrFail($id);
         $service_id = $photo->service_id;
 
+
+        // ディレクトリをidで分けるための準備
+        $each_path = $service_id;
+
+
+        // 画像のパスを取得
+        $image_url = $request->delete_image_name;
+
+
+        //削除用のパスを作成 basename()でDBに登録されている名前からファイル名のみを取得 
+        $delete_path = 'photogall_images' ."/". $each_path ."/". basename($image_url);
+
+
+        // ディスクを指定してファイルを削除
+        Storage::disk('public')->delete($delete_path);
+        
+
         Photogall::findOrFail($id)->delete();
-        Storage::delete($photo->image_name);
         return redirect()->route('admin.photogalls.index', $service_id);
     }
 }

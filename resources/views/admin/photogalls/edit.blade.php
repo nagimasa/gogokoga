@@ -18,10 +18,13 @@
                             'accept'  => 'iamge/png, image/jpeg, image/jpg, image/webp' ]) }}
                             @csrf
                             @method('delete')
+                            {{ Form::hidden('delete_image_name', $photo->image_name) }}
                             {{ Form::submit('削除', ['class' => 'btn text-white bg-red-600 border-0 py-2 px-6 mb-2 hover:bg-red-700 rounded']) }}
                             {{ Form::close() }}
                         </div>
                     </div>
+
+                    <?php echo storage_path($photo->image_name); ?>
 
                     <div class="p-6">
                         <img src="{{ asset($photo->image_name) }}">

@@ -15,6 +15,7 @@
                             {{ Form::open(['route' => ['admin.blogs.destroy', $blog->id], 'method' => 'post']) }}
                             @csrf
                             @method('delete')
+                            {{ Form::hidden('delete_image_name', $blog->blog_image_name) }}
                             {{ Form::submit('削除', ['class' => 'btn text-white bg-red-600 border-0 py-2 px-6 mb-2 hover:bg-red-700 rounded']) }}
                             {{ Form::close() }}
                         </div>
