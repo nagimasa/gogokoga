@@ -27,6 +27,7 @@ class Owner extends Authenticatable
         'email',
         'owner_tel',
         'paid',
+        'another',
         'password',
     ];
 

@@ -49,6 +49,9 @@ class OwnerController extends Controller
         // サービスidの取得
         $service_id = $request->service_id;
 
+
+
+
          Owner::create([
             'service_id' => $request->service_id,
             'name'       => $request->name,
@@ -56,7 +59,6 @@ class OwnerController extends Controller
             'email'      => $request->email,
             'owner_tel'  => $request->owner_tel,
             'another'    => $request->another,
-            'paid'       => $request->paid,
             'password'   => $request->password,
          ]);
 
@@ -85,7 +87,9 @@ class OwnerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $service = Service::find($id);
+        $owner = Owner::where('service_id', $id)->first();
+        return view('admin.owners.edit', compact('owner', 'service'));
     }
 
     /**
@@ -97,7 +101,22 @@ class OwnerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $owner = Owner::where('service_id', $id)->first();
+
+        $service_id = $request->service_id;
+        
+        $owner->update([
+            'service_id' => $request->service_id,
+            'name'       => $request->name,
+            'name_kana'  => $request->name_kana,
+            'email'      => $request->email,
+            'owner_tel'  => $request->owner_tel,
+            'another'    => $request->another,
+            'password'   => $request->password,
+         ]);
+
+
+         return redirect()->route('admin.owners.show', $service_id);
     }
 
     /**
@@ -108,6 +127,8 @@ class OwnerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $owner = Owner::where('service_id', $id)->first();
+        Owner::findOrFail($owner->id)->delete();
+        return redirect()->route('admin.owners.show', $id);
     }
 }
