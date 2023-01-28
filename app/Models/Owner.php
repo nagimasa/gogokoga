@@ -21,9 +21,12 @@ class Owner extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'service_id',
         'name',
         'name_kana',
         'email',
+        'owner_tel',
+        'paid',
         'password',
     ];
 

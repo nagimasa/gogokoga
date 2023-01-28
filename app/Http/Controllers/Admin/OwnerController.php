@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+
+use App\Models\Owner;
+use App\Models\Service;
+
 class OwnerController extends Controller
 {
     /**
@@ -12,6 +16,12 @@ class OwnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+     {
+         $this->middleware('auth:admin');
+     }
+
+
     public function index()
     {
         //
@@ -22,9 +32,10 @@ class OwnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $service = Service::findOrFail($id);
+        return view('admin.owners.create', compact('service'));
     }
 
     /**
@@ -35,7 +46,21 @@ class OwnerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // サービスidの取得
+        $service_id = $request->service_id;
+
+         Owner::create([
+            'service_id' => $request->service_id,
+            'name'       => $request->name,
+            'name_kana'  => $request->name_kana,
+            'email'      => $request->email,
+            'owner_tel'  => $request->owner_tel,
+            'another'    => $request->another,
+            'paid'       => $request->paid,
+            'password'   => $request->password,
+         ]);
+
+         return redirect()->route('admin.owners.show', $service_id);
     }
 
     /**
@@ -46,7 +71,10 @@ class OwnerController extends Controller
      */
     public function show($id)
     {
-        //
+        $service = Service::find($id);
+        $owner = Owner::where('service_id', $id)->first();
+        // dd($comment);
+        return view('admin.owners.show', compact('owner', 'service'));
     }
 
     /**
