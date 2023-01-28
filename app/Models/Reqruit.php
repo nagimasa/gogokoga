@@ -30,7 +30,7 @@ class Reqruit extends Model
         'visualize',
     ];
 
-    // 事業との多対多
+    // 事業との1対1
     public function service()
     {
         return $this->belongsTo(Service::class);

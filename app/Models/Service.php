@@ -12,6 +12,7 @@ use App\Models\Comment;
 use App\Models\Menu;
 use App\Models\Reqruit;
 use App\Models\Coupon;
+use App\Models\Owner;
 
 class Service extends Model
 {
@@ -94,5 +95,11 @@ class Service extends Model
     public function coupon()
     {
         return $this->hasOne(Coupon::class);
+    }
+
+    // オーナーとの１対１
+    public function owner()
+    {
+        return $this->hasOne(Owner::class);
     }
 }
