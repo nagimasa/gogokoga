@@ -33,7 +33,6 @@
                         </tr>
 
                         @foreach($services as $service)
-                        {{-- <?php dd($service) ?> --}}
                         <tr class="divide-y">
                             <td class="w-8 py-4 text-center">{{ $service->id }}</td>
                             <td class=" text-center"><a class="text-indigo-600 underline" href="{{ route('admin.services.show', ['service'=>$service->id])}}">{{ $service->service_name }}</a></td>

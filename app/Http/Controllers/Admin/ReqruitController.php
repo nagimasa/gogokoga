@@ -101,22 +101,23 @@ class ReqruitController extends Controller
 
         // dd($request);
         // バリデーション
-        // $request->validate([
-        //     'reqruit_title'     => 'max:50',
-        //     'reqruit_text'      => 'required',
-        //     'worker_type'       => 'required',
-        //     'work_in_day'       => 'nullable',
-        //     'work_in_week'      => 'nullable',
-        //     'fee_type'          => 'required',
-        //     'fee'               => 'required',
-        //     'address'           => 'required',
-        //     'another'           => 'nullable',
-        //     'maneger_name'      => 'required',
-        //     'maneger_tel'       => 'required',
-        //     'maneger_email'     => 'email|nullable',
-        //     'maneger_name_kana' => 'required',
-        //     'visualize'         => 'required',
-        // ]);
+            $request->validate([
+                'reqruit_title'     => 'max:50',
+                'reqruit_text'      => 'required',
+                'work_type'         => 'required',
+                'work_in_day'       => 'nullable',
+                'work_in_week'      => 'nullable',
+                'fee_type'          => 'required',
+                'fee'               => 'required',
+                'address'           => 'required',
+                'another'           => 'nullable',
+                'maneger_name'      => 'required',
+                'maneger_name_kana' => 'required',
+                'maneger_tel'       => 'digits_between:8,13|required',
+                'maneger_email'     => 'email|nullable',
+                'visualize'         => 'required',
+                'hero_image'        => 'nullable',
+            ]);
 
 
         // DBへの保存処理
@@ -241,6 +242,26 @@ class ReqruitController extends Controller
             );
             $file->save(storage_path("app/" . "public/". $reqruit_images ."/". $each_path ."/". "resized-{$filename}"));
         }
+
+        // バリデーション
+        $request->validate([
+            'reqruit_title'     => 'max:50',
+            'reqruit_text'      => 'required',
+            'work_type'         => 'required',
+            'work_in_day'       => 'nullable',
+            'work_in_week'      => 'nullable',
+            'fee_type'          => 'required',
+            'fee'               => 'required',
+            'address'           => 'required',
+            'another'           => 'nullable',
+            'maneger_name'      => 'required',
+            'maneger_name_kana' => 'required',
+            'maneger_tel'       => 'digits_between:8,13|required',
+            'maneger_email'     => 'email|nullable',
+            'visualize'         => 'required',
+            'hero_image'        => 'nullable',
+        ]);
+
 
         
         if(isset($get_image)){

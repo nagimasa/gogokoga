@@ -5,22 +5,19 @@
         </h1>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12 p-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="text-gray-900">
                     <h2 class="text-xl bg-blue-600 text-white p-6">{{ $service->service_name }}の求人情報</h2>
                     <div class="p-6">
+                        @if(!empty($reqruit))
                         <div class="py-6">
-                            <p>掲載状況</p>
-                            {{-- <?php dd($reqruit) ?> --}}
-                            @if(!empty($reqruit))
+                            <p class="font-bold">掲載状況</p>
                             <p>掲載中</p>
                         </div>
                         <hr>
-                    </div>
 
-                    <div class="p-6">
                         <div class="py-6">
                             <p class="font-bold">ジャンル</p>
                             <p>{{ $service->genre->genre_name }}</p>
@@ -87,19 +84,25 @@
                         </div>
                         <hr>
                         <div class="py-6">
-                            <p class="font-bold">担当者メールアドレス</p>
-                            <img src="{{ asset($reqruit->hero_image) }}">
+                            <p class="font-bold">登録画像</p>
+                            @if($reqruit->hero_image)
+                                <img src="{{ asset($reqruit->hero_image) }}">
+                            @else
+                                画像は設定されていません。
+                            @endif
                         </div>
                         <hr>
                         @else
-                        <p>求人情報は登録されていません。</p>
+
+                        <div class="py-6">
+                            <p class="font-bold">掲載状況</p>
+                            <p>求人情報は登録されていません。</p>
+                        </div>
+                        <hr>
                         @endif
 
-
-                    </div>
-                    <div class="p-6">
-                        
-                        <div class="py-6 flex justify-between">
+                    <div class="pt-6">
+                        <div class="flex justify-between">
                             <a href="{{ route('admin.services.index') }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">
                                 戻る
                             </a>
@@ -112,11 +115,9 @@
                                 作成
                             </a>
                             @endif
-                            {{-- <a class="text-white bg-blue-600 border-0 py-2 px-6 mb-2 hover:bg-blue-700 rounded" href="{{ route('admin.menus.edit', [$service->id])}}">
-                                編集
-                            </a> --}}
                         </div>
-                     </div>
+                    </div>
+                </div>
 
 
 

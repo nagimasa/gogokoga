@@ -50,6 +50,14 @@ class OwnerController extends Controller
         $service_id = $request->service_id;
 
 
+        $request->validate([
+            'name'      => 'max:60|required',
+            'name_kana' => 'max:60|required',
+            'email'     => 'email|required',
+            'owner_tel' => 'digits_between:8,13|required',
+            'anothoer'  => 'nullable',
+            'password ' => 'unique:App\Owner,password',
+        ]);
 
 
          Owner::create([
@@ -105,6 +113,18 @@ class OwnerController extends Controller
 
         $service_id = $request->service_id;
         
+
+
+        $request->validate([
+            'name'      => 'max:60|required',
+            'name_kana' => 'max:60|required',
+            'email'     => 'email|required',
+            'owner_tel' => 'digits_between:8,13|required',
+            'anothoer'  => 'nullable',
+            'password ' => 'unique:App\Owner,password',
+        ]);
+
+
         $owner->update([
             'service_id' => $request->service_id,
             'name'       => $request->name,

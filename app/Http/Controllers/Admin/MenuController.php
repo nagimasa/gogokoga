@@ -57,17 +57,19 @@ class MenuController extends Controller
 
         // dd($request);
         // $service = Service::findOrFail($request->id);
-        $request->validate([
-            'moreFields.*.service_id' => 'nullable',
-            'moreFields.*.menu_name' => 'nullable',
-            'moreFields.*.menu_fee' => 'nullable',
-        ]);
 
 
 
         foreach($request->moreFields as $key => $value) {
             // dd($value['menu_name']);
             if($value['menu_name'] == true && $value['menu_fee'] == true){
+                $value['menu_fee'] = mb_convert_kana($value['menu_fee'],'n','utf-8');
+            $request->validate([
+                'moreFields.*.menu_name' => 'required',
+                'moreFields.*.menu_fee' => 'required',
+            ]);
+
+        
                 Menu::create($value);
             }
             // elseif($value['id'] == true && $value['menu_name'] == true && $value['menu_fee'] == true){

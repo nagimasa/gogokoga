@@ -90,6 +90,12 @@ class CouponController extends Controller
         }
 
 
+        $request->validate([
+            'coupon_title' => 'max:60|required',
+            'coupon_text' => 'required',
+        ]);
+
+
         // DBへの保存処理
         if(isset($get_image)){
             Coupon::create([

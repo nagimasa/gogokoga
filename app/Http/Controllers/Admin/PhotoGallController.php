@@ -26,13 +26,14 @@ class PhotoGallController extends Controller
     public function index($id)
     {
         // dd($id);
+        $service = Service::findOrFail($id);
         $photogalls = Photogall::where('service_id', $id)->get();
         $count = Photogall::where('service_id', $id)->count();
         // ->orderBy('update_at', 'desc');
         // dd($photogalls);
         // $count = PhotoGall::where('service_id', $id)->count();
 
-        return view('admin.photogalls.index', compact('photogalls', 'id', 'count'));
+        return view('admin.photogalls.index', compact('photogalls', 'id', 'count', 'service'));
     }
 
     /**

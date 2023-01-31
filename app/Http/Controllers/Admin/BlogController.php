@@ -76,6 +76,15 @@ class BlogController extends Controller
         $get_image = $request->blog_image_name;
 
 
+
+        // バリデーション
+        $request->validate([
+            'blog_title'      => 'required',
+            'blog_text'       => 'required',
+            'blog_image_name' => 'nullable',
+        ]);
+
+
         // 画像があれば圧縮して保存する処理
         if(!is_null($get_image) && $get_image->isValid()){
             $filename = now()->format('YmdHis').uniqid('', true) . "." . $get_image->extension();
