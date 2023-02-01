@@ -13,6 +13,7 @@ use App\Models\Menu;
 use App\Models\Reqruit;
 use App\Models\Coupon;
 use App\Models\Owner;
+use App\Models\Tag;
 
 class Service extends Model
 {
@@ -79,6 +80,12 @@ class Service extends Model
         return $this->belongsToMany(Payment::class);
     }
 
+    // タグとの多対多
+    public function services()
+    {
+        return $this->belognsToMany(Tag::class);
+    }
+    
     // コメントとの１対１
     public function comments()
     {

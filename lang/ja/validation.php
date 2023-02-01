@@ -163,7 +163,7 @@ return [
         'coupon_text'  => 'クーポンの詳細',
 
         // オーナー
-        'name'      =>  'オーナー名',
+        'name'      => 'オーナー名',
         'name_kana' => 'カタカナ（オーナー名）',
         'email'     => 'メールアドレス',
         'owner_tel' => '担当者電話番号',
@@ -174,7 +174,7 @@ return [
         'reqruit_text'      => '求人の詳細',
         'work_type'         => '雇用形態',
         'work_in_day'       => '1日の勤務時間',
-        'work_in_week'      => '１週間の勤務日数',
+        'work_in_week'      => '1週間の勤務日数',
         'fee_type'          => 'お給料設定',
         'fee'               => '金額',
         'address'           => '勤務地',
@@ -193,6 +193,9 @@ return [
         // ブログ
         'blog_title'      => 'ブログタイトル',
         'blog_text'       => 'ブログの本文',
+
+        // タグ
+        'tag_name_kana' => 'そのタグ'
     ],
 
 ];

@@ -26,13 +26,13 @@
                         <hr>
 
                         <div class="py-6">
-                            {{ Form::label('service_name','ジャンル', ['class' => ' font-bold'])}}<br>
+                            {{ Form::label('genre_id','ジャンル', ['class' => ' font-bold'])}}<br>
                             {{ Form::select('genre_id', $genres, ['class' => 'form-control']) }}
                         </div>
                         <hr>
 
                         <div class="py-6">
-                            {{ Form::label('service_name','地域名', ['class' => ' font-bold'])}}<br>
+                            {{ Form::label('area_id','地域名', ['class' => ' font-bold'])}}<br>
                             {{ Form::select('area_id', $areas, ['class' => 'form-control']) }}
                         </div>
                         <hr>

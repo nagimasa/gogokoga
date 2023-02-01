@@ -27,6 +27,9 @@
                     <x-nav-link :href="route('admin.payments.index')" :active="request()->routeIs('admin.payments.index')">
                         支払い管理
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.tags.index')" :active="request()->routeIs('admin.tags.index')">
+                        タグ管理
+                    </x-nav-link>
                 </div>
             </div>
 

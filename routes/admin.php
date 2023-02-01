@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 
 
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\AreasController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\GenreController;
@@ -50,6 +51,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('payments', PaymentController::class);
     Route::resource('genres', GenreController::class);
     Route::resource('services', ServiceController::class);
+    Route::resource('tags', TagController::class);
     // Route::resource('comments', CommentController::class);
     // Route::resource('menus', MenuController::class);
 

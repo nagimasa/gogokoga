@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="font-semibold text-xl text-gray-800 leading-tight">
-            地域名
+            {{ $service->service_name }}の詳細
         </h1>
     </x-slot>
 
@@ -34,7 +34,7 @@
                         <hr>
                         <div class="py-6">
                             <p class="font-bold">メールアドレス</p>
-                            <p>{{ $service->mail }}</p>
+                            <p>{{ $service->email }}</p>
                         </div>
                         <hr>
                         <div class="py-6">
@@ -55,11 +55,11 @@
                         
                         <div class="py-6">
                             <p class="font-bold">支払い方法</p>
-                        @foreach($service->payments as $payment)
+                            @foreach($service->payments as $payment)
                             <p>{{ $payment->payment_name }}</p>
+                            @endforeach
                         </div>
                         <hr>
-                        @endforeach
 
                         <div class="py-6">
                             <p class="font-bold">googleMAP</p>

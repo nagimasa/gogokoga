@@ -12,6 +12,7 @@ use App\Models\Area;
 use App\Models\Payment;
 use App\Models\Comment;
 use App\Models\Menu;
+use App\Models\Tag;
 
 class ServiceController extends Controller
 {
@@ -152,10 +153,15 @@ class ServiceController extends Controller
     {
         $service = Service::findOrFail($id);
         
-        $genres = Genre::all()->pluck('genre_name', 'id');
-        $areas = Area::all()->pluck('area_name', 'id');
+        $genres   = Genre::all()->pluck('genre_name', 'id');
+        $areas    = Area::all()->pluck('area_name', 'id');
         $payments = Payment::all()->pluck('payment_name', 'id');
-        return view('admin.services.edit', compact('service', 'genres', 'areas', 'payments'));
+
+        // ジャンルごとにタグを表示させるため
+        $genre_with_tag = Genre::with('tags')->get();
+
+
+        return view('admin.services.edit', compact('service', 'genres', 'areas', 'payments', 'genres', 'genre_with_tag'));
     }
 
     /**
