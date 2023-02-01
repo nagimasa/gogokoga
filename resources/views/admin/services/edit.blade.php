@@ -96,28 +96,30 @@
                             <div class="py-6">
                                 <h4 class="font-bold">支払い方法</h4>
                                 <div class="flex">
+                                    <div class="">
                                     @foreach($payments as $key => $val)
-                                    <div class="p-6">
                                         {{ Form::checkbox('payments[]', $key, in_array($key, $service->payments->pluck('id')->toArray())), ['id' => 'payment'.$key] }}
-                                        {{ Form::label('payment'.$key, $val, ['class' => ' font-bold']) }}
+                                        {{ Form::label('payment'.$key, $val, ['class' => ' font-bold pr-4']) }}
+                                        @endforeach
                                     </div>
-                                    @endforeach
                                 </div>
                             </div>
                             <hr>
-    
-                            {{-- <div class="py-6">
-                                <h4 class="font-bold">支払い方法</h4>
-                                <div class="flex">
-                                    @foreach($payments as $key => $val)
-                                    <div class="p-6">
-                                        {{ Form::checkbox('payments[]', $key), ['id' => 'payment'.$key] }}
-                                        {{ Form::label('payment'.$key, $val, ['class' => ' font-bold']) }}
-                                    </div>
+
+
+                            <div>
+                                @foreach($genre_with_tag as $genre)
+                                <div class="pt-6">
+                                <p>{{ $genre->genre_name }}</p>
+                                    @foreach($genre->tags as $key => $val)
+                                    {{ Form::checkbox('tags[]', $val->id, in_array($val->id, $service->tags->pluck('id')->toArray())), ['id' => 'tag'.$key] }}
+                                    {{-- {{ Form::checkbox('tags[]', $val->id, in_array($key, $genre->pluck('id')->toArray())), ['id' => 'tag'.$key] }} --}}
+                                    {{ Form::label('tag'.$key, $val->tag_name, ['class' => ' font-bold pr-4']) }}
                                     @endforeach
                                 </div>
+                                @endforeach
                             </div>
-                            <hr> --}}
+                            <hr>
     
                             <div class="py-6">
                                 {{ Form::label('another','備考欄', ['class' => ' font-bold'])}}<br>

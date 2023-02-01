@@ -5,12 +5,14 @@
         </h1>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12 px-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="text-gray-900">
                     <div class="flex justify-between bg-blue-600 ">
                         <h2 class="text-xl text-white p-6">{{ $service->service_name }}のコメント設定</h2>
+
+
 
                         @if(!empty($comment->comment))
                         <div class=" pr-6 pt-6">
@@ -23,16 +25,21 @@
                         @endif
                     </div>
                     <div class="p-6">
+
+                        @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                        @endforeach
+
                             {{ Form::open(['route' => ['admin.comments.update', $service->id], 'method' => 'post']) }}
                         @csrf
                         @method('post')
                         <div class="py-6">
                             {{Form::hidden('service_id', $service->id )}}
-                            {{ Form::label('comment','コメント内容')}}<br>
+                            {{ Form::label('comment','コメント内容',['class' => 'font-bold'])}}<br>
                             @if(!empty($comment->comment))
-                            {{ Form::text('comment', $comment->comment, ['class' => 'w-1/2 rounded form-control ', 'id' => 'lastName', 'placeholder' => 'コメント内容'])}}
+                            {{ Form::textarea('comment', $comment->comment, ['class' => 'w-full md:w-1/2 rounded form-control ', 'id' => 'lastName', 'placeholder' => 'コメント内容'])}}
                             @else
-                            {{ Form::text('comment','', ['class' => 'w-1/2 rounded form-control ', 'id' => 'lastName', 'placeholder' => 'コメント内容'])}}
+                            {{ Form::textarea('comment','', ['class' => 'w-full md:w-1/2 rounded form-control ', 'id' => 'lastName', 'placeholder' => 'コメント内容'])}}
                             @endif
                         </div>
                         <hr>

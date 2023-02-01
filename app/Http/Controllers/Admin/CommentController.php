@@ -94,6 +94,12 @@ class CommentController extends Controller
 
         $comment = Comment::where('service_id', $id)->first();
 
+
+        $request->validate([
+            'comment' => 'max:60',
+        ]);
+
+
         if( empty($comment) ){
         Comment::create([
             'service_id' => $request->service_id,

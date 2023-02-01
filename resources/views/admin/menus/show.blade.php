@@ -5,42 +5,41 @@
         </h1>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12 px-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="text-gray-900">
                     <h2 class="text-xl bg-blue-600 text-white p-6">メニュー：計{{ $count }}件</h2>
-
-                    <table class="table table-bordered" id="dynamicAddRemove">  
-                        <tr>
-                            <th>メニュー名</th>
-                            <th>料金</th>
+                    <div class="p-6">
+                    <table class="table table-bordered w-full" id="dynamicAddRemove">  
+                        <tr class="border-b">
+                            <th class="w-2/5 text-left py-2">メニュー名</th>
+                            <th class="w-2/5 text-left py-2">料金</th>
+                            <th class="w-8 text-left py-2">編集</th>
                         </tr>
                         @foreach($menus as $menu)
-                        <tr>  
-                            <td>{{ $menu->menu_name }}</td>  
-                            <td>{{ $menu->menu_fee }}</td>
-                            <td><a href="{{ route('admin.menus.edit', [$menu->id]) }}">編集</a></td>
+                        <tr class="border-b">  
+                            <td class="w-2/5 py-2">{{ $menu->menu_name }}</td>  
+                            <td class="w-2/5 py-2">{{ $menu->menu_fee }}円</td>
+                            <td class="w-8 py-2"><a class="text-indigo-600 underline" href="{{ route('admin.menus.edit', [$menu->id]) }}">編集</a></td>
                         </tr>  
                         @endforeach
                     </table> 
 
 
 
-                    <div class="p-6">
+                    <div class="pt-6">
                         
-                        <div class="py-6 flex justify-between">
+                        <div class="flex justify-between">
                             <a href="{{ route('admin.services.index') }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">
                                 戻る
                             </a>
                             <a class="text-white bg-blue-600 border-0 py-2 px-6 mb-2 hover:bg-blue-700 rounded" href="{{ route('admin.menus.create', [$service->id])}}">
                                 追加
                             </a>
-                            {{-- <a class="text-white bg-blue-600 border-0 py-2 px-6 mb-2 hover:bg-blue-700 rounded" href="{{ route('admin.menus.edit', [$service->id])}}">
-                                編集
-                            </a> --}}
                         </div>
                      </div>
+                    </div>
 
 
 

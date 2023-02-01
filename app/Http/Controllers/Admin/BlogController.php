@@ -76,6 +76,15 @@ class BlogController extends Controller
         $get_image = $request->blog_image_name;
 
 
+
+        // バリデーション
+        $request->validate([
+            'blog_title'      => 'required',
+            'blog_text'       => 'required',
+            'blog_image_name' => 'nullable',
+        ]);
+
+
         // 画像があれば圧縮して保存する処理
         if(!is_null($get_image) && $get_image->isValid()){
             $filename = now()->format('YmdHis').uniqid('', true) . "." . $get_image->extension();
@@ -240,10 +249,28 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $blog = Blog::findOrFail($id);
         $service_id = $blog->service_id;
+
+
+        // ディレクトリをidで分けるための準備
+        $each_path = $service_id;
+
+
+        // 画像のパスを取得
+        $image_url = $request->delete_image_name;
+
+
+        //削除用のパスを作成 basename()でDBに登録されている名前からファイル名のみを取得 
+        $delete_path = 'blog_images' ."/". $each_path ."/". basename($image_url);
+
+
+        // ディスクを指定してファイルを削除
+        Storage::disk('public')->delete($delete_path);
+        
+
 
         Blog::findOrFail($id)->delete();
         return redirect()->route('admin.blogs.index', $service_id);

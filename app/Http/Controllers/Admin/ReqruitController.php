@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+
 use App\Models\Reqruit;
 use App\Models\Service;
 
@@ -100,22 +101,23 @@ class ReqruitController extends Controller
 
         // dd($request);
         // バリデーション
-        // $request->validate([
-        //     'reqruit_title'     => 'max:50',
-        //     'reqruit_text'      => 'required',
-        //     'worker_type'       => 'required',
-        //     'work_in_day'       => 'nullable',
-        //     'work_in_week'      => 'nullable',
-        //     'fee_type'          => 'required',
-        //     'fee'               => 'required',
-        //     'address'           => 'required',
-        //     'another'           => 'nullable',
-        //     'maneger_name'      => 'required',
-        //     'maneger_tel'       => 'required',
-        //     'maneger_email'     => 'email|nullable',
-        //     'maneger_name_kana' => 'required',
-        //     'visualize'         => 'required',
-        // ]);
+            $request->validate([
+                'reqruit_title'     => 'max:50',
+                'reqruit_text'      => 'required',
+                'work_type'         => 'required',
+                'work_in_day'       => 'nullable',
+                'work_in_week'      => 'nullable',
+                'fee_type'          => 'required',
+                'fee'               => 'required',
+                'address'           => 'required',
+                'another'           => 'nullable',
+                'maneger_name'      => 'required',
+                'maneger_name_kana' => 'required',
+                'maneger_tel'       => 'digits_between:8,13|required',
+                'maneger_email'     => 'email|nullable',
+                'visualize'         => 'required',
+                'hero_image'        => 'nullable',
+            ]);
 
 
         // DBへの保存処理
@@ -241,6 +243,26 @@ class ReqruitController extends Controller
             $file->save(storage_path("app/" . "public/". $reqruit_images ."/". $each_path ."/". "resized-{$filename}"));
         }
 
+        // バリデーション
+        $request->validate([
+            'reqruit_title'     => 'max:50',
+            'reqruit_text'      => 'required',
+            'work_type'         => 'required',
+            'work_in_day'       => 'nullable',
+            'work_in_week'      => 'nullable',
+            'fee_type'          => 'required',
+            'fee'               => 'required',
+            'address'           => 'required',
+            'another'           => 'nullable',
+            'maneger_name'      => 'required',
+            'maneger_name_kana' => 'required',
+            'maneger_tel'       => 'digits_between:8,13|required',
+            'maneger_email'     => 'email|nullable',
+            'visualize'         => 'required',
+            'hero_image'        => 'nullable',
+        ]);
+
+
         
         if(isset($get_image)){
             // 新規画像があれば上書き保存
@@ -297,10 +319,34 @@ class ReqruitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $reqruit = Reqruit::where('service_id', $id)->first();
-        // dd($reqruit);
+
+
+        // $reqruit = Reqruit::findOrFail($id);
+        $service_id = $reqruit->service_id;
+
+
+        // ディレクトリをidで分けるための準備
+        $each_path = $service_id;
+
+
+        // 画像のパスを取得
+        // $image_url = $reqruit->delete_image_name;
+        $image_url = $reqruit->hero_image;
+
+
+        //削除用のパスを作成 basename()でDBに登録されている名前からファイル名のみを取得 
+        $delete_path = 'reqruit_images' ."/". $each_path ."/". basename($image_url);
+
+
+        // ディスクを指定してファイルを削除
+        Storage::disk('public')->delete($delete_path);
+
+
+
+
         Reqruit::findOrFail($reqruit->id)->delete();
         return redirect()->route('admin.reqruits.show', $id);
     }

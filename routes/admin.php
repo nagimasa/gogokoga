@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 
 
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\AreasController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\GenreController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\PhotoGallController;
 use App\Http\Controllers\Admin\ReqruitController;
 use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\OwnerController;
 
 use App\Http\Controllers\ProfileController;
 /*
@@ -49,8 +51,22 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('payments', PaymentController::class);
     Route::resource('genres', GenreController::class);
     Route::resource('services', ServiceController::class);
+    Route::resource('tags', TagController::class);
     // Route::resource('comments', CommentController::class);
     // Route::resource('menus', MenuController::class);
+
+
+
+
+    // Reqruit
+    Route::get('admin/owners/index/{id}', [OwnerController::class, 'index'])->name('owners.index');
+    Route::get('admin/owners/create/{id}', [OwnerController::class, 'create'])->name('owners.create');
+    Route::post('admin/owners/store', [OwnerController::class, 'store'])->name('owners.store');
+    Route::get('admin/owners/show/{id}', [OwnerController::class, 'show'])->name('owners.show');
+    Route::get('admin/owners/edit/{id}', [OwnerController::class, 'edit'])->name('owners.edit');
+    Route::post('admin/owners/update/{id}', [OwnerController::class, 'update'])->name('owners.update');
+    Route::delete('admin/owners/delete/{id}', [OwnerController::class, 'destroy'])->name('owners.destroy');
+
 
     
     // Comment

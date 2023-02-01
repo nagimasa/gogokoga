@@ -5,9 +5,9 @@
         </h1>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12 px-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="text-gray-900">
                     <h2 class="text-xl bg-blue-600 text-white p-6">メニュー名の登録</h2>
 
@@ -35,18 +35,28 @@
                                     @endif
                                     <table class="table table-bordered" id="dynamicAddRemove">  
                                         <tr>
-                                            <th>メニュー名</th>
-                                            <th>料金</th>
                                             <th></th>
+                                            <th class="w-1/2">メニュー名</th>
+                                            <th class="w-1/2">料金（半角数字）</th>
+                                            <th class=""></th>
                                         </tr>
                                         <tr>  
                                             <td><input type="hidden" name="moreFields[0][service_id]" value="{{ $service->id }}" /></td>  
-                                            <td><input type="text" name="moreFields[0][menu_name]" placeholder="サービス名" class="form-control" /></td>  
-                                            <td><input type="text" name="moreFields[0][menu_fee]" placeholder="料金" class="form-control" /></td>  
-                                            <td><button type="button" name="add" id="add-btn" class="btn btn-success">フォームを追加する</button></td>  
-                                        </tr>  
-                                    </table> 
-                                    <button type="submit" class="btn btn-success">Save</button>
+                                            <td><input type="text" name="moreFields[0][menu_name]" placeholder="サービス名" class="form-control w-full" /></td>  
+                                            <td><input type="text" name="moreFields[0][menu_fee]" placeholder="料金（半角数字）" class="form-control w-full" /></td>
+                                            <td>円</td>
+                                        </tr>
+                                        <button type="button" name="add" id="add-btn" class="btn btn-success">フォームを追加する</button>
+                                    </table>
+
+                                    <div class="pt-6">
+                                        <div class="py-2 flex justify-between">
+                                            <a href="{{ route('admin.menus.show', $service->id) }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">
+                                                戻る
+                                            </a>
+                                            <button type="submit" class="btn btn-primary text-white bg-blue-600 border-0 py-2 px-6 mb-2 hover:bg-blue-700 rounded">保存</button>
+                                        </div>
+                                    </div>
                                 </form>
                                 </div>
                             </div>
@@ -66,7 +76,7 @@
     $("#add-btn").click(function(){
         ++i;
         $("#dynamicAddRemove").append(
-            '<tr><td><input type="hidden" name="moreFields['+i+'][service_id]" value="{{ $service->id }}" /></td><td><input type="text" name="moreFields['+i+'][menu_name]" placeholder="サービス名" class="form-control" /></td><td><input type="text" name="moreFields['+i+'][menu_fee]" placeholder="料金" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-tr">フォームを削除</button></td></tr>'
+            '<tr><td><input type="hidden" name="moreFields['+i+'][service_id]" value="{{ $service->id }}" /></td><td><input type="text" name="moreFields['+i+'][menu_name]" placeholder="サービス名" class="form-control w-full" /></td><td><input type="text" name="moreFields['+i+'][menu_fee]" placeholder="料金（半角数字）" class="form-control w-full"/></td><td>円</td><td><button type="button" class="btn btn-danger remove-tr">削除</button></td></tr>'
             );
     });
     $(document).on('click', '.remove-tr', function(){  

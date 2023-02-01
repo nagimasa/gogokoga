@@ -12,6 +12,8 @@ use App\Models\Comment;
 use App\Models\Menu;
 use App\Models\Reqruit;
 use App\Models\Coupon;
+use App\Models\Owner;
+use App\Models\Tag;
 
 class Service extends Model
 {
@@ -78,6 +80,12 @@ class Service extends Model
         return $this->belongsToMany(Payment::class);
     }
 
+    // タグとの多対多
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+    
     // コメントとの１対１
     public function comments()
     {
@@ -94,5 +102,11 @@ class Service extends Model
     public function coupon()
     {
         return $this->hasOne(Coupon::class);
+    }
+
+    // オーナーとの１対１
+    public function owner()
+    {
+        return $this->hasOne(Owner::class);
     }
 }

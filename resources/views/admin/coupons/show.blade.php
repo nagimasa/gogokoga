@@ -5,23 +5,18 @@
         </h1>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12 px-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="text-gray-900">
                     <h2 class="text-xl bg-blue-600 text-white p-6">{{ $service->service_name }}のクーポン情報</h2>
                     <div class="p-6">
                         <div class="py-6">
-                            <p>掲載状況</p>
-                            {{-- <?php dd($coupon) ?> --}}
                             @if(empty($coupon))
+                            <p class="font-bold">掲載状況</p>
                             <p>クーポン情報は登録されていません。</p>
-                            @else
                         </div>
-                        <hr>
-                    </div>
-
-                    <div class="p-6">
+                            @else
                         <div class="py-6">
                             <p class="font-bold">ジャンル</p>
                             <p>{{ $service->genre->genre_name }}</p>
@@ -45,14 +40,10 @@
                             画像は登録されていません。
                             @endif
                         </div>
-                        <hr>
-
                         @endif
 
-                    </div>
-                    <div class="p-6">
-                        
-                        <div class="py-6 flex justify-between">
+                    <div class="pt-6 border-t">
+                        <div class="flex justify-between">
                             <a href="{{ route('admin.services.index') }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">
                                 戻る
                             </a>
@@ -69,7 +60,8 @@
                                 編集
                             </a> --}}
                         </div>
-                     </div>
+                    </div>
+                </div>
 
 
 
