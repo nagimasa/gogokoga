@@ -60,6 +60,14 @@
                             @endforeach
                         </div>
                         <hr>
+                        
+                        <div class="py-6">
+                            <p class="font-bold">支払い方法</p>
+                            @foreach($service->tags as $tag)
+                            <p>{{ $tag->tag_name }}</p>
+                            @endforeach
+                        </div>
+                        <hr>
 
                         <div class="py-6">
                             <p class="font-bold">googleMAP</p>

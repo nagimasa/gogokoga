@@ -81,9 +81,9 @@ class Service extends Model
     }
 
     // タグとの多対多
-    public function services()
+    public function tags()
     {
-        return $this->belognsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class);
     }
     
     // コメントとの１対１

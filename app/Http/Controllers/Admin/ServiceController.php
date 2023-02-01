@@ -138,7 +138,7 @@ class ServiceController extends Controller
      */
     public function show($id)
     {
-        $service = Service::find($id);
+        $service = Service::with('tags')->find($id);
 
         return view('admin.services.show', compact('service'));
     }
@@ -151,7 +151,10 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        $service = Service::findOrFail($id);
+        $service = Service::with('tags')->find($id);
+        // dd($service);
+        // dd($service->tags->pluck('id'));
+        // $service = Service::findOrFail($id);
         
         $genres   = Genre::all()->pluck('genre_name', 'id');
         $areas    = Area::all()->pluck('area_name', 'id');
@@ -202,6 +205,19 @@ class ServiceController extends Controller
         $service->saturday          = $request->saturday;
         $service->regular_holiday   = $request->regular_holiday;
         $service->save();
+
+
+        // $tags = $request->tags;
+        // foreach($tags as $tag){
+        //     // dd($tag);
+        //     $service->tags()->attach($tag);
+        // }
+
+        if(is_array($request->tags)){
+            $service = Service::findOrFail($id);
+            $service->tags()->detach();
+            $service->tags()->attach($request->tags);
+        }
 
         if(is_array($request->payments)){
             $service = Service::findOrFail($id);

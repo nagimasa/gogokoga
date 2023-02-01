@@ -112,7 +112,8 @@
                                 <div class="pt-6">
                                 <p>{{ $genre->genre_name }}</p>
                                     @foreach($genre->tags as $key => $val)
-                                    {{ Form::checkbox('tags[]', $key, in_array($key, $genre->pluck('id')->toArray())), ['id' => 'tag'.$key] }}
+                                    {{ Form::checkbox('tags[]', $val->id, in_array($val->id, $service->tags->pluck('id')->toArray())), ['id' => 'tag'.$key] }}
+                                    {{-- {{ Form::checkbox('tags[]', $val->id, in_array($key, $genre->pluck('id')->toArray())), ['id' => 'tag'.$key] }} --}}
                                     {{ Form::label('tag'.$key, $val->tag_name, ['class' => ' font-bold pr-4']) }}
                                     @endforeach
                                 </div>

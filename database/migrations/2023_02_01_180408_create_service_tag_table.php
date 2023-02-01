@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tag_service', function (Blueprint $table) {
+        Schema::create('service_tag', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tag_id')->constrained('tags'); // 多対多のリレーション設定
             $table->foreignId('service_id')->constrained('services'); // 多対多のリレーション設定
+            $table->foreignId('tag_id')->constrained('tags'); // 多対多のリレーション設定
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tag_service');
+        Schema::dropIfExists('service_tag');
     }
 };
