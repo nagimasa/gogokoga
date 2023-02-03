@@ -55,6 +55,8 @@ Route::middleware('auth:admin')->group(function () {
     // Route::resource('comments', CommentController::class);
     // Route::resource('menus', MenuController::class);
 
+    // Service
+    Route::get('admin/services/search/', [ServiceController::class, 'search'])->name('services.search');
 
 
 
