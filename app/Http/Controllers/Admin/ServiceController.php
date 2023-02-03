@@ -30,7 +30,7 @@ class ServiceController extends Controller
      
     public function index()
     {
-        $services = Service::with('genre:id,genre_name', 'comments:id,service_id', 'menus:id,service_id')->paginate(5);
+        $services = Service::with('genre:id,genre_name', 'comments:id,service_id', 'menus:id,service_id')->paginate(3);
         // $menus = Menu::select('id', 'service_id')->get();
         $genres = Genre::select('id', 'genre_name')->get();
         $areas = Area::select('id', 'area_name')->get();
@@ -45,7 +45,7 @@ class ServiceController extends Controller
     public function search(Request $request)
     {
         // 表示させるデータの取得
-        $services = Service::with('genre:id,genre_name', 'comments:id,service_id', 'menus:id,service_id')->paginate(5);
+        $services = Service::with('genre:id,genre_name', 'comments:id,service_id', 'menus:id,service_id')->paginate(10);
         $genres = Genre::select('id', 'genre_name')->get();
         $areas = Area::select('id', 'area_name')->get();
         // $genres = Genre::all()->pluck('genre_name', 'id');
@@ -73,7 +73,7 @@ class ServiceController extends Controller
         }
 
         //$queryをcategory_idの昇順に並び替えて$productsに代入
-        $search_services = $query->orderBy('id', 'asc')->paginate(15);
+        $search_services = $query->orderBy('id', 'asc')->paginate(10);
 
 
         

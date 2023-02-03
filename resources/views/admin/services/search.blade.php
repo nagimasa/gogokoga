@@ -94,7 +94,7 @@
                     <hr>
                     <div class="pt-6">
                         <div class="flex justify-between">
-                            {{ $services->appends(request()->input())->links() }}
+                            {{ $search_services->appends(request()->query())->links() }}
                             <a href="{{ route('admin.services.create') }}">
                                 <button class="text-white bg-blue-600 border-0 py-2 px-6 mb-2 hover:bg-blue-700 rounded">新規登録</button>
                             </a>
