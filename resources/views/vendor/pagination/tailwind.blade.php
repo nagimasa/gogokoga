@@ -33,7 +33,7 @@
                     {!! __('件中'. '　') !!}
                         <span class="font-medium">{{ $paginator->firstItem() }}</span>
                         {!! __('〜') !!}
-                        <span class="font-medium pr-2">{{ $paginator->lastItem() }}</span>
+                        <span class="font-medium">{{ $paginator->lastItem() }}</span>
                         {!! __('件') !!}
                     @else
                         {{ $paginator->count() }}
