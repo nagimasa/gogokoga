@@ -73,7 +73,7 @@ class ServiceController extends Controller
         }
 
         //$queryをcategory_idの昇順に並び替えて$productsに代入
-        $search_services = $query->orderBy('id', 'asc')->paginate(10);
+        $search_services = $query->orderBy('id', 'asc')->paginate(5);
 
 
         
