@@ -30,6 +30,9 @@
                     <x-nav-link :href="route('admin.tags.index')" :active="request()->routeIs('admin.tags.index')">
                         タグ管理
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.addareas.index')" :active="request()->routeIs('admin.addareas.index')">
+                        独自広告管理
+                    </x-nav-link>
                 </div>
             </div>
 
