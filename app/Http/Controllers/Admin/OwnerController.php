@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\Owner;
 use App\Models\Service;
@@ -67,7 +68,7 @@ class OwnerController extends Controller
             'email'      => $request->email,
             'owner_tel'  => $request->owner_tel,
             'another'    => $request->another,
-            'password'   => $request->password,
+            'password'   => Hash::make($request->password),
          ]);
 
          return redirect()->route('admin.owners.show', $service_id);
@@ -118,7 +119,7 @@ class OwnerController extends Controller
         $request->validate([
             'name'      => 'max:60|required',
             'name_kana' => 'max:60|required',
-            'email'     => 'email|required',
+            'email'     => 'email|required|unique:App\Owner,email',
             'owner_tel' => 'digits_between:8,13|required',
             'anothoer'  => 'nullable',
             'password ' => 'unique:App\Owner,password',
@@ -132,7 +133,7 @@ class OwnerController extends Controller
             'email'      => $request->email,
             'owner_tel'  => $request->owner_tel,
             'another'    => $request->another,
-            'password'   => $request->password,
+            'password'   => Hash::make($request->password),
          ]);
 
 

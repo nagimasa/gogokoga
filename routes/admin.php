@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\PhotoGallController;
 use App\Http\Controllers\Admin\ReqruitController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\OwnerController;
+use App\Http\Controllers\Admin\AddAreaController;
 
 use App\Http\Controllers\ProfileController;
 /*
@@ -52,7 +53,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('genres', GenreController::class);
     Route::resource('services', ServiceController::class);
     Route::resource('tags', TagController::class);
-    // Route::resource('comments', CommentController::class);
+    Route::resource('addareas', AddAreaController::class);
     // Route::resource('menus', MenuController::class);
 
     // Service
