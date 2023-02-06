@@ -55,7 +55,7 @@ class OwnerController extends Controller
             'name'      => 'max:60|required',
             'name_kana' => 'max:60|required',
             'email'     => 'email|required',
-            'owner_tel' => 'digits_between:8,13|required',
+            'owner_tel' => 'digits_between:8,15|required',
             'anothoer'  => 'nullable',
             'password ' => 'unique:App\Owner,password',
         ]);
@@ -119,8 +119,8 @@ class OwnerController extends Controller
         $request->validate([
             'name'      => 'max:60|required',
             'name_kana' => 'max:60|required',
-            'email'     => 'email|required|unique:App\Owner,email',
-            'owner_tel' => 'digits_between:8,13|required',
+            'email'     => 'email|required',
+            'owner_tel' => 'digits_between:8,15|required',
             'anothoer'  => 'nullable',
             'password ' => 'unique:App\Owner,password',
         ]);
