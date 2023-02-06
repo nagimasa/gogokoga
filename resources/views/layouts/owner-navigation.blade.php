@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('owner.dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}オーナー
+                        GOGOKOGA
                     </x-nav-link>
                 </div>
             </div>
@@ -34,9 +34,9 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('owner.profile.edit')">
+                        {{-- <x-dropdown-link :href="route('owner.profile.edit')">
                             {{ __('Profile') }}
-                        </x-dropdown-link>
+                        </x-dropdown-link> --}}
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('owner.logout') }}">
@@ -68,21 +68,21 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('owner.dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                管理画面のTOP
             </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="px-4">
+        <div class="pt-1 pb-1 border-t border-gray-200">
+            {{-- <div class="px-4">
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-            </div>
+            </div> --}}
 
-            <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('owner.profile.edit')">
+            {{-- <div class="mt-3 space-y-1"> --}}
+                {{-- <x-responsive-nav-link :href="route('owner.profile.edit')">
                     {{ __('Profile') }}
-                </x-responsive-nav-link>
+                </x-responsive-nav-link> --}}
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('owner.logout') }}">
@@ -91,10 +91,10 @@
                     <x-responsive-nav-link :href="route('owner.logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        ログアウト
                     </x-responsive-nav-link>
                 </form>
-            </div>
+            {{-- </div> --}}
         </div>
     </div>
 </nav>
