@@ -28,7 +28,6 @@ class BaseController extends Controller
    public function index()
    {
     $owner = Auth::user();
-    // dd($owner);
     return view('owner.dashboard', compact('owner'));
    }
 }

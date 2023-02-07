@@ -16,7 +16,7 @@
                         <div class="border-t pb-4">
                             <h4 class="font-bold text-xl py-2">基本情報</h4>
                             <ul>
-                                <li class="pl-4"><a href="">確認</a></li>
+                                <li class="pl-4"><a href="{{ route('owner.services.show', [$owner->service->id]) }}">確認</a></li>
                                 <li class="pl-4"><a href="">登録・編集</a></li>
                             </ul>
                         </div>
