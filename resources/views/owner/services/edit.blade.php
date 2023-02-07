@@ -27,26 +27,30 @@
                             <hr>
     
                             <div class="py-6">
-                                {{ Form::label('service_name','ジャンル', ['class' => ' font-bold'])}}<br>
-                                {{ Form::select('genre_id', $genres, $service->genre_id,['class' => 'rounded w-full md:w-1/2 block']) }}
+                                <h4 class="font-bold">ジャンル</h4>
+                                <p>{{ $service->genre->genre_name }}</p>
+                                {{ Form::hidden('genre_id', $service->genre_id) }}
                             </div>
                             <hr>
     
                             <div class="py-6">
-                                {{ Form::label('service_name','地域名', ['class' => ' font-bold'])}}<br>
-                                {{ Form::select('area_id', $areas, $service->area_id, ['class' => 'rounded w-full md:w-1/2 block']) }}
+                                <h4 class="font-bold">地域名</h4>
+                                <p>{{ $service->area->area_name }}</p>
+                                {{ Form::hidden('area_id', $service->area_id) }}
                             </div>
                             <hr>
     
                             <div class="block py-6">
-                                {{ Form::label('service_name','サービス名', ['class' => ' font-bold'])}}<br>
-                                {{ Form::text('service_name', $service->service_name, ['class' => 'rounded w-full md:w-1/2 form-control ', 'id' => 'lastName', 'placeholder' => 'サービス名'])}}
+                                <h4 class="font-bold">サービス名または会社名</h4>
+                                <p>{{ $service->service_name }}</p>
+                                {{ Form::hidden('service_name', $service->service_name) }}
                             </div>
                             <hr>
     
                             <div class="py-6">
-                                {{ Form::label('service_name_kana','カタカナ表記', ['class' => ' font-bold'])}}<br>
-                                {{ Form::text('service_name_kana', $service->service_name_kana, ['class' => 'w-full md:w-1/2 rounded form-control ', 'id' => 'lastName', 'placeholder' => 'カナ名'])}}
+                                <h4 class="font-bold">カタカナ（サービス名または会社名）</h4>
+                                <p>{{ $service->service_name_kana }}</p>
+                                {{ Form::hidden('service_name_kana', $service->service_name_kana) }}
                             </div>
                             <hr>
     
@@ -232,7 +236,7 @@
                             {{-- ここまでタクシー/代行 --}}
     
                             <div class="py-6 flex justify-between">
-                                <a href="{{ route('owner.services.show', [$owner->service->id]) }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">
+                                <a href="{{ route('owner.services.show', ['service'=>$service->id]) }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">
                                     戻る
                                 </a>
                                 {{ Form::submit('送信', ['class' => 'btn text-white bg-blue-600 border-0 py-2 px-6 mb-2 hover:bg-blue-700 rounded']) }}

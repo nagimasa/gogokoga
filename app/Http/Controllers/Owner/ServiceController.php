@@ -27,6 +27,8 @@ class ServiceController extends Controller
      {
          $this->middleware('auth:owners');
 
+
+        //  URLのパラメータを変えたら別のデータが表示されるのを修正（Udemyを参考）
          $this->middleware(function($request, $next){
             // dd($request->route());
             $id = $request->route()->parameter('service');
