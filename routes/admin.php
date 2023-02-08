@@ -73,12 +73,12 @@ Route::middleware('auth:admin')->group(function () {
 
     
     // Comment
-    Route::get('admin/comments/index/{id}', [CommentController::class, 'index'])->name('mencommentsus.index');
-    Route::get('admin/comments/create/{id}', [CommentController::class, 'create'])->name('comments.create');
-    Route::post('admin/comments/store', [CommentController::class, 'store'])->name('comments.store');
-    Route::get('admin/comments/show/{id}', [CommentController::class, 'show'])->name('comments.show');
-    Route::get('admin/comments/edit/{id}', [CommentController::class, 'edit'])->name('comments.edit');
-    Route::post('admin/comments/update/{id}', [CommentController::class, 'update'])->name('comments.update');
+    Route::get('admin/comments/index/{id}',     [CommentController::class, 'index'])->name('mencommentsus.index');
+    Route::get('admin/comments/create/{id}',    [CommentController::class, 'create'])->name('comments.create');
+    Route::post('admin/comments/store',         [CommentController::class, 'store'])->name('comments.store');
+    Route::get('admin/comments/show/{id}',      [CommentController::class, 'show'])->name('comments.show');
+    Route::get('admin/comments/edit/{id}',      [CommentController::class, 'edit'])->name('comments.edit');
+    Route::post('admin/comments/update/{id}',   [CommentController::class, 'update'])->name('comments.update');
     Route::delete('admin/comments/delete/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
 

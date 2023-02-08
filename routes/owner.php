@@ -14,6 +14,7 @@ use App\Http\Controllers\Owner\Auth\VerifyEmailController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Owner\BaseController;
 use App\Http\Controllers\Owner\ServiceController;
+use App\Http\Controllers\Owner\COmmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,7 @@ Route::middleware('auth:owners')->group(function () {
     Route::get('/dashboard', [BaseController::class, 'index'])->name('dashboard');
 
     Route::resource('services', ServiceController::class);
+    Route::resource('comments', CommentController::class);
     
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
