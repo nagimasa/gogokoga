@@ -1,21 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Service;
 use App\Models\Photogall;
 
-// use InterventionImage;
+
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Storage;
 
 
-use Illuminate\Support\Facades\Log;
 class PhotoGallController extends Controller
 {
     /**
@@ -23,22 +21,37 @@ class PhotoGallController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
      public function __construct()
      {
-         $this->middleware('auth:admin');
+        // ログイン状態を判定
+        $this->middleware('auth:owners');
+
+
+        //  URLのパラメータを変えたら別のデータが表示されるのを修正（Udemyを参考）
+        $this->middleware(function($request, $next){
+            // dd($request->route());
+            $id = $request->route()->parameter('photogalls');
+            if(!is_null($id)){
+                $service_owner_id = Service::findOrFail($id)->owner->id;
+                $service_id = (int)$service_owner_id;
+                $owner_id = Auth::id();
+                if($service_id !== $owner_id){
+                    abort(404);
+                }
+            }
+            return $next($request);
+         });
      }
+
 
     public function index($id)
     {
-        // dd($id);
         $service = Service::findOrFail($id);
         $photogalls = Photogall::where('service_id', $id)->get();
         $count = Photogall::where('service_id', $id)->count();
-        // ->orderBy('update_at', 'desc');
-        // dd($photogalls);
-        // $count = PhotoGall::where('service_id', $id)->count();
 
-        return view('admin.photogalls.index', compact('photogalls', 'id', 'count', 'service'));
+        return view('owner.photogalls.index', compact('photogalls', 'id', 'count', 'service'));
     }
 
     /**
@@ -49,7 +62,7 @@ class PhotoGallController extends Controller
     public function create($id)
     {
         $service = Service::findOrFail($id);
-        return view('admin.photogalls.create', compact('service'));
+        return view('owner.photogalls.create', compact('service'));
     }
 
     /**
@@ -74,8 +87,6 @@ class PhotoGallController extends Controller
 
         // ディレクトリを作成する場合に使用
         $photogall_directory = 'public/photogall_images' . "/" . $each_path ."/" ;
-        // $photogall_directory = "/app/public". '/photogall_images' . "/" . $each_path ."/" ;
-        // dd($photogall_directory);
 
 
         // 画像を取得
@@ -102,11 +113,9 @@ class PhotoGallController extends Controller
                 // 専用のディレクトリがあれば保存、なければ作成して保存
                 if(Storage::exists($photogall_directory)){
                     $file->save(storage_path() ."/app/public" ."/". $photogall_images ."/". $each_path ."/". "resized-{$filename}");
-                    // $file->save(storage_path("app/" . "public/". $photogall_images ."/". $each_path ."/". "resized-{$filename}"));
                 }else{
                     Storage::makeDirectory($photogall_directory);
                     $file->save(storage_path() ."/app/public". "/". $photogall_images ."/". $each_path ."/". "resized-{$filename}");
-                    // $file->save(storage_path("app/" . "public/". $photogall_images ."/". $each_path ."/". "resized-{$filename}"));
                 }
                 // データベースにデータを保存
                 Photogall::create([
@@ -117,7 +126,7 @@ class PhotoGallController extends Controller
             }
         }
 
-        return redirect()->route('admin.photogalls.index', $service_id);
+        return redirect()->route('owner.photogalls.index', $service_id);
     }
 
     /**
@@ -128,7 +137,6 @@ class PhotoGallController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -137,13 +145,13 @@ class PhotoGallController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id, $select_photo)
     {
-        $photo = Photogall::findOrFail($id);
+        // select_photoはRouteで設定した'photogalls/edit/{photogalls}/{photo}'の{photo}を取得している
+        $photo = Photogall::findOrFail($select_photo);
         $service = Service::findOrFail($photo->service_id);
-        // dd($service);
 
-        return view('admin.photogalls.edit', compact('photo', 'service'));
+        return view('owner.photogalls.edit', compact('photo', 'service'));
     }
 
     /**
@@ -164,10 +172,11 @@ class PhotoGallController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request, $id, $select_photo)
     {
-        $photo = Photogall::findOrFail($id);
+        $photo = Photogall::findOrFail($select_photo);
         $service_id = $photo->service_id;
+        // dd($photo, $service_id, $request);
 
 
         // ディレクトリをidで分けるための準備
@@ -186,7 +195,7 @@ class PhotoGallController extends Controller
         Storage::disk('public')->delete($delete_path);
         
 
-        Photogall::findOrFail($id)->delete();
-        return redirect()->route('admin.photogalls.index', $service_id);
+        Photogall::findOrFail($select_photo)->delete();
+        return redirect()->route('owner.photogalls.index', $service_id);
     }
 }
