@@ -91,7 +91,7 @@ class PhotoGallController extends Controller
                 $file = Image::make($file)->setFileInfoFromPath($file);
                 // 圧縮
                 $file->orientate()->resize(
-                    600,
+                    1200,
                     null,
                     function ($constraint) {
                     $constraint->aspectRatio();

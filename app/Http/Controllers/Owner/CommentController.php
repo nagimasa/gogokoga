@@ -27,7 +27,7 @@ class CommentController extends Controller
         //  URLのパラメータを変えたら別のデータが表示されるのを修正（Udemyを参考）
         $this->middleware(function($request, $next){
             // dd($request->route());
-            $id = $request->route()->parameter('service');
+            $id = $request->route()->parameter('comments');
             if(!is_null($id)){
                 $service_owner_id = Service::findOrFail($id)->owner->id;
                 $service_id = (int)$service_owner_id;

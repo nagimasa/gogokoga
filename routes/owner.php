@@ -58,13 +58,13 @@ Route::middleware('auth:owners')->group(function () {
 
 
     // PhotoGall
-    Route::get('owner/photogalls/index/{id}', [PhotoGallController::class, 'index'])->name('photogalls.index');
-    Route::get('owner/photogalls/create/{id}', [PhotoGallController::class, 'create'])->name('photogalls.create');
-    Route::post('owner/photogalls/store', [PhotoGallController::class, 'store'])->name('photogalls.store');
-    Route::get('owner/photogalls/show/{id}', [PhotoGallController::class, 'show'])->name('photogalls.show');
-    Route::get('owner/photogalls/edit/{id}', [PhotoGallController::class, 'edit'])->name('photogalls.edit');
-    Route::post('owner/photogalls/update/{id}', [PhotoGallController::class, 'update'])->name('photogalls.update');
-    Route::delete('owner/photogalls/delete/{id}', [PhotoGallController::class, 'destroy'])->name('photogalls.destroy');
+    Route::get('photogalls/index/{photogalls}', [PhotoGallController::class, 'index'])->name('photogalls.index');
+    Route::get('photogalls/create/{photogalls}', [PhotoGallController::class, 'create'])->name('photogalls.create');
+    Route::post('photogalls/store', [PhotoGallController::class, 'store'])->name('photogalls.store');
+    Route::get('photogalls/show/{photogalls}', [PhotoGallController::class, 'show'])->name('photogalls.show');
+    Route::get('photogalls/edit/{photogalls}/{photo}', [PhotoGallController::class, 'edit'])->name('photogalls.edit');
+    Route::post('photogalls/update/{photogalls}', [PhotoGallController::class, 'update'])->name('photogalls.update');
+    Route::delete('photogalls/delete/{photogalls}/{photo}', [PhotoGallController::class, 'destroy'])->name('photogalls.destroy');
 
 
     
