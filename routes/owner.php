@@ -12,6 +12,8 @@ use App\Http\Controllers\Owner\Auth\RegisteredUserController;
 use App\Http\Controllers\Owner\Auth\VerifyEmailController;
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Owner\BaseController;
+use App\Http\Controllers\Owner\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,9 +47,14 @@ Route::get('/dashboard', function () {
 // });
 
 Route::middleware('auth:owners')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // TOPページ
+    Route::get('/dashboard', [BaseController::class, 'index'])->name('dashboard');
+
+    Route::resource('services', ServiceController::class);
+    
+    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 
