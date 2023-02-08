@@ -16,6 +16,7 @@ use App\Http\Controllers\Owner\BaseController;
 use App\Http\Controllers\Owner\ServiceController;
 use App\Http\Controllers\Owner\CommentController;
 use App\Http\Controllers\Owner\PhotoGallController;
+use App\Http\Controllers\Owner\MenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,15 @@ Route::middleware('auth:owners')->group(function () {
     Route::post('photogalls/update/{photogalls}', [PhotoGallController::class, 'update'])->name('photogalls.update');
     Route::delete('photogalls/delete/{photogalls}/{photo}', [PhotoGallController::class, 'destroy'])->name('photogalls.destroy');
 
+
+    // Menu
+    // Route::get('menus/index/{menu}', [MenuController::class, 'index'])->name('menus.index');
+    Route::get('menus/create/{menu}', [MenuController::class, 'create'])->name('menus.create');
+    Route::post('menus/store', [MenuController::class, 'store'])->name('menus.store');
+    Route::get('menus/show/{menu}', [MenuController::class, 'show'])->name('menus.show');
+    Route::get('menus/edit/{menu}/{detail}', [MenuController::class, 'edit'])->name('menus.edit');
+    Route::post('menus/update/{menu}/{detail}', [MenuController::class, 'update'])->name('menus.update');
+    Route::delete('menus/delete/{menu}/{detail}', [MenuController::class, 'destroy'])->name('menus.destroy');
 
     
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
