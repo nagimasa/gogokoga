@@ -25,11 +25,12 @@ class ServiceController extends Controller
 
      public function __construct()
      {
-         $this->middleware('auth:owners');
+        // ログイン状態を判定
+        $this->middleware('auth:owners');
 
 
         //  URLのパラメータを変えたら別のデータが表示されるのを修正（Udemyを参考）
-         $this->middleware(function($request, $next){
+        $this->middleware(function($request, $next){
             // dd($request->route());
             $id = $request->route()->parameter('service');
             if(!is_null($id)){
