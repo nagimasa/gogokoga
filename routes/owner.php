@@ -19,6 +19,7 @@ use App\Http\Controllers\Owner\PhotoGallController;
 use App\Http\Controllers\Owner\MenuController;
 use App\Http\Controllers\Owner\ReqruitController;
 use App\Http\Controllers\Owner\CouponController;
+use App\Http\Controllers\Owner\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +52,17 @@ Route::middleware('auth:owners')->group(function () {
     Route::resource('comments', CommentController::class);
     Route::resource('reqruits', ReqruitController::class);
     Route::resource('coupons', CouponController::class);
+    // Route::resource('blogs', BlogController::class);
 
+
+    // Blog
+    Route::get('blogs/index/', [BlogController::class, 'index'])->name('blogs.index');
+    Route::get('blogs/create/', [BlogController::class, 'create'])->name('blogs.create');
+    Route::post('blogs/store', [BlogController::class, 'store'])->name('blogs.store');
+    Route::get('blogs/show/{blogs}/{detail}', [BlogController::class, 'show'])->name('blogs.show');
+    Route::get('blogs/edit/{blogs}/{detail}', [BlogController::class, 'edit'])->name('blogs.edit');
+    Route::post('blogs/update/{blogs}', [BlogController::class, 'update'])->name('blogs.update');
+    Route::delete('blogs/delete/{blogs}/{detail}', [BlogController::class, 'destroy'])->name('blogs.destroy');
 
 
     // PhotoGall

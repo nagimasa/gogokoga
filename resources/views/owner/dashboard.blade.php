@@ -104,8 +104,8 @@
                         <div class="border-t pb-4">
                             <h4 class="font-bold text-xl py-2">ブログ</h4>
                             <ul>
-                                <li class="pl-4"><a href="">確認</a></li>
-                                <li class="pl-4"><a href="">登録・編集</a></li>
+                                <li class="pl-4"><a href="{{ route('owner.blogs.index') }}">確認・設定</a></li>
+                                {{-- <li class="pl-4"><a href="{{ route('owner.blogs.index', [$owner->service->id]) }}">確認・設定</a></li> --}}
                             </ul>
                         </div>
                     </div>
