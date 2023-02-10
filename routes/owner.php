@@ -17,6 +17,7 @@ use App\Http\Controllers\Owner\ServiceController;
 use App\Http\Controllers\Owner\CommentController;
 use App\Http\Controllers\Owner\PhotoGallController;
 use App\Http\Controllers\Owner\MenuController;
+use App\Http\Controllers\Owner\ReqruitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,7 @@ Route::middleware('auth:owners')->group(function () {
 
     Route::resource('services', ServiceController::class);
     Route::resource('comments', CommentController::class);
+    Route::resource('reqruits', ReqruitController::class);
 
 
 

@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
-use App\Models\Reqruit;
 use App\Models\Service;
+use App\Models\Reqruit;
+use App\Models\Owner;
 
-// use InterventionImage;
+
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,18 +21,33 @@ class ReqruitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
      public function __construct()
      {
-         $this->middleware('auth:admin');
+        // ログイン状態を判定
+        $this->middleware('auth:owners');
+
+
+        //  URLのパラメータを変えたら別のデータが表示されるのを修正（Udemyを参考）
+        $this->middleware(function($request, $next){
+            // dd($request, $request->route());
+            $id = $request->route()->parameter('reqruit');
+            if(!is_null($id)){
+                $service_owner_id = Service::findOrFail($id)->owner->id;
+                $service_id = (int)$service_owner_id;
+                $owner_id = Auth::id();
+                if($service_id !== $owner_id){
+                    abort(404);
+                }
+            }
+            return $next($request);
+         });
      }
 
 
-    public function index($id)
+    public function index()
     {
-        $service = Service::findOrFail($id);
-        $reqruit = Reqruit::where('service_id', $id)->get();
-
-        return view('admin.reqruits.index', compact('service','reqruit'));
+        //
     }
 
     /**
@@ -40,11 +55,18 @@ class ReqruitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
     {
-        $service = Service::findOrFail($id);
-        // ddd($service);
-        return view('admin.reqruits.create', compact('service'));
+        // 認証からオーナーのIDを取得
+        $owner_id = Auth::id();
+
+        // オーナーidからレコードを取得
+        $owner = Owner::find($owner_id);
+
+        // ownerのservice_idをもとにリレーション先のserviceを取得
+        $service = Service::findOrFail($owner->service_id);
+
+        return view('admin.reqruits.create', compact('service', 'owner'));
     }
 
     /**
@@ -55,6 +77,13 @@ class ReqruitController extends Controller
      */
     public function store(Request $request)
     {
+        // 認証からオーナーのIDを取得
+        $owner_id = Auth::id();
+
+        // オーナーidからレコードを取得
+        $owner = Owner::find($owner_id);
+
+        
         // サービスidの取得
         $service_id = $request->service_id;
 
@@ -100,25 +129,25 @@ class ReqruitController extends Controller
             }
         }
 
-        // dd($request);
         // バリデーション
-            $request->validate([
-                'reqruit_title'     => 'max:50',
-                'reqruit_text'      => 'required',
-                'work_type'         => 'required',
-                'work_in_day'       => 'nullable',
-                'work_in_week'      => 'nullable',
-                'fee_type'          => 'required',
-                'fee'               => 'required',
-                'address'           => 'required',
-                'another'           => 'nullable',
-                'maneger_name'      => 'required',
-                'maneger_name_kana' => 'required',
-                'maneger_tel'       => 'digits_between:8,13|required',
-                'maneger_email'     => 'email|nullable',
-                'visualize'         => 'required',
-                'hero_image'        => 'nullable',
-            ]);
+        $request->validate([
+            'reqruit_title'     => 'max:50',
+            'reqruit_text'      => 'required',
+            'work_type'         => 'required',
+            'work_in_day'       => 'nullable',
+            'work_in_week'      => 'nullable',
+            'fee_type'          => 'required',
+            'fee'               => 'required',
+            'address'           => 'required',
+            'another'           => 'nullable',
+            'maneger_name'      => 'required',
+            'maneger_name_kana' => 'required',
+            'maneger_tel'       => 'digits_between:8,13|required',
+            'maneger_email'     => 'email|nullable',
+            'visualize'         => 'required',
+            'hero_image'        => 'nullable',
+        ]);
+
 
 
         // DBへの保存処理
@@ -162,7 +191,9 @@ class ReqruitController extends Controller
         }
 
 
-        return redirect()->route('admin.reqruits.show', $service_id);
+        return redirect()->route('owner.reqruits.show', $owner->service_id);
+
+
     }
 
     /**
@@ -173,10 +204,15 @@ class ReqruitController extends Controller
      */
     public function show($id)
     {
-        $service = Service::find($id);
+        // 認証からオーナーのIDを取得
+        $owner_id = Auth::id();
+
+        // オーナーidからレコードを取得
+        $owner = Owner::find($owner_id);
+
+        $service = Service::find($owner->service_id);
         $reqruit = Reqruit::where('service_id', $id)->first();
-        // dd($comment);
-        return view('admin.reqruits.show', compact('reqruit', 'service'));
+        return view('owner.reqruits.show', compact('reqruit', 'service'));
     }
 
     /**
@@ -189,7 +225,7 @@ class ReqruitController extends Controller
     {
         $service = Service::find($id);
         $reqruit = Reqruit::where('service_id', $id)->first();
-        return view('admin.reqruits.edit', compact('reqruit', 'service'));
+        return view('owner.reqruits.edit', compact('reqruit', 'service'));
     }
 
     /**
@@ -201,6 +237,7 @@ class ReqruitController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         // 対象を設定
         $target_reqruit = Reqruit::find($request->id);
         $target_image_url = $target_reqruit->hero_image;
@@ -245,6 +282,7 @@ class ReqruitController extends Controller
                 $constraint->upsize();
                 }
             );
+
             // 専用のディレクトリがあれば保存、なければ作成して保存
             if(Storage::exists($reqruit_directory)){
                 $file->save(storage_path("app/" . "public/". $reqruit_images ."/". $each_path ."/". "resized-{$filename}"));
@@ -252,6 +290,9 @@ class ReqruitController extends Controller
                 Storage::makeDirectory($reqruit_directory);
                 $file->save(storage_path("app/" . "public/". $reqruit_images ."/". $each_path ."/". "resized-{$filename}"));
             }
+
+
+            // $file->save(storage_path("app/" . "public/". $reqruit_images ."/". $each_path ."/". "resized-{$filename}"));
         }
 
         // バリデーション
@@ -316,9 +357,7 @@ class ReqruitController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.reqruits.show', $service_id);
-
-
+        return redirect()->route('owner.reqruits.show', $service_id);
 
 
 
@@ -330,7 +369,7 @@ class ReqruitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
         $reqruit = Reqruit::where('service_id', $id)->first();
 
@@ -359,6 +398,6 @@ class ReqruitController extends Controller
 
 
         Reqruit::findOrFail($reqruit->id)->delete();
-        return redirect()->route('admin.reqruits.show', $id);
+        return redirect()->route('owner.reqruits.show', $id);
     }
 }
