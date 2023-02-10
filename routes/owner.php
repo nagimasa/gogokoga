@@ -20,6 +20,7 @@ use App\Http\Controllers\Owner\MenuController;
 use App\Http\Controllers\Owner\ReqruitController;
 use App\Http\Controllers\Owner\CouponController;
 use App\Http\Controllers\Owner\BlogController;
+use App\Http\Controllers\Owner\OwnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +53,7 @@ Route::middleware('auth:owners')->group(function () {
     Route::resource('comments', CommentController::class);
     Route::resource('reqruits', ReqruitController::class);
     Route::resource('coupons', CouponController::class);
-    // Route::resource('blogs', BlogController::class);
+    Route::resource('owners', OwnerController::class);
 
 
     // Blog
