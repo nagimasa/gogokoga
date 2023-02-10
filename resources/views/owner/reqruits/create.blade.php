@@ -18,7 +18,7 @@
                         @endforeach
 
 
-                        {{ Form::open(['route' => ['owner.reqruits.store', $service->id],
+                        {{ Form::open(['route' => ['admin.reqruits.store', $service->id],
                         'method'  => 'post',
                         'file'    => true,
                         'enctype' => 'multipart/form-data',
@@ -36,7 +36,6 @@
 
                         <div class="block py-6 border-b">
                             {{ Form::label('reqruit_text','求人の詳細', ['class' => 'form-check-label block font-bold']) }}
-                            <p>文章のみ入力してください。web言語のhtmlなどは入力できません。</p>
                             {{ Form::textarea('reqruit_text',old('reqruit_text'), ['id' => 'ckeditor', 'class' => 'rounded w-full md:w-1/2 ', 'placeholder' => 'ここに求人の詳細情報を記入してください。']) }}
                         </div>
 
@@ -111,13 +110,12 @@
 
                         <div class="block py-6 border-b">
                             <p class=" font-bold">画像の掲載</p>
-                            <p>画像は jpg png webp のみアップロードできます。</p>
                             {{ Form::file('hero_image', ) }}
                         </div>
 
                         <div class="pt-6">
                             <div class="py-2 flex justify-between">
-                                <a href="{{ route('owner.reqruits.show', $owner->service_id) }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">
+                                <a href="{{ route('admin.reqruits.show', $service->id) }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">
                                     戻る
                                 </a>
                                 {{ Form::submit('送信', ['class' => 'btn btn-primary text-white bg-blue-600 border-0 py-2 px-6 mb-2 hover:bg-blue-700 rounded']) }}

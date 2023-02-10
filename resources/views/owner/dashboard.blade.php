@@ -91,8 +91,8 @@
                         <div class="border-t pb-4">
                             <h4 class="font-bold text-xl py-2">求人情報</h4>
                             <ul>
-                                <li class="pl-4"><a href="">確認</a></li>
-                                <li class="pl-4"><a href="">登録・編集</a></li>
+                                <li class="pl-4"><a href="{{ route('owner.reqruits.show', [$owner->service->id]) }}">確認</a></li>
+                                {{-- <li class="pl-4"><a href="{{ route('owner.reqruits.edit', [$owner->service->id]) }}">編集</a></li> --}}
                             </ul>
                         </div>
                         <div class="border-t pb-4">
@@ -100,7 +100,7 @@
                             <ul>
                                 <li class="pl-4"><a href="">確認</a></li>
                                 <li class="pl-4"><a href="">登録・編集</a></li>
-                            </ul>
+                            </ul>給付お手数
                         </div>
                         <div class="border-t pb-4">
                             <h4 class="font-bold text-xl py-2">ブログ</h4>

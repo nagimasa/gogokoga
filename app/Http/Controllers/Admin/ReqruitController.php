@@ -97,7 +97,8 @@ class ReqruitController extends Controller
             }else{
                 Storage::makeDirectory($reqruit_directory);
                 $file->save(storage_path("app/" . "public/". $reqruit_images ."/". $each_path ."/". "resized-{$filename}"));
-            }        }
+            }
+        }
 
         // dd($request);
         // バリデーション
@@ -217,6 +218,10 @@ class ReqruitController extends Controller
         $each_path = $request->service_id;
 
 
+        // ディレクトリを作成する場合に使用
+        $reqruit_directory = 'public/reqruit_images' . "/" . $each_path ."/" ;
+
+
         // 画像を取得
         $get_image = $request->hero_image;
         
@@ -240,7 +245,13 @@ class ReqruitController extends Controller
                 $constraint->upsize();
                 }
             );
-            $file->save(storage_path("app/" . "public/". $reqruit_images ."/". $each_path ."/". "resized-{$filename}"));
+            // 専用のディレクトリがあれば保存、なければ作成して保存
+            if(Storage::exists($reqruit_directory)){
+                $file->save(storage_path("app/" . "public/". $reqruit_images ."/". $each_path ."/". "resized-{$filename}"));
+            }else{
+                Storage::makeDirectory($reqruit_directory);
+                $file->save(storage_path("app/" . "public/". $reqruit_images ."/". $each_path ."/". "resized-{$filename}"));
+            }
         }
 
         // バリデーション
