@@ -18,6 +18,7 @@ use App\Http\Controllers\Owner\CommentController;
 use App\Http\Controllers\Owner\PhotoGallController;
 use App\Http\Controllers\Owner\MenuController;
 use App\Http\Controllers\Owner\ReqruitController;
+use App\Http\Controllers\Owner\CouponController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,17 +39,9 @@ Route::get('/dashboard', function () {
     return view('owner.dashboard');
 })->middleware(['auth:owners'])->name('dashboard');
 
-// Auth::routes();
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth:admin')->name('home');
-// Route::get('admin/test', [App\Http\Controllers\HomeController::class, 'test'])->middleware('auth:admin')->name('test');
-// Route::get('admin/area', [App\Http\Controllers\iamadmin\HomeController::class, 'area'])->middleware('auth:admin')->name('area');
 
 
-// Route::group(['middleware' => 'Auth:owners'], function(){
-//     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-//     Route::get('/admin/test', [App\Http\Controllers\HomeController::class, 'test'])->name('test');
-//     Route::get('/admin/area', [App\Http\Controllers\iamadmin\HomeController::class, 'area'])->name('area');
-// });
+
 
 Route::middleware('auth:owners')->group(function () {
     // TOPページ
@@ -57,6 +50,7 @@ Route::middleware('auth:owners')->group(function () {
     Route::resource('services', ServiceController::class);
     Route::resource('comments', CommentController::class);
     Route::resource('reqruits', ReqruitController::class);
+    Route::resource('coupons', CouponController::class);
 
 
 
