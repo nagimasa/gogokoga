@@ -64,7 +64,7 @@ class StripeController extends Controller
         ->create($paymentMethod);
  
         // 処理後に'ルート設定'にページ移行
-        return redirect()->route('ルート設定');
+        return redirect()->route('owner.dashboard');
     }
 
 

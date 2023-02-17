@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Owner;
 use Illuminate\Support\ServiceProvider;
 
 
