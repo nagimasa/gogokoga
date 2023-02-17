@@ -9,10 +9,12 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link href="{{ asset('css/stripe.css') }}" rel="stylesheet">
 
     {{-- CKEditor --}}
     <script src="{{ asset('/ckeditor/ckeditor/ckeditor.js')}}"></script>
@@ -44,5 +46,6 @@
                 {{ $slot }}
             </main>
         </div>
+        @stack('scripts')
     </body>
 </html>

@@ -37,7 +37,7 @@
 
                         <div class="block py-6 border-b">
                             {{ Form::label('name','担当者名', ['class' => 'form-check-label block font-bold']) }}
-                            {{ Form::text('name',$owner->name, ['required' => 'required', 'class' => 'rounded w-full md:w-1/2 ']) }}<br>
+                            {{ Form::text('name',$owner->name, ['required' => 'required', 'class' => 'rounded w-full md:w-1/2']) }}<br>
                         </div>
 
                         <div class="block py-6 border-b">

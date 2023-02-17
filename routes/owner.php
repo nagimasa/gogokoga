@@ -20,6 +20,7 @@ use App\Http\Controllers\Owner\MenuController;
 use App\Http\Controllers\Owner\ReqruitController;
 use App\Http\Controllers\Owner\CouponController;
 use App\Http\Controllers\Owner\BlogController;
+use App\Http\Controllers\Owner\StripeController;
 use App\Http\Controllers\Owner\OwnerController;
 
 /*
@@ -84,6 +85,11 @@ Route::middleware('auth:owners')->group(function () {
     Route::get('menus/edit/{menu}/{detail}', [MenuController::class, 'edit'])->name('menus.edit');
     Route::post('menus/update/{menu}/{detail}', [MenuController::class, 'update'])->name('menus.update');
     Route::delete('menus/delete/{menu}/{detail}', [MenuController::class, 'destroy'])->name('menus.destroy');
+
+
+    // Stripe
+    Route::get('/subscription/{id}', [StripeController::class, 'subscription'])->name('stripe.subscription');
+    Route::post('/subscription/afterpay/{id}', [StripeController::class, 'afterpay'])->name('stripe.afterpay');
 
     
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
