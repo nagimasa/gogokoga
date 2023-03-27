@@ -14,12 +14,15 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <link href="{{ asset('css/stripe.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/stripe.css') }}" rel="stylesheet">
 
-    {{-- CKEditor --}}
-    <script src="{{ asset('/ckeditor/ckeditor/ckeditor.js')}}"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="js/ckeditor.js"></script>
+        {{-- CSS --}}
+        {{-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> --}}
+
+        {{-- CKEditor --}}
+        <script src="{{ asset('/ckeditor/ckeditor/ckeditor.js')}}"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="js/ckeditor.js"></script>
         
     </head>
     <body class="font-sans antialiased">

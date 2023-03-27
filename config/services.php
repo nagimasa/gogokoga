@@ -35,6 +35,14 @@ return [
         'pb_key'=>env('STRIPE_KEY'),
         'st_key'=>env('STRIPE_SECRET'),
         'basic_plan_id'=>env('STRIPE_BASIC_ID'),
+        // plan
+        'plans' => [
+            env('STRIPE_BASIC_ID') => '月額会員',
+        ],
+        // webhook
+        'webhook' => [
+            'secret' => env('STRIPE_WEBHOOK'),
+            'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
+        ],
     ],
-
 ];
