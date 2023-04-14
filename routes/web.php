@@ -3,6 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+
+use App\Http\Controllers\User\UserController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +19,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('user.index');
-});
+Route::get('/', [UserController::class, 'index'])->name('index');
+Route::get('/search', [UserController::class, 'search'])->name('search');
+
+
+
+
 
 Route::get('/dashboard', function () {
     return view('user.dashboard');
