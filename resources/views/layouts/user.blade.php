@@ -16,11 +16,11 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-        
         {{-- ハンバーガーメニュー --}}
         <link href="{{ asset('css/menu.css') }}" rel="stylesheet">
 
         {{-- デザインcss --}}
+        {{-- <link href="{{ asset('css/reset.css') }}" rel="stylesheet"> --}}
         <link href="{{ asset('css//header.css') }}" rel="stylesheet">
 
 
@@ -30,12 +30,12 @@
 
         
     </head>
-    <body>
-    <header class="header">
+    <body class="bg-gray-200">
+    <header class="header mb-2">
         <div class="header__inner">
             <div class="flex">
                 <div class="home">
-                    <i class="fa-solid fa-house fa-2xl"></i>
+                    <h1><i class="fa-solid fa-house fa-2xl"></i></h1>
                 </div>
                 <p class="lead-text">福岡県古賀市で活躍するお店や企業を応援する地域密着型の情報サイト</p>
                 <button id="js-humberger" type="button" class="humberger" aria-controls="navigation" aria-expanded="false">
