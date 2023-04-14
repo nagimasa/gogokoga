@@ -125,6 +125,13 @@
                             <h4 class="font-bold text-xl py-2">担当者情報</h4>
                             <ul>
                                 <li class="pl-4"><a href="{{ route('owner.owners.show', [$owner->service->id]) }}">確認・設定</a></li>
+
+
+                                {{-- @if ($owner->subscribed('default')) 
+                                <li class="pl-4"><a href="{{ route('owner.subsc.index') }}">有料会員登録</a></li>
+                                @else
+                                <li class="pl-4"><a href="{{ route('owner.stripe.subscription', [$owner->service->id]) }}">有料会員登録</a></li>
+                                @endif --}}
                             </ul>
                         </div>
                     </div>

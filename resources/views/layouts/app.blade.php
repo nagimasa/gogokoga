@@ -9,24 +9,29 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <link href="{{ asset('css/stripe.css') }}" rel="stylesheet">
 
-    {{-- CKEditor --}}
-    <script src="{{ asset('/ckeditor/ckeditor/ckeditor.js')}}"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="js/ckeditor.js"></script>
+        {{-- CSS --}}
+        {{-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> --}}
+
+        {{-- CKEditor --}}
+        <script src="{{ asset('/ckeditor/ckeditor/ckeditor.js')}}"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="js/ckeditor.js"></script>
         
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
         @if(auth('admin')->user())
                @include('layouts.admin-navigation')
-           @elseif(auth('owners')->user())
+            @elseif(auth('owners')->user())
                @include('layouts.owner-navigation')
-           @elseif(auth('users')->user())
+            @elseif(auth('users')->user())
                 @include('layouts.user-navigation')
             @endif
 
@@ -44,5 +49,6 @@
                 {{ $slot }}
             </main>
         </div>
+        @stack('scripts')
     </body>
 </html>

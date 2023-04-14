@@ -22,6 +22,12 @@ use App\Http\Controllers\Owner\CouponController;
 use App\Http\Controllers\Owner\BlogController;
 use App\Http\Controllers\Owner\OwnerController;
 
+// stripe
+use App\Http\Controllers\Owner\StripeController;
+use App\Http\Controllers\Owner\SubscriptionController;
+use App\Http\Controllers\Owner\AjaxController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -85,6 +91,21 @@ Route::middleware('auth:owners')->group(function () {
     Route::post('menus/update/{menu}/{detail}', [MenuController::class, 'update'])->name('menus.update');
     Route::delete('menus/delete/{menu}/{detail}', [MenuController::class, 'destroy'])->name('menus.destroy');
 
+
+    // Stripe
+    // Route::get('/subscription/{id}', [StripeController::class, 'subscription'])->name('stripe.subscription');
+    // Route::post('/subscription/afterpay/{id}', [StripeController::class, 'afterpay'])->name('stripe.afterpay');
+    // Route::get('/subscription/portal/{id}', [StripeController::class, 'portal'])->name('stripe.portal');
+    // Route::get('/stripe/webhook', [StripeController::class, 'webhook'])->name('stripe.webhook');
+
+    // 課金
+    Route::get('subscription', [SubscriptionController::class, 'index'])->name('subsc.index');
+    Route::get('ajax/subscription/status', [AjaxController::class, 'status'])->name('ajax.status');
+    Route::post('ajax/subscription/subscribe', [AjaxController::class, 'subscribe'])->name('ajax.subsc');
+    Route::post('ajax/subscription/cancel', [AjaxController::class, 'cancel'])->name('ajax.cancel');
+    Route::post('ajax/subscription/resume', [AjaxController::class, 'resume'])->name('ajax.resume');
+    Route::post('ajax/subscription/change_plan', [AjaxController::class, 'change_plan'])->name('ajax.change');
+    Route::post('ajax/subscription/update_card', [AjaxController::class, 'update_card'])->name('ajax.update');
     
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

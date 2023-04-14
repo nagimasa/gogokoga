@@ -1,0 +1,16 @@
+.header {
+    background: #4DA869;
+}
+
+.header .flex {
+    justify-content: space-around;
+}
+
+.header .home {
+    width: 60px;
+    height: 60px;
+}
+
+.header .lead-text {
+    text-align: center;
+}
