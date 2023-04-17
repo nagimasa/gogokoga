@@ -1,0 +1,35 @@
+.index article h2::after {
+    padding: 5px;
+    color: #FF971F;
+    font-size: 12px;
+    font-weight: bold;
+}
+.index .category-title::after      { content: "CATEGORY";}
+.index .blog-title::after          { content: "BLOG";}
+.index .transpotation-title::after { content: "TRANSPORTATION";}
+.index .reqruit-title::after       { content: "REQRUIT";}
+.index .typograph-title::after     { content: "SEARCH";}
+
+.index .category-item {
+    height: 122px;
+    width: 172px;
+    background-color: gray;
+    border-radius: 5px;
+}
+
+.index .blog-item h3::before {
+    content: "";
+}
+
+.index .blog-area,
+.index .search-item {
+    border: 2px solid #4DA869;
+    border-radius: 5px;
+}
+
+.index .reqruit div {
+    width: 350px;
+    height: 140px;
+    border-radius: 5px;
+    background-color: gray;
+}
