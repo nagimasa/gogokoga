@@ -60,7 +60,7 @@
     <article class="bg-white mb-5 blog">
         <section class="px-2 py-4 border-gray-300 border-b border-t">
             <h2 class="text-2xl blog-title">ブログの更新</h2>
-            <div class="blog-area p-4">
+            <div class="content-area p-4">
                 <div class="blog-item pb-2 border-b border-gray-200">
                     {{-- ここに店舗カテゴリを判定してバッチを表示させる仕組みを入れる --}}
                     <h3 class="text-base mb-2">店舗名</h3>
@@ -104,7 +104,7 @@
     <article class="bg-white mb-5 typograph">
         <section class="px-2 py-4 border-gray-300 border-b border-t">
             <h2 class="text-2xl typograph-title">51音順</h2>
-            <div class="search-item p-4 border-b border-gray-200 flex justify-around">
+            <div class="content-area p-4 border-b border-gray-200 flex justify-around">
                 <div class="flex justify-around w-full">
                     {{-- controllerから「あ〜な」を表示させる --}}
                     <a href="">
@@ -144,6 +144,18 @@
             </div>
         </section>
     </article>
+
+
+    <article class="bg-white mb-5 typograph">
+        <section class="px-2 py-4 border-gray-300 border-b border-t">
+            <h2 class="text-2xl regi-title">登録情報</h2>
+            <div class="content-area p-4 flex">
+                <p class="text-xs pr-4 leading-5">2/12</p>
+                <p>登録店舗名がここに入る</p>
+            </div>
+        </section>
+    </article>
+
 
 </main>
 

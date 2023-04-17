@@ -9,6 +9,7 @@
 .index .transpotation-title::after { content: "TRANSPORTATION";}
 .index .reqruit-title::after       { content: "REQRUIT";}
 .index .typograph-title::after     { content: "SEARCH";}
+.index .regi-title::after          { content: "REGISTRATION";}
 
 .index .category-item {
     height: 122px;
@@ -21,8 +22,7 @@
     content: "";
 }
 
-.index .blog-area,
-.index .search-item {
+.index .content-area {
     border: 2px solid #4DA869;
     border-radius: 5px;
 }
