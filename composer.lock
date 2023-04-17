@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "99dee0ac804ba39fcdd4cfb52244f208",
+    "content-hash": "43e32d8db168c175bf893b276312d095",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -1362,16 +1362,16 @@
         },
         {
             "name": "laravel/cashier",
-            "version": "v14.8.0",
+            "version": "v14.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/cashier-stripe.git",
-                "reference": "a7b16ee75a0a1698c9dbf663162d693668df8ae2"
+                "reference": "0e31ea76a81531919f61010515a0ea6c27e02c60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/cashier-stripe/zipball/a7b16ee75a0a1698c9dbf663162d693668df8ae2",
-                "reference": "a7b16ee75a0a1698c9dbf663162d693668df8ae2",
+                "url": "https://api.github.com/repos/laravel/cashier-stripe/zipball/0e31ea76a81531919f61010515a0ea6c27e02c60",
+                "reference": "0e31ea76a81531919f61010515a0ea6c27e02c60",
                 "shasum": ""
             },
             "require": {
@@ -1394,8 +1394,10 @@
                 "symfony/polyfill-intl-icu": "^1.22.1"
             },
             "require-dev": {
+                "dompdf/dompdf": "^2.0",
                 "mockery/mockery": "^1.0",
                 "orchestra/testbench": "^7.0|^8.0",
+                "phpstan/phpstan": "^1.10",
                 "phpunit/phpunit": "^9.0"
             },
             "suggest": {
@@ -1443,7 +1445,7 @@
                 "issues": "https://github.com/laravel/cashier/issues",
                 "source": "https://github.com/laravel/cashier"
             },
-            "time": "2023-02-09T16:32:00+00:00"
+            "time": "2023-04-11T16:31:47+00:00"
         },
         {
             "name": "laravel/framework",
