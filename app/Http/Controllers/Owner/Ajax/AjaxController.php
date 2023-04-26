@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Owner;
+namespace App\Http\Controllers\Owner\Ajax;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -26,7 +26,7 @@ class AjaxController extends Controller
             $plan = $request->plan;
             $user->newSubscription('main', $plan)->create($payment_method);
             $user->load('subscriptions');
-            // dd($user);
+
         }
 
         return $this->status();

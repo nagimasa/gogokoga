@@ -12,7 +12,7 @@
         "intervention/image": "^2.7",
         "jeroennoten/laravel-adminlte": "^3.8",
         "laravel/breeze": "^1.17",
-        "laravel/cashier": "^14.11",
+        "laravel/cashier": "^14.12",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
