@@ -27,8 +27,6 @@
 
         {{-- fontawesome --}}
         <script src="https://kit.fontawesome.com/2f02d6fd6d.js" crossorigin="anonymous"></script>
-
-
         
     </head>
     <body class="bg-gray-200">

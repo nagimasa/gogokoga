@@ -84,6 +84,8 @@
         </div>
     </div>
 
+</x-app-layout>
+
 
 
 <script src="https://js.stripe.com/v3/"></script>
@@ -227,4 +229,3 @@
     });
 
 </script>
-</x-app-layout>
