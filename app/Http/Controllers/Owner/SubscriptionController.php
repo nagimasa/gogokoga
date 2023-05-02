@@ -18,8 +18,10 @@ class SubscriptionController extends Controller
 {
     public function index(Request $request) {
 
+        $user_test = auth()->user();
         $user = $request->user();
         // dd($user);
+        // ddd($user_test->subscribed('main'), $user_test);
         return view('owner.subscription.index')->with([
             'intent' => $user->createSetupIntent()
         ]);

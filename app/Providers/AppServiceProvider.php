@@ -36,7 +36,9 @@ class AppServiceProvider extends ServiceProvider
 
      public function boot()
      {
-         Cashier::useCustomerModel(Owner::class);
+        Cashier::useCustomerModel(Owner::class);
+        
+        Cashier::useCustomerModel(Owner::class);
          if (request()->isSecure()) {
             URL::forceScheme('https');
         }

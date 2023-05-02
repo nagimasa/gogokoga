@@ -98,10 +98,11 @@ Route::middleware('auth:owners')->group(function () {
     // Route::get('/subscription/portal/{id}', [StripeController::class, 'portal'])->name('stripe.portal');
     // Route::get('/stripe/webhook', [StripeController::class, 'webhook'])->name('stripe.webhook');
 
+    
     // 課金
     Route::get('subscription', [SubscriptionController::class, 'index'])->name('subsc.index');
     Route::get('ajax/subscription/status', [AjaxController::class, 'status'])->name('status');
-    Route::post('ajax/subscription/subscribe', [AjaxController::class, 'subscribe'])->name('subsc');
+    Route::post('ajax/subscription/subscribe', [AjaxController::class, 'subscribe'])->name('subscription');
     Route::post('ajax/subscription/cancel', [AjaxController::class, 'cancel'])->name('cancel');
     Route::post('ajax/subscription/resume', [AjaxController::class, 'resume'])->name('resume');
     Route::post('ajax/subscription/change_plan', [AjaxController::class, 'change_plan'])->name('change');
