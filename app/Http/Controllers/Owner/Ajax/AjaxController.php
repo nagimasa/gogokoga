@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Owner;
+namespace App\Http\Controllers\Owner\Ajax;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Arr;
 
 use App\Models\Service;
 use App\Models\Genre;
@@ -26,7 +26,7 @@ class AjaxController extends Controller
             $plan = $request->plan;
             $user->newSubscription('main', $plan)->create($payment_method);
             $user->load('subscriptions');
-            // dd($user);
+
         }
 
         return $this->status();
@@ -79,6 +79,7 @@ class AjaxController extends Controller
 
         $status = 'unsubscribed';
         $user = auth()->user();
+
         $details = [];
 
         if($user->subscribed('main')) { // 課金履歴あり
@@ -101,8 +102,9 @@ class AjaxController extends Controller
 
             $details = [
                 'end_date' => ($subscription['ends_at']) ? $subscription['ends_at']->format('Y-m-d') : null,
-                'plan' => \Arr::get(config('services.stripe.plans'), $subscription['stripe_plan']),
-                'card_last_four' => $user->card_last_four
+                'plan' => Arr::get(config('services.stripe.plans'), $subscription['stripe_plan']),
+                'card_last_four' => $user->pm_last_four
+                // 'card_last_four' => $user->card_last_four
             ];
 
         }

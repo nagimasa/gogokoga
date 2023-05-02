@@ -24,6 +24,10 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="js/ckeditor.js"></script>
         
+
+        {{-- stripe --}}
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -51,4 +55,5 @@
         </div>
         @stack('scripts')
     </body>
+    
 </html>
