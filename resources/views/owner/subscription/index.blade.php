@@ -53,13 +53,13 @@
                                 </div>
                                 <hr>
                                 <div class="form-group">
-                                    カード情報（下４桁）： <span v-text="details.card_last_four"></span>
+                                    使用中のカード情報（下４桁）： <span v-text="details.card_last_four"></span>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control" v-model="cardHolderName" placeholder="名義人（半角ローマ字）">
                                 </div>
                                 <div class="form-group">
-                                    <div id="update-card" class="bg-white"></div><br>
+                                    <div id="update-card" class="bg-white form-control"></div><br>
                                     <button
                                         type="button"
                                         class="btn btn-secondary"

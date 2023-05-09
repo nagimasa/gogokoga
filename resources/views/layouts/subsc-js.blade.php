@@ -99,6 +99,7 @@
             }
         },
         computed: {
+            
             isSubscribed() {
 
                 return (this.status === 'subscribed' || this.status === 'cancelled');
