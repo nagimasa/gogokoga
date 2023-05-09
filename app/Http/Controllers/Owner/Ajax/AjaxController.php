@@ -78,13 +78,17 @@ class AjaxController extends Controller
     public function status() {
 
         $status = 'unsubscribed';
-        $user = auth()->user();
+        $owner=Auth::user();
 
         $details = [];
+        // ddd($owner->subscribed('main'));
 
-        if($user->subscribed('main')) { // 課金履歴あり
+        if($owner->subscribed('main')) { // 課金履歴あり
 
-            if($user->subscription('main')->cancelled()) {  // キャンセル済み
+            // 以下のif文が正しく機能していない。statusの情報はちゃんと取得できている
+            // 解：cancelledをcanceledに書き換えたところエラーが出なくなった。
+            // 　　米英語がcanceledらしい
+            if($owner->subscription('main')->canceled()) {  // キャンセル済み
 
                 $status = 'cancelled';
 
@@ -94,7 +98,8 @@ class AjaxController extends Controller
 
             }
 
-            $subscription = $user->subscriptions->first(function($value){
+
+            $subscription = $owner->subscriptions->first(function($value){
 
                 return ($value->name === 'main');
 
@@ -103,7 +108,8 @@ class AjaxController extends Controller
             $details = [
                 'end_date' => ($subscription['ends_at']) ? $subscription['ends_at']->format('Y-m-d') : null,
                 'plan' => Arr::get(config('services.stripe.plans'), $subscription['stripe_plan']),
-                'card_last_four' => $user->pm_last_four
+                // 'plan' => Arr::get(config('services.stripe.plans'), $subscription['stripe_plan']),
+                'card_last_four' => $owner->pm_last_four
                 // 'card_last_four' => $user->card_last_four
             ];
 
