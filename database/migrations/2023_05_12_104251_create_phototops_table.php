@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('phototops', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('service_id')
+            ->constrained('services')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->text('top_image_name');
             $table->timestamps();
         });
     }

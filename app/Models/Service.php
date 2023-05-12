@@ -14,6 +14,8 @@ use App\Models\Reqruit;
 use App\Models\Coupon;
 use App\Models\Owner;
 use App\Models\Tag;
+use App\Models\PhotoGall;
+use App\Models\PhotoTop;
 
 class Service extends Model
 {
@@ -108,5 +110,17 @@ class Service extends Model
     public function owner()
     {
         return $this->hasOne(Owner::class);
+    }
+
+    // メニューとの１対多
+    public function photogalls()
+    {
+        return $this->hasMany(PhotoGalls::class);
+    }
+    
+    // TOP用画像との１対１
+    public function phototop()
+    {
+        return $this->hasOne(PhotoTop::class);
     }
 }
