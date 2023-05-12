@@ -25,6 +25,8 @@ class UserController extends Controller
 
     public function category( $category )
     {
+        // URLのクエリパラメータからcategory（genre）を取得し、switch構文で判別。
+        // それにあわせて動的にカテゴリページを表示。
         switch($category){
             case $category === 'restaurant';
                 // $services = Service::where('genre_id', 1)->with('comments')->get();
