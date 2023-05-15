@@ -18,7 +18,7 @@
                                 {{ Form::open(['route' => ['owner.photogalls.store',  [$service->id]], 
                                 'method'  => 'post', 'file' => true,
                                 'enctype' => 'multipart/form-data',
-                                'accept'  => 'iamge/png, image/jpeg, image/jpg, image/webp' ]) }}
+                                'accept'  => 'image/png, image/jpeg, image/jpg, image/webp' ]) }}
                                 @csrf
                                 @method('post')
                                         

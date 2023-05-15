@@ -14,7 +14,7 @@
                         <div class="md:flex flex-wrap">
                             @foreach($photogalls as $photo)
                             <div class="md:w-1/6 f-full p-2">
-                                <img class="mb-2" src="{{ asset($photo->image_name) }}">
+                                <img class="mb-2" src="{{ asset($photo->image_name, true) }}">
                                 <a href="{{ route('owner.photogalls.edit', ["photogalls" => $service->id, "photo" => $photo->id]) }}">削除</a>
                             </div>
                             <hr>

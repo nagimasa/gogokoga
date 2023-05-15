@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Service;
 
-class PhotoTop extends Model
+class Phototop extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'image_name',
+        'top_image_name',
         'service_id',
     ];
 
