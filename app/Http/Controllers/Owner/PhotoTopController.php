@@ -141,9 +141,13 @@ class PhotoTopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id, $select_photo)
     {
-        //
+        // select_photoはRouteで設定した'photogalls/edit/{photogalls}/{photo}'の{photo}を取得している
+        $photo = Phototop::findOrFail($select_photo);
+        $service = Service::findOrFail($photo->service_id);
+
+        return view('owner.phototop.edit', compact('photo', 'service'));
     }
 
     /**
@@ -164,8 +168,30 @@ class PhotoTopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id, $select_photo)
     {
-        //
+        $photo = Phototop::findOrFail($select_photo);
+        $service_id = $photo->service_id;
+        // dd($photo, $service_id, $request);
+
+
+        // ディレクトリをidで分けるための準備
+        $each_path = $service_id;
+
+
+        // 画像のパスを取得
+        $image_url = $request->delete_image_name;
+
+
+        //削除用のパスを作成 basename()でDBに登録されている名前からファイル名のみを取得 
+        $delete_path = 'phototop_images' ."/". $each_path ."/". basename($image_url);
+
+
+        // ディスクを指定してファイルを削除
+        Storage::disk('public')->delete($delete_path);
+        
+
+        Phototop::findOrFail($select_photo)->delete();
+        return redirect()->route('owner.phototop.index', $service_id);
     }
 }
