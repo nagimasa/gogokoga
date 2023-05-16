@@ -113,9 +113,9 @@ class Service extends Model
     }
 
     // メニューとの１対多
-    public function photogalls()
+    public function photogall()
     {
-        return $this->hasMany(PhotoGalls::class);
+        return $this->hasMany(PhotoGall::class);
     }
     
     // TOP用画像との１対１

@@ -8,6 +8,9 @@
     <article class="bg-white mb-5">
         <section class="px-2 py-4 border-gray-300 border-b border-t">
             <h2 class="text-2xl category-title">カテゴリ別</h2>
+            @if($detail->phototop)
+                <img src="{{ secure_asset($detail->phototop->top_image_name) }}">
+            @endif
 
             <section>
                 <h2>基本情報</h2>
@@ -16,6 +19,60 @@
             <p>{{ $detail->area->area_name}}</p>
             <p>{{ $detail->address}}</p>
             <p>{{ $detail->genre->genre_name}}</p>
+
+            @if( $detail->sunday )
+            {{ $detail->sunday}}
+            @else
+            登録されていません
+            @endif
+
+            @if( $detail->monday )
+            {{ $detail->monday}}
+            @else
+            登録されていません
+            @endif
+
+            @if( $detail->tuesday )
+            {{ $detail->tuesday}}
+            @else
+            登録されていません
+            @endif
+
+            @if( $detail->wednesday )
+            {{ $detail->wednesday}}
+            @else
+            登録されていません
+            @endif
+
+            @if( $detail->thursday )
+            {{ $detail->thursday}}
+            @else
+            登録されていません
+            @endif
+
+            @if( $detail->friday )
+            {{ $detail->friday}}
+            @else
+            登録されていません
+            @endif
+
+            @if( $detail->saturday )
+            {{ $detail->saturday}}
+            @else
+            登録されていません
+            @endif
+
+            @if( $detail->regular_holiday )
+            {{ $detail->regular_holiday}}
+            @else
+            登録されていません
+            @endif
+
+            @if($detail)
+                {{ $detail->seat}}
+            @else
+            登録されていません
+            @endif
 
             @if($detail->payments)
                 @foreach($detail->payments as $payment)
@@ -30,7 +87,62 @@
                 <p>{{ $detail->comments->comment}}</p>
             @endif
 
+            {{-- @if($detail->photogall)
+                @foreach($detail->photogall as $photogall)
+                    <img src="{{ secure_asset($photogall->image_name) }}">
+                @endforeach
+            @endif --}}
+
         </section>
+
+
+        </section>
+        <p>ギャラリー</p>
+        <div id="my_gal11">
+
+            <!-- ここから写真部分。↓ -->
+            
+            <div class="base">
+            
+            <!-- ここからデータ。↓ -->
+            <!-- title属性にオンマウスで表示されるツールチップ。不要ならば削除。 -->
+
+            @if($detail->photogall)
+                @foreach($detail->photogall as $photogall)
+                    <img src="{{ secure_asset($photogall->image_name) }}">
+                @endforeach
+            @endif
+            
+            <!-- ここまでデータ。↑ -->
+            
+            </div>
+            
+            <!-- ここまで写真部分。↑ -->
+            
+            <!-- ここからギャラリー。↓ -->
+            
+            <div class="gallery">
+            
+            <!-- ここからサムネイル。↓ -->
+            <!-- 写真部分の写真と同じ順番に。写真部分の写真を流用してもよい。 -->
+            
+            <img src="http://miyake.g2.xrea.com/img/3s.jpg" />
+            <img src="http://miyake.g2.xrea.com/img/5s.jpg" />
+            <img src="http://miyake.g2.xrea.com/img/6s.jpg" />
+            <img src="http://miyake.g2.xrea.com/img/9s.jpg" />
+            <img src="http://miyake.g2.xrea.com/img/10s.jpg" />
+            <img src="http://miyake.g2.xrea.com/img/11s.jpg" />
+            <img src="http://miyake.g2.xrea.com/img/1s.jpg" />
+            <img src="http://miyake.g2.xrea.com/img/18s.jpg" />
+            <img src="http://miyake.g2.xrea.com/img/17s.jpg" />
+            
+            <!-- ここまでサムネイル。↑ -->
+            
+            </div>
+            
+            <!-- ここまでギャラリー。↑ -->
+            
+            </div>
     </article>
 
 
@@ -148,4 +260,5 @@
 
 
 <script src="{{ asset('js/menu.js') }}"></script>
+<script src="{{ asset('js/gallery.js') }}"></script>
 </html>
