@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Genre;
 use App\Models\Service;
 use App\Models\Area;
+use App\Models\Payment;
 
 
 class UserController extends Controller
@@ -21,8 +22,95 @@ class UserController extends Controller
 
         return view('user.index', compact('genres', 'areas'));
     }
+
+    public function category( $category )
+    {
+        // URLのクエリパラメータからcategory（genre）を取得し、switch構文で判別。
+        // それにあわせて動的にカテゴリページを表示。
+        switch($category){
+            case $category === 'restaurant';
+                // $services = Service::where('genre_id', 1)->with('comments')->get();
+                $services = Service::where('genre_id', 1)->get();
+                // ddd($services);
+                return view('user.category', compact('services'));
+                break;
+
+            case $category === 'beauty';
+                $services = Service::where('genre_id', 2)->get();
+                return view('user.category', compact('services'));
+                break;
+
+            case $category === 'hotel';
+                $services = Service::where('genre_id', 3)->get();
+                return view('user.category', compact('services'));
+                break;
+
+            case $category === 'school';
+                $services = Service::where('genre_id', 4)->get();
+                return view('user.category', compact('services'));
+                break;
+
+            case $category === 'activity';
+                $services = Service::where('genre_id', 5)->get();
+                return view('user.category', compact('services'));
+                break;
+                
+            case $category === 'shop';
+                $services = Service::where('genre_id', 6)->get();
+                return view('user.category', compact('services'));
+                break;
+
+            case $category === 'life';
+                $services = Service::where('genre_id', 7)->get();
+                return view('user.category', compact('services'));
+                break;
+
+            case $category === 'hospital';
+                $services = Service::where('genre_id', 8)->get();
+                return view('user.category', compact('services'));
+                break;
+
+            case $category === 'walfare';
+                $services = Service::where('genre_id', 9)->get();
+                return view('user.category', compact('services'));
+                break;
+
+            case $category === 'company';
+                $services = Service::where('genre_id', 10)->get();
+                return view('user.category', compact('services'));
+                break;
+
+            case $category === 'city';
+                $services = Service::where('genre_id', 11)->get();
+                return view('user.category', compact('services'));
+                break;
+
+            case $category === 'drive';
+                $services = Service::where('genre_id', 12)->get();
+                return view('user.category', compact('services'));
+                break;
+                
+            case $category === 'taxi';
+                $services = Service::where('genre_id', 13)->get();
+                return view('user.category', compact('services'));
+                break;
+            }
+    }
+
+
+    public function detail( $id )
+    {
+        // $detail = Service::find($id)->with('payment_service');
+        $detail = Service::find($id);
+        // ddd($detail);
+        return view('user.detail', compact('detail'));
+    }
     
 
+
+
+
+    // 検索機能
     public function search( Request $request)
     {
 

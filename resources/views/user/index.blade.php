@@ -31,24 +31,64 @@
         </div>
     </div>
 
+
     <article class="bg-white mb-5">
         <section class="px-2 py-4 border-gray-300 border-b border-t">
             <h2 class="text-2xl category-title">カテゴリ別</h2>
             <div class="flex flex-wrap justify-around">
-                <a href="">
+                <a href="{{ route('user.category', ['category' => 'restaurant']) }}">
                     <div class="category-item mb-1">
+                        <p>飲食店</p>
                     </div>
                 </a>
-                <a href="">
+                <a href="{{ route('user.category', ['category' => 'beauty']) }}">
                     <div class="category-item mb-1">
+                        <p>美容</p>
                     </div>
                 </a>
-                <a href="">
+                <a href="{{ route('user.category', ['category' => 'hotel']) }}">
                     <div class="category-item mb-1">
+                        <p>宿泊</p>
                     </div>
                 </a>
-                <a href="">
+                <a href="{{ route('user.category', ['category' => 'school']) }}">
                     <div class="category-item mb-1">
+                        <p>習い事</p>
+                    </div>
+                </a>
+                <a href="{{ route('user.category', ['category' => 'activity']) }}">
+                    <div class="category-item mb-1">
+                        <p>遊び</p>
+                    </div>
+                </a>
+                <a href="{{ route('user.category', ['category' => 'shop']) }}">
+                    <div class="category-item mb-1">
+                        <p>ショップ</p>
+                    </div>
+                </a>
+                <a href="{{ route('user.category', ['category' => 'life']) }}">
+                    <div class="category-item mb-1">
+                        <p>生活</p>
+                    </div>
+                </a>
+                <a href="{{ route('user.category', ['category' => 'hospital']) }}">
+                    <div class="category-item mb-1">
+                        <p>医療</p>
+                    </div>
+                </a>
+                <a href="{{ route('user.category', ['category' => 'walfare']) }}">
+                    <div class="category-item mb-1">
+                        <p>福祉</p>
+                    </div>
+                </a>
+                <a href="{{ route('user.category', ['category' => 'company']) }}">
+                    <div class="category-item mb-1">
+                        <p>企業</p>
+                    </div>
+                </a>
+                <a href="{{ route('user.category', ['category' => 'city']) }}">
+                    <div class="category-item mb-1">
+                        <p>古賀市施設</p>
                     </div>
                 </a>
             </div>
@@ -76,12 +116,14 @@
         <section class="px-2 py-4 border-gray-300 border-b border-t">
             <h2 class="text-2xl blog-title">交通</h2>
             <div class="flex flex-wrap justify-around">
-                <a href="">
+                <a href="{{ route('user.category', ['category' => 'drive']) }}">
                     <div class="category-item mb-1">
+                        <p>運転代行</p>
                     </div>
                 </a>
-                <a href="">
+                <a href="{{ route('user.category', ['category' => 'taxi']) }}">
                     <div class="category-item mb-1">
+                        <p>タクシー</p>
                     </div>
                 </a>
             </div>
