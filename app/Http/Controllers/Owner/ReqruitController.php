@@ -66,7 +66,7 @@ class ReqruitController extends Controller
         // ownerのservice_idをもとにリレーション先のserviceを取得
         $service = Service::findOrFail($owner->service_id);
 
-        return view('admin.reqruits.create', compact('service', 'owner'));
+        return view('owner.reqruits.create', compact('service', 'owner'));
     }
 
     /**

@@ -20,6 +20,7 @@
                         {{ Form::open(['route' => ['owner.coupons.store', $service->id],
                         'method'  => 'post',
                         'file'    => true,
+                        'enctype' => 'multipart/form-data',
                         'accept'  => 'iamge/png, image/jpeg, image/jpg, image/webp' ]) }}
                         @csrf
                         @method('post')

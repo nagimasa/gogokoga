@@ -93,8 +93,8 @@ class CouponController extends Controller
 
 
         // 画像を取得
-        $get_image = $request->coupon_image;
-
+        $get_image = $request->file('coupon_image');
+        // dd($get_image);
 
         // 画像があれば圧縮して保存する処理
         if(!is_null($get_image) && $get_image->isValid()){
