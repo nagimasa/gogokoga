@@ -28,10 +28,10 @@
                             </ul>
                         </div>
                         <div class="border-t pb-4">
-                            <h4 class="font-bold text-xl py-2">画像ギャラリー</h4>
+                            <h4 class="font-bold text-xl py-2">画像設定</h4>
                             <ul>
-                                <li class="pl-4"><a href="{{ route('owner.photogalls.index', [$owner->service->id]) }}">確認</a></li>
-                                {{-- <li class="pl-4"><a href="{{ route('owner.photogalls.edit', [$owner->service->id]) }}">登録・編集</a></li> --}}
+                                <li class="pl-4"><a href="{{ route('owner.phototop.index', [$owner->service->id]) }}">トップ写真設定</a></li>
+                                <li class="pl-4"><a href="{{ route('owner.photogalls.index', [$owner->service->id]) }}">写真ギャラリー</a></li>
                             </ul>
                         </div>
                         <div class="border-t">

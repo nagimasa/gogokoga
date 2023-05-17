@@ -13,7 +13,7 @@
 
                     <div class="p-6">
                         <h3>基本設定</h3>
-                            {{ Form::open(['route' => ['admin.services.store'], 'method' => 'post']) }}
+                            {{ Form::open(['route' => ['owner.services.store'], 'method' => 'post']) }}
                         @csrf
                         @method('post')
                         <div class="py-6">
@@ -203,7 +203,7 @@
                         {{-- ここまでタクシー/代行 --}}
 
                         <div class="py-6 flex justify-between">
-                            <a href="{{ route('admin.services.index') }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">
+                            <a href="{{ route('owner.services.index') }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">
                                 戻る
                             </a>
                             {{ Form::submit('送信', ['class' => 'btn text-white bg-blue-600 border-0 py-2 px-6 mb-2 hover:bg-blue-700 rounded']) }}

@@ -7,17 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Service;
 
-class Photogall extends Model
+class Phototop extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'image_name',
+        'top_image_name',
         'service_id',
     ];
 
-
-        // 地域との１対多
+    // 地域との１対多
     public function service()
     {
         return $this->belongsTo(Service::class);

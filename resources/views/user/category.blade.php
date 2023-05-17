@@ -11,15 +11,16 @@
             @foreach($services as $service)
             <div>
                 <a href="{{ route('user.detail', [$service->id])}}">
-                <p>{{ $service->service_name }}</p>
-                    @if($service->photogalls)
-                        <img src="">
+                    <p>{{ $service->service_name }}</p>
+                    @if($service->phototop)
+                    <img src="{{ secure_asset($service->phototop->top_image_name) }}">
                     @endif
-                <p>{{ $service->area->area_name}}</p>
+                    <p>{{ $service->area->area_name}}</p>
                     @if($service->comments)
                         <p>{{ $service->comments->comment}}</p>
                     @endif
                 </a>
+                <a href="tel:{{ $service->tel}}">{{ $service->tel }}</a>
             </div>
             @endforeach
         </section>

@@ -15,6 +15,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Owner\BaseController;
 use App\Http\Controllers\Owner\ServiceController;
 use App\Http\Controllers\Owner\CommentController;
+use App\Http\Controllers\Owner\PhotoTopController;
 use App\Http\Controllers\Owner\PhotoGallController;
 use App\Http\Controllers\Owner\MenuController;
 use App\Http\Controllers\Owner\ReqruitController;
@@ -70,6 +71,16 @@ Route::middleware('auth:owners')->group(function () {
     Route::get('blogs/edit/{blogs}/{detail}', [BlogController::class, 'edit'])->name('blogs.edit');
     Route::post('blogs/update/{blogs}', [BlogController::class, 'update'])->name('blogs.update');
     Route::delete('blogs/delete/{blogs}/{detail}', [BlogController::class, 'destroy'])->name('blogs.destroy');
+
+
+    // PhotoTop
+    Route::get('phototop/index/{phototop}', [PhotoTopController::class, 'index'])->name('phototop.index');
+    Route::get('phototop/create/{phototop}', [PhotoTopController::class, 'create'])->name('phototop.create');
+    Route::post('phototop/store', [PhotoTopController::class, 'store'])->name('phototop.store');
+    Route::get('phototop/show/{phototop}', [PhotoTopController::class, 'show'])->name('phototop.show');
+    Route::get('phototop/edit/{phototop}/{photo}', [PhotoTopController::class, 'edit'])->name('phototop.edit');
+    Route::post('phototop/update/{phototop}', [PhotoTopController::class, 'update'])->name('phototop.update');
+    Route::delete('phototop/delete/{phototop}/{photo}', [PhotoTopController::class, 'destroy'])->name('phototop.destroy');
 
 
     // PhotoGall

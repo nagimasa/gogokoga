@@ -33,3 +33,59 @@
     border-radius: 5px;
     background-color: gray;
 }
+
+
+
+
+/******************************
+
+画像ギャラリー
+
+******************************/
+#my_gal11{
+	position:relative;
+	top:0px;
+	left:0px;
+	width:100%;
+	max-width:640px;
+	margin:auto;
+}
+
+/** 写真部分。アスペクト比維持のため、padding-top:～%;に写真部分の（高さ／幅）を％で書く。 **/
+#my_gal11 .base{
+	position:relative;
+	top:0px;
+	left:0px;
+	padding-top:75%;
+}
+
+/** 写真部分の個々の写真。transition-duration:1s;はアニメーション速度。 **/
+#my_gal11 .base img{
+	position:absolute;
+	top:0px;
+	left:0px;
+	z-index:1;
+	width:100%;
+	opacity:0;
+	transition-property:opacity;
+	transition-duration:1s;
+}
+
+/** サムネイル一覧。 **/
+#my_gal11 .gallery{
+	position:relative;
+	top:0px;
+	left:0px;
+	width:100%;
+	margin-top:5px;
+	text-align:center;
+}
+
+/** サムネイル。 **/
+#my_gal11 .gallery img{
+	width:8%;
+	cursor:pointer;
+}
+#my_gal11 .gallery img:hover{
+	opacity:0.5;
+}
