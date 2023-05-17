@@ -18,7 +18,7 @@
                         @endforeach
 
 
-                        {{ Form::open(['route' => ['admin.reqruits.store', $service->id],
+                        {{ Form::open(['route' => ['owner.reqruits.store', $service->id],
                         'method'  => 'post',
                         'file'    => true,
                         'enctype' => 'multipart/form-data',
@@ -115,7 +115,7 @@
 
                         <div class="pt-6">
                             <div class="py-2 flex justify-between">
-                                <a href="{{ route('admin.reqruits.show', $service->id) }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">
+                                <a href="{{ route('owner.reqruits.show', $service->id) }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">
                                     戻る
                                 </a>
                                 {{ Form::submit('送信', ['class' => 'btn btn-primary text-white bg-blue-600 border-0 py-2 px-6 mb-2 hover:bg-blue-700 rounded']) }}

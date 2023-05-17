@@ -12,7 +12,7 @@
                     <h2 class="text-xl bg-blue-600 text-white p-6">支払い方法名の登録</h2>
 
                     <div class="p-6">
-                            {{ Form::open(['route' => ['admin.payments.store'], 'method' => 'post']) }}
+                            {{ Form::open(['route' => ['owner.payments.store'], 'method' => 'post']) }}
                         @csrf
                         @method('post')
                         <div class="py-6">
@@ -21,7 +21,7 @@
                         </div>
                         <hr>
                         <div class="py-6 flex justify-between">
-                            <a href="{{ route('admin.payments.index') }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">
+                            <a href="{{ route('owner.payments.index') }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">
                                 戻る
                             </a>
                             {{ Form::submit('送信', ['class' => 'btn text-white bg-blue-600 border-0 py-2 px-6 mb-2 hover:bg-blue-700 rounded']) }}
