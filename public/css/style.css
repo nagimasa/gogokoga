@@ -32,14 +32,46 @@
     height: 140px;
     border-radius: 5px;
     background-color: gray;
+} 
+
+
+
+/******************************
+
+カテゴリページ
+
+******************************/
+.category .item-pickup {
+	border: 5px solid #4DA869;
+	border-radius: 5px;
+
 }
+.category .item-pickup h3 {
+	background: #4DA869;
+}
+
+.category .item-content {
+	padding: 0.5rem;
+}
+
+.category .badge-area {
+	margin: 0.5rem 0;
+}
+
+.category .badge-coupon {
+	border: solid 2px #FF6464;
+	border-radius: 1rem; 
+	color: #FF6464;
+	padding: 0.3rem 1rem;
+} 
+
 
 
 
 
 /******************************
 
-画像ギャラリー
+画像ギャラリー機能
 
 ******************************/
 #my_gal11{

@@ -46,31 +46,71 @@
             <nav id="js-global-navigation" class="global-navigation">
               <ul class="global-navigation__list">
                 <li>
-                  <a href="#" class="global-navigation__link">
-                    メニュー
+                  <a href="{{ route('user.index') }}" class="global-navigation__link">
+                    TOP
                   </a>
                 </li>
                    <li>
                   <button type="button" class="global-navigation__link -accordion js-sp-accordion-trigger" aria-expanded = 'false' aria-controls="accordion1">
-                    親メニュー
+                    カテゴリ別
                   </button>
                      <div id="accordion1" class="accordion js-accordion">
                        <ul class="accordion__list">
                          <li>
-                           <a href="#" class="accordion__link">
-                             子メニュー
+                           <a href="{{ route('user.category', ['category' => 'restaurant']) }}" class="accordion__link">
+                             飲食店
                            </a>
                          </li>
-                          <li>
-                           <a href="#" class="accordion__link">
-                             子メニュー
-                           </a>
-                         </li>
-                          <li>
-                           <a href="#" class="accordion__link">
-                             子メニュー
-                           </a>
-                         </li>
+                        <li>
+                          <a href="{{ route('user.category', ['category' => 'beauty']) }}" class="accordion__link">
+                          美容
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ route('user.category', ['category' => 'hotel']) }}" class="accordion__link">
+                          宿泊
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ route('user.category', ['category' => 'school']) }}" class="accordion__link">
+                          習い事
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ route('user.category', ['category' => 'activity']) }}" class="accordion__link">
+                          遊び
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ route('user.category', ['category' => 'shop']) }}" class="accordion__link">
+                          ショップ
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ route('user.category', ['category' => 'life']) }}" class="accordion__link">
+                          生活
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ route('user.category', ['category' => 'hospital']) }}" class="accordion__link">
+                          医療
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ route('user.category', ['category' => 'walfare']) }}" class="accordion__link">
+                          福祉
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ route('user.category', ['category' => 'company']) }}" class="accordion__link">
+                          企業
+                        </a>  
+                        </li>
+                        <li>
+                          <a href="{{ route('user.category', ['category' => 'city']) }}" class="accordion__link">
+                          古賀市施設
+                          </a>
+                        </li>
                        </ul>
                      </div>
                 </li>

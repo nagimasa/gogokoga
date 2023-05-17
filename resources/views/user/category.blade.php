@@ -1,7 +1,7 @@
 
 @include('layouts.user')
 
-<main class="index">
+<main class="category">
 
 
 
@@ -9,16 +9,31 @@
         <section class="px-2 py-4 border-gray-300 border-b border-t">
             <h2 class="text-2xl category-title">カテゴリ別</h2>
             @foreach($services as $service)
-            <div>
-                <a href="{{ route('user.detail', [$service->id])}}">
-                    <p>{{ $service->service_name }}</p>
-                    @if($service->phototop)
-                    <img src="{{ secure_asset($service->phototop->top_image_name) }}">
-                    @endif
-                    <p>{{ $service->area->area_name}}</p>
-                    @if($service->comments)
-                        <p>{{ $service->comments->comment}}</p>
-                    @endif
+            <div class="item-pickup">
+                <a class="link-area" href="{{ route('user.detail', [$service->id])}}">
+                    <h3 class="text-xl p-4 text-white">{{ $service->service_name }}</h3>
+                    <div class="p-2">
+                        @if($service->phototop)
+                            <div class="img-box">
+                                <img src="{{ secure_asset($service->phototop->top_image_name) }}">
+                            </div>
+                        @endif
+                        <div class="my-2">
+                            @if($service->coupon)
+                                <span class="badge-coupon">クーポン</span>
+                            @endif
+                            @if($service->reqruit)
+                                <span class="badge-coupon">求人</span>
+                            @endif
+                        </div>
+
+                        <p>{{ $service->area->area_name}}</p>
+                        @if($service->comments)
+                            <p>{{ $service->comments->comment}}</p>
+                        @endif
+
+                        <p>{{ $service->address}}</p>
+                    </div>
                 </a>
                 <a href="tel:{{ $service->tel}}">{{ $service->tel }}</a>
             </div>
