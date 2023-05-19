@@ -13,7 +13,7 @@
 
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css','resources/sass/app.scss', 'resources/js/app.js'])
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
         {{-- ハンバーガーメニュー --}}
@@ -34,9 +34,9 @@
         <div class="header__inner">
             <div class="flex">
                 <div class="home">
-                    <h1><i class="fa-solid fa-house fa-2xl"></i></h1>
+                    <h1 class=" pt-4"><i class="fa-solid fa-house fa-2xl text-white"></i></h1>
                 </div>
-                <p class="lead-text">福岡県古賀市で活躍するお店や企業を応援する地域密着型の情報サイト</p>
+                <p class="text-white text-xs pt-4">福岡県古賀市で活躍するお店や企業を応援する地域密着型の情報サイト</p>
                 <button id="js-humberger" type="button" class="humberger" aria-controls="navigation" aria-expanded="false">
                     <span class="humberger__line"></span>
                     <span class="humberger__text"></span>
@@ -115,8 +115,28 @@
                      </div>
                 </li>
                 <li>
-                  <a href="#" class="global-navigation__link">
-                    メニュー
+               <button type="button" class="global-navigation__link -accordion js-sp-accordion-trigger" aria-expanded = 'false' aria-controls="accordion1">
+                 交通
+               </button>
+                  <div id="accordion1" class="accordion js-accordion">
+                    <ul class="accordion__list">
+                      <li>
+                        <a href="{{ route('user.category', ['category' => 'drive']) }}" class="accordion__link">
+                          運転代行
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{ route('user.category', ['category' => 'taxi']) }}" class="accordion__link">
+                          タクシー
+                        </a>
+                      </li>
+                     <li>
+                     </li>
+                    </ul>
+                  </div>
+                <li>
+                  <a href="{{ route('user.category', ['category' => 'reqruit']) }}" class="global-navigation__link">
+                    求人
                   </a>
                 </li> 
               </ul>

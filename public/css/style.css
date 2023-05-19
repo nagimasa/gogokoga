@@ -1,38 +1,58 @@
-.index article h2::after {
+/******************************
+
+汎用コンテンツ
+
+******************************/
+.index article h2::after,
+.category article h2::after,
+.sub-title::after {
     padding: 5px;
     color: #FF971F;
     font-size: 12px;
     font-weight: bold;
 }
-.index .category-title::after      { content: "CATEGORY";}
-.index .blog-title::after          { content: "BLOG";}
-.index .transpotation-title::after { content: "TRANSPORTATION";}
-.index .reqruit-title::after       { content: "REQRUIT";}
-.index .typograph-title::after     { content: "SEARCH";}
+.category-title::after      { content: "CATEGORY";}
+.blog-title::after          { content: "BLOG";}
+.transpotation-title::after { content: "TRANSPORTATION";}
+.reqruit-title::after       { content: "REQRUIT";}
+.typograph-title::after     { content: "SEARCH";}
 
-.index .category-item {
+.publish-btn {
+	background: #4DA869;
+	border-radius: 30px;
+}
+.copyright {
+	background: #4DA869;
+}
+
+
+
+
+/******************************
+
+TOPページ
+
+******************************/
+/* .index .category-item {
     height: 122px;
     width: 172px;
     background-color: gray;
     border-radius: 5px;
-}
+} */
 
 .index .blog-item h3::before {
     content: "";
 }
-
 .index .blog-area,
 .index .search-item {
     border: 2px solid #4DA869;
     border-radius: 5px;
 }
+.index .category-item {
+	width: 48%;
+}
 
-.index .reqruit div {
-    width: 350px;
-    height: 140px;
-    border-radius: 5px;
-    background-color: gray;
-} 
+
 
 
 
@@ -53,9 +73,13 @@
 .category .item-content {
 	padding: 0.5rem;
 }
+.category .item-data dt {
+    color: #FF971F;
+}
 
 .category .badge-area {
 	margin: 0.5rem 0;
+	border-bottom: 1px solid #000;
 }
 
 .category .badge-coupon {
@@ -64,6 +88,44 @@
 	color: #FF6464;
 	padding: 0.3rem 1rem;
 } 
+
+.category .badge-reqruit {
+	border: solid 2px #D72FFF;
+	border-radius: 1rem; 
+	color: #D72FFF;
+	padding: 0.3rem 1rem;
+}
+
+
+
+
+
+/******************************
+
+詳細ページ
+
+******************************/
+.detail .subtitle {
+    color: #FF971F;
+}
+.detail .service-title::after  { content: "SERVICE";}
+.detail .time-title::after     { content: "SCHEDULE";}
+.detail .coupon-title::after   { content: "COUPON";}
+.detail .comment-title::after  { content: "COMMENT";}
+.detail .info-title::after     { content: "INFO";}
+.detail .photo-title::after    { content: "PHOTO";}
+.detail .reqruit-title::after  { content: "REQRUIT";}
+
+.blog-btn {
+	position: fixed;
+	left: 60%;
+	top: 60%;
+}
+.call-btn {
+	position: fixed;
+	left: 80%;
+	top: 60%;
+}
 
 
 
@@ -105,17 +167,22 @@
 
 /** サムネイル一覧。 **/
 #my_gal11 .gallery{
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+/* #my_gal11 .gallery{
 	position:relative;
 	top:0px;
 	left:0px;
 	width:100%;
 	margin-top:5px;
 	text-align:center;
-}
+} */
 
 /** サムネイル。 **/
 #my_gal11 .gallery img{
-	width:8%;
+	width:24%;
 	cursor:pointer;
 }
 #my_gal11 .gallery img:hover{
