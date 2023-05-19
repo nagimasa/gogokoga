@@ -34,7 +34,7 @@
         left: 50%;
         transform: translateX(-50%);
         width: 24px;
-        background-color: #172e59;
+        background-color: #fff;
         transition: 0.4s;
     }
     .humberger__line:before,
@@ -44,14 +44,14 @@
         height: 100%;
         position: absolute;
         width: 100%;
-        background-color: #172e59;
+        background-color: #fff;
         transition: inherit;
     }
     .humberger__line:before {
-        top: -6px;
+        top: -8px;
     }
     .humberger__line:after {
-        top: 6px;
+        top: 8px;
     }
     .humberger__text {
         position: absolute;
@@ -60,13 +60,13 @@
         transform: translateX(-50%);
         width: 100%;
     }
-    .humberger__text::before {
+    /* .humberger__text::before {
         content: "メニュー";
         text-align: center;
-        color: #172e59;
+        color: #fff;
         font-size: 10px;
         font-weight: 900;
-    }
+    } */
     .header {
       width: 100%;
     }

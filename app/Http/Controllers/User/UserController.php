@@ -10,6 +10,7 @@ use App\Models\Genre;
 use App\Models\Service;
 use App\Models\Area;
 use App\Models\Payment;
+use App\Models\Blog;
 
 
 class UserController extends Controller
@@ -20,7 +21,13 @@ class UserController extends Controller
         $genres = Genre::select('id', 'genre_name')->get();
         $areas = Area::select('id', 'area_name')->get();
 
-        return view('user.index', compact('genres', 'areas'));
+        $blogs = Blog::select('blog_title', 'created_at', 'service_id', 'blog_text')
+                ->with('service')
+                ->latest('created_at')
+                ->take(10)
+                ->get();
+
+        return view('user.index', compact('genres', 'areas', 'blogs'));
     }
 
     public function category( $category )
@@ -92,6 +99,11 @@ class UserController extends Controller
                 
             case $category === 'taxi';
                 $services = Service::where('genre_id', 13)->get();
+                return view('user.category', compact('services'));
+                break;
+                
+            case $category === 'reqruits';
+                $services = Service::where('genre_id', 14)->get();
                 return view('user.category', compact('services'));
                 break;
             }

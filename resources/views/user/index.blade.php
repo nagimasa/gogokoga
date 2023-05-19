@@ -35,61 +35,61 @@
     <article class="bg-white mb-5">
         <section class="px-2 py-4 border-gray-300 border-b border-t">
             <h2 class="text-2xl category-title">カテゴリ別</h2>
-            <div class="flex flex-wrap justify-around">
-                <a href="{{ route('user.category', ['category' => 'restaurant']) }}">
-                    <div class="category-item mb-1">
-                        <p>飲食店</p>
-                    </div>
+            <div class="flex flex-wrap justify-between">
+                <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'restaurant']) }}">
+                
+                        <img src="{{ asset('storage/images/restaurant-btn.jpg') }}">
+                    
                 </a>
-                <a href="{{ route('user.category', ['category' => 'beauty']) }}">
-                    <div class="category-item mb-1">
-                        <p>美容</p>
-                    </div>
+                <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'beauty']) }}">
+                
+                        <img src="{{ asset('storage/images/beauty-btn.jpg') }}">
+                    
                 </a>
-                <a href="{{ route('user.category', ['category' => 'hotel']) }}">
-                    <div class="category-item mb-1">
-                        <p>宿泊</p>
-                    </div>
+                <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'hotel']) }}">
+                    
+                        <img src="{{ asset('storage/images/hotel-btn.jpg') }}">
+                    
                 </a>
-                <a href="{{ route('user.category', ['category' => 'school']) }}">
-                    <div class="category-item mb-1">
-                        <p>習い事</p>
-                    </div>
+                <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'school']) }}">
+                    
+                        <img src="{{ asset('storage/images/school-btn.jpg') }}">
+                    
                 </a>
-                <a href="{{ route('user.category', ['category' => 'activity']) }}">
-                    <div class="category-item mb-1">
-                        <p>遊び</p>
-                    </div>
+                <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'activity']) }}">
+                    
+                        <img src="{{ asset('storage/images/activity-btn.jpg') }}">
+                    
                 </a>
-                <a href="{{ route('user.category', ['category' => 'shop']) }}">
-                    <div class="category-item mb-1">
-                        <p>ショップ</p>
-                    </div>
+                <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'shop']) }}">
+                    
+                        <img src="{{ asset('storage/images/shop-btn.jpg') }}">
+                    
                 </a>
-                <a href="{{ route('user.category', ['category' => 'life']) }}">
-                    <div class="category-item mb-1">
-                        <p>生活</p>
-                    </div>
+                <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'life']) }}">
+                    
+                        <img src="{{ asset('storage/images/life-btn.jpg') }}">
+                    
                 </a>
-                <a href="{{ route('user.category', ['category' => 'hospital']) }}">
-                    <div class="category-item mb-1">
-                        <p>医療</p>
-                    </div>
+                <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'hospital']) }}">
+                    
+                        <img src="{{ asset('storage/images/hospital-btn.jpg') }}">
+                    
                 </a>
-                <a href="{{ route('user.category', ['category' => 'walfare']) }}">
-                    <div class="category-item mb-1">
-                        <p>福祉</p>
-                    </div>
+                <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'walfare']) }}">
+                    
+                        <img src="{{ asset('storage/images/walfare-btn.jpg') }}">
+                    
                 </a>
-                <a href="{{ route('user.category', ['category' => 'company']) }}">
-                    <div class="category-item mb-1">
-                        <p>企業</p>
-                    </div>
+                <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'company']) }}">
+                    
+                        <img src="{{ asset('storage/images/company-btn.jpg') }}">
+                    
                 </a>
-                <a href="{{ route('user.category', ['category' => 'city']) }}">
-                    <div class="category-item mb-1">
-                        <p>古賀市施設</p>
-                    </div>
+                <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'city']) }}">
+                    
+                        <img src="{{ asset('storage/images/city-btn.jpg') }}">
+                    
                 </a>
             </div>
         </section>
@@ -101,12 +101,15 @@
         <section class="px-2 py-4 border-gray-300 border-b border-t">
             <h2 class="text-2xl blog-title">ブログの更新</h2>
             <div class="blog-area p-4">
-                <div class="blog-item pb-2 border-b border-gray-200">
-                    {{-- ここに店舗カテゴリを判定してバッチを表示させる仕組みを入れる --}}
-                    <h3 class="text-base mb-2">店舗名</h3>
-                    <p class="text-xs mb-2">更新日時</p>
-                    <p class="text-xs font-bold mb-2">スタッフコメント</p>
-                </div>
+                    @foreach($blogs as $blog)
+                    <a href="">
+                    <div class="blog-item pb-2 border-b border-gray-200">
+                        <p class="service-name">{{ $blog->service->service_name}}</p>
+                        <p class="blog-title text-xs">{{ $blog->blog_title}}</p>
+                        <p class="created-at text-xs">{{ $blog->created_at->format('y/m/d')}}</p>
+                    </div>
+                    </a>
+                    @endforeach
             </div>
         </section>
     </article>
@@ -115,16 +118,12 @@
     <article class="bg-white mb-5 transpotation">
         <section class="px-2 py-4 border-gray-300 border-b border-t">
             <h2 class="text-2xl blog-title">交通</h2>
-            <div class="flex flex-wrap justify-around">
-                <a href="{{ route('user.category', ['category' => 'drive']) }}">
-                    <div class="category-item mb-1">
-                        <p>運転代行</p>
-                    </div>
+            <div class="flex flex-nowrap justify-around">
+                <a class="pr-1" href="{{ route('user.category', ['category' => 'drive']) }}">
+                    <img src="{{ asset('storage/images/drive-btn.jpg') }}">
                 </a>
                 <a href="{{ route('user.category', ['category' => 'taxi']) }}">
-                    <div class="category-item mb-1">
-                        <p>タクシー</p>
-                    </div>
+                    <img src="{{ asset('storage/images/taxi-btn.jpg') }}">
                 </a>
             </div>
         </section>
@@ -136,19 +135,20 @@
     <article class="bg-white mb-5 reqruit">
         <section class="px-2 py-4 border-gray-300 border-b border-t">
             <h2 class="text-2xl reqruit-title">求人</h2>
+            <a href="{{ route('user.category', ['category' => 'reqruit']) }}">
             <div class="">
+                <img src="{{ asset('storage/images/reqruit-btn.jpg') }}">
             </div>
         </section>
     </article>
 
 
 
-    <article class="bg-white mb-5 typograph">
+    {{-- <article class="bg-white mb-5 typograph">
         <section class="px-2 py-4 border-gray-300 border-b border-t">
             <h2 class="text-2xl typograph-title">51音順</h2>
             <div class="search-item p-4 border-b border-gray-200 flex justify-around">
                 <div class="flex justify-around w-full">
-                    {{-- controllerから「あ〜な」を表示させる --}}
                     <a href="">
                         あ
                     </a>
@@ -166,7 +166,6 @@
                     </a>
                 </div>
                 <div class="flex justify-around w-full border-l">
-                    {{-- controllerから「は〜わ」を表示させる --}}
                     <a href="">
                         あ
                     </a>
@@ -185,11 +184,11 @@
                 </div>
             </div>
         </section>
-    </article>
+    </article> --}}
 
 </main>
 
-</body>
+@include('layouts.user-footer')
 {{-- <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100">
 
@@ -209,7 +208,3 @@
     </div>
     @stack('scripts')
 </body> --}}
-
-
-<script src="{{ asset('js/menu.js') }}"></script>
-</html>
