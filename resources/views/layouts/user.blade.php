@@ -13,7 +13,7 @@
 
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css','resources/sass/app.scss', 'resources/js/app.js'])
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
         {{-- ハンバーガーメニュー --}}
