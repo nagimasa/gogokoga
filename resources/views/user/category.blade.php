@@ -28,26 +28,26 @@
                         </div>
                         <dl class="item-data">
                             <div class="flex py-2 border-b">
-                                <dt class="font-bold w-24 text-right">地域：</dt>
-                                <dd class="w-52">{{ $service->area->area_name}}</dd>
+                                <dt class="font-bold w-32 text-right">地域：</dt>
+                                <dd class="w-full">{{ $service->area->area_name}}</dd>
                             </div>
                             <div class="flex py-2 border-b">
                             @if($service->comments)
-                                <dt class="font-bold w-24 text-right">コメント：</dt>
-                                <dd class="w-52">{{ $service->comments->comment}}</dd>
+                                <dt class="font-bold w-32 text-right">コメント：</dt>
+                                <dd class="w-full">{{ $service->comments->comment}}</dd>
                             @endif
                             </div>
                             <div class="flex py-2 border-b ">
-                                <dt class="font-bold w-24 text-right">住所：</dt>
-                                <dd class="w-52">{{ $service->address}}</dd>
+                                <dt class="font-bold w-32 text-right">住所：</dt>
+                                <dd class="w-full">{{ $service->address}}</dd>
                             </div>
                         </dl>
                     </div>
                 </a>
                 <dl class="item-data">
                     <div class="flex pl-2 pb-2 border-b item-data">
-                        <dt class="font-bold">問い合わせ：</dt>
-                        <dd class="w-52"><a href="tel:{{ $service->tel}}">{{ $service->tel }}</a></dd>
+                        <dt class="font-bold w-32 text-right">問い合わせ：</dt>
+                        <dd class="w-full"><a href="tel:{{ $service->tel}}">{{ $service->tel }}</a></dd>
                     </div>
                 </dl>
             </div>
@@ -147,27 +147,4 @@
 
 </main>
 
-</body>
-{{-- <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
-
-        <!-- Page Heading -->
-        @if (isset($header))
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-        @endif
-
-        <!-- Page Content -->
-        <main>
-            {{ $slot }}
-        </main>
-    </div>
-    @stack('scripts')
-</body> --}}
-
-
-<script src="{{ asset('js/menu.js') }}"></script>
-</html>
+@include('layouts.user-footer')

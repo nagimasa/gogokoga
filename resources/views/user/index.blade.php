@@ -135,7 +135,7 @@
     <article class="bg-white mb-5 reqruit">
         <section class="px-2 py-4 border-gray-300 border-b border-t">
             <h2 class="text-2xl reqruit-title">求人</h2>
-            <a href="{{ route('user.category', ['category' => 'reqruit']) }}">
+            <a href="{{ route('user.reqruit') }}">
             <div class="">
                 <img src="{{ asset('storage/images/reqruit-btn.jpg') }}">
             </div>
@@ -143,68 +143,6 @@
     </article>
 
 
-
-    {{-- <article class="bg-white mb-5 typograph">
-        <section class="px-2 py-4 border-gray-300 border-b border-t">
-            <h2 class="text-2xl typograph-title">51音順</h2>
-            <div class="search-item p-4 border-b border-gray-200 flex justify-around">
-                <div class="flex justify-around w-full">
-                    <a href="">
-                        あ
-                    </a>
-                    <a href="">
-                        い
-                    </a>
-                    <a href="">
-                        う
-                    </a>
-                    <a href="">
-                        え
-                    </a>
-                    <a href="">
-                        お
-                    </a>
-                </div>
-                <div class="flex justify-around w-full border-l">
-                    <a href="">
-                        あ
-                    </a>
-                    <a href="">
-                        い
-                    </a>
-                    <a href="">
-                        う
-                    </a>
-                    <a href="">
-                        え
-                    </a>
-                    <a href="">
-                        お
-                    </a>
-                </div>
-            </div>
-        </section>
-    </article> --}}
-
 </main>
 
 @include('layouts.user-footer')
-{{-- <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
-
-        <!-- Page Heading -->
-        @if (isset($header))
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-        @endif
-
-        <!-- Page Content -->
-        <main>
-            {{ $slot }}
-        </main>
-    </div>
-    @stack('scripts')
-</body> --}}

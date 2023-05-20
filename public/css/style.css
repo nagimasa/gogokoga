@@ -16,6 +16,8 @@
 .transpotation-title::after { content: "TRANSPORTATION";}
 .reqruit-title::after       { content: "REQRUIT";}
 .typograph-title::after     { content: "SEARCH";}
+.search-title::after        { content: "SEARCH";}
+.reqruit-title::after       { content: "REQRUIT"}
 
 .publish-btn {
 	background: #4DA869;
@@ -33,13 +35,6 @@
 TOPページ
 
 ******************************/
-/* .index .category-item {
-    height: 122px;
-    width: 172px;
-    background-color: gray;
-    border-radius: 5px;
-} */
-
 .index .blog-item h3::before {
     content: "";
 }
@@ -64,31 +59,26 @@ TOPページ
 .category .item-pickup {
 	border: 5px solid #4DA869;
 	border-radius: 5px;
-
 }
 .category .item-pickup h3 {
 	background: #4DA869;
 }
-
 .category .item-content {
 	padding: 0.5rem;
 }
 .category .item-data dt {
     color: #FF971F;
 }
-
 .category .badge-area {
 	margin: 0.5rem 0;
 	border-bottom: 1px solid #000;
 }
-
 .category .badge-coupon {
 	border: solid 2px #FF6464;
 	border-radius: 1rem; 
 	color: #FF6464;
 	padding: 0.3rem 1rem;
 } 
-
 .category .badge-reqruit {
 	border: solid 2px #D72FFF;
 	border-radius: 1rem; 
@@ -115,7 +105,6 @@ TOPページ
 .detail .info-title::after     { content: "INFO";}
 .detail .photo-title::after    { content: "PHOTO";}
 .detail .reqruit-title::after  { content: "REQRUIT";}
-
 .blog-btn {
 	position: fixed;
 	left: 60%;
@@ -125,6 +114,45 @@ TOPページ
 	position: fixed;
 	left: 80%;
 	top: 60%;
+}
+
+
+
+
+
+/******************************
+
+検索ページ
+
+******************************/
+.search .item-pickup {
+	border: 5px solid #4DA869;
+	border-radius: 5px;
+}
+.search .item-pickup h3 {
+	background: #4DA869;
+}
+.search .item-content {
+	padding: 0.5rem;
+}
+.search .item-data dt {
+    color: #FF971F;
+}
+.search .badge-area {
+	margin: 0.5rem 0;
+	border-bottom: 1px solid #000;
+}
+.search .badge-coupon {
+	border: solid 2px #FF6464;
+	border-radius: 1rem; 
+	color: #FF6464;
+	padding: 0.3rem 1rem;
+} 
+.search .badge-reqruit {
+	border: solid 2px #D72FFF;
+	border-radius: 1rem; 
+	color: #D72FFF;
+	padding: 0.3rem 1rem;
 }
 
 

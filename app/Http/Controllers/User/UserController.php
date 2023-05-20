@@ -10,6 +10,7 @@ use App\Models\Genre;
 use App\Models\Service;
 use App\Models\Area;
 use App\Models\Payment;
+use App\Models\Reqruit;
 use App\Models\Blog;
 
 
@@ -117,6 +118,14 @@ class UserController extends Controller
         // ddd($detail);
         return view('user.detail', compact('detail'));
     }
+
+
+    public function reqruit()
+    {
+        $reqruits = Reqruit::with('service')->get();
+        // dd($reqruits);
+        return view('user.reqruit', compact('reqruits'));
+    }
     
 
 
@@ -148,9 +157,10 @@ class UserController extends Controller
         if (isset($area_id)) {
             $query->where('area_id', $area_id);
         }
-
         //$queryをcategory_idの昇順に並び替えて$productsに代入
         $search_services = $query->orderBy('id', 'asc')->paginate(5);
+
+        // dd($search_services);
 
 
         
