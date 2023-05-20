@@ -169,7 +169,7 @@ TOPページ
 	border-radius: 5px;
 }
 
-.blog-show .blog-article h2 {
+.blog-show .blog-article .title {
 	background: #4DA869;
 }
 

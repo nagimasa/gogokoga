@@ -27,8 +27,8 @@ Route::get('/category/{category}', [UserController::class, 'category'])->name('c
 Route::get('/reqruit', [UserController::class, 'reqruit'])->name('reqruit');
 Route::get('/detail/{id}', [UserController::class, 'detail'])->name('detail');
 
-Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
-Route::get('/blog/{blog}', [BlogController::class, 'show'])->name('blog.show');
+Route::get('/blog/{service}', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{service}/{blog}', [BlogController::class, 'show'])->name('blog.show');
 
 
 

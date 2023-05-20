@@ -12,7 +12,7 @@
         </section>
 
         <section class="border-gray-300 blog-article">
-            <h2 class="text-2xl p-4 text-white">{{ $detail->blog_title}}</h2>
+            <h2 class="text-2xl p-4 text-white title">{{ $detail->blog_title}}</h2>
             <div class="p-2">
             <p>{!! $detail->blog_text !!}</p>
             </div>

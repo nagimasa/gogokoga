@@ -14,9 +14,9 @@ class BlogController extends Controller
     {
         //
     }
-    public function show($id)
+    public function show($service ,$blog)
     {
-        $detail = Blog::find($id);
+        $detail = Blog::find($blog);
         // dd($detail);
         return view('user.blog-detail', compact('detail'));
     }
