@@ -7,48 +7,33 @@
 
     <article class="bg-white mb-5">
         <section class="px-2 py-4 border-gray-300 border-b border-t">
-            <h2 class="text-2xl category-title">カテゴリ別</h2>
-            @foreach($services as $service)
+            <h2 class="text-2xl reqruit-title">求人情報</h2>
+            @foreach($reqruits as $reqruit)
             <div class="item-pickup mb-10">
-                <a class="link-area" href="{{ route('user.detail', [$service->id])}}">
-                    <h3 class="text-xl p-4 text-white">{{ $service->service_name }}</h3>
+                <a class="link-area" href="{{ route('user.detail', [$reqruit->service_id])}}">
+                    <h3 class="text-xl p-4 text-white">{{ $reqruit->service->service_name }}</h3>
                     <div class="p-2">
-                        @if($service->phototop)
-                            <div class="img-box">
-                                <img src="{{ secure_asset($service->phototop->top_image_name) }}">
-                            </div>
-                        @endif
-                        <div class="py-2 border-b">
-                            @if($service->coupon)
-                                <span class="badge-coupon">クーポン</span>
-                            @endif
-                            @if($service->reqruit)
-                                <span class="badge-reqruit">求人</span>
-                            @endif
-                        </div>
                         <dl class="item-data">
                             <div class="flex py-2 border-b">
-                                <dt class="font-bold w-32 text-right">地域：</dt>
-                                <dd class="w-full">{{ $service->area->area_name}}</dd>
+                                <dt class="font-bold w-32 text-right">雇用形態：</dt>
+                                <dd class="w-full">{{ $reqruit->work_type}}</dd>
                             </div>
                             <div class="flex py-2 border-b">
-                            @if($service->comments)
-                                <dt class="font-bold w-32 text-right">コメント：</dt>
-                                <dd class="w-full">{{ $service->comments->comment}}</dd>
-                            @endif
+                                <dt class="font-bold w-32 text-right">{{ $reqruit->fee_type }}：</dt>
+                                <dd class="w-full">{{ $reqruit->fee}}</dd>
                             </div>
-                            <div class="flex py-2 border-b ">
-                                <dt class="font-bold w-32 text-right">住所：</dt>
-                                <dd class="w-full">{{ $service->address}}</dd>
+                            <div class="flex pl-2 pb-2 border-b item-data">
+                                <dt class="font-bold w-32 text-right">勤務日数：</dt>
+                                <dd class="w-full">{{ $reqruit->work_in_week}}</dd>
+                            </div>
+                            <div class="flex pl-2 pb-2 border-b item-data">
+                                <dt class="font-bold w-32 text-right">勤務地：</dt>
+                                <dd class="w-full">{{ $reqruit->address}}</dd>
                             </div>
                         </dl>
                     </div>
                 </a>
                 <dl class="item-data">
-                    <div class="flex pl-2 pb-2 border-b item-data">
-                        <dt class="font-bold w-32 text-right">問い合わせ：</dt>
-                        <dd class="w-full"><a href="tel:{{ $service->tel}}">{{ $service->tel }}</a></dd>
-                    </div>
                 </dl>
             </div>
             @endforeach

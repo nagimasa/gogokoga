@@ -311,7 +311,7 @@
 
 
     <article class="bg-white mb-5 px-2 py-10">
-        <section class="border-gray-300">
+        <section class="border-gray-300" id="{{ $detail->reqruit->service_id}}">
             <h2 class="text-2xl sub-title reqruit-title">求人</h2>
             @if($detail->reqruit)
             <h3>{{ $detail->reqruit->reqruit_title}}</h3>

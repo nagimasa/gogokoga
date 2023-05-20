@@ -23,6 +23,7 @@ Route::get('/', [UserController::class, 'index'])->name('index');
 Route::get('/search', [UserController::class, 'search'])->name('search');
 
 Route::get('/category/{category}', [UserController::class, 'category'])->name('category');
+Route::get('/reqruit', [UserController::class, 'reqruit'])->name('reqruit');
 Route::get('/detail/{id}', [UserController::class, 'detail'])->name('detail');
 
 

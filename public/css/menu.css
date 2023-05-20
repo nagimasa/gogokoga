@@ -60,13 +60,13 @@
         transform: translateX(-50%);
         width: 100%;
     }
-    /* .humberger__text::before {
-        content: "メニュー";
+    .humberger__text::before {
+        /* content: "メニュー"; */
         text-align: center;
         color: #fff;
         font-size: 10px;
         font-weight: 900;
-    } */
+    }
     .header {
       width: 100%;
     }
