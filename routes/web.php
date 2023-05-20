@@ -25,6 +25,10 @@ Route::get('/search', [UserController::class, 'search'])->name('search');
 Route::get('/category/{category}', [UserController::class, 'category'])->name('category');
 Route::get('/reqruit', [UserController::class, 'reqruit'])->name('reqruit');
 Route::get('/detail/{id}', [UserController::class, 'detail'])->name('detail');
+// Route::get('/blogs/{blog_id}', [BlogController::class, ''])
+
+
+Route::resource('blogs', BlogController::class);
 
 
 
