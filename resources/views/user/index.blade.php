@@ -102,7 +102,7 @@
             <h2 class="text-2xl blog-title">ブログの更新</h2>
             <div class="blog-area p-4">
                     @foreach($blogs as $blog)
-                    <a href="">
+                    <a href="{{ route('user.blog.show', $blog->id)}}">
                     <div class="blog-item pb-2 border-b border-gray-200">
                         <p class="service-name">{{ $blog->service->service_name}}</p>
                         <p class="blog-title text-xs">{{ $blog->blog_title}}</p>

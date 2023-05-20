@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\BlogController;
 
 
 
@@ -25,10 +26,10 @@ Route::get('/search', [UserController::class, 'search'])->name('search');
 Route::get('/category/{category}', [UserController::class, 'category'])->name('category');
 Route::get('/reqruit', [UserController::class, 'reqruit'])->name('reqruit');
 Route::get('/detail/{id}', [UserController::class, 'detail'])->name('detail');
-// Route::get('/blogs/{blog_id}', [BlogController::class, ''])
 
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{blog}', [BlogController::class, 'show'])->name('blog.show');
 
-Route::resource('blogs', BlogController::class);
 
 
 

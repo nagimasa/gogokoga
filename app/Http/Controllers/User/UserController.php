@@ -22,7 +22,7 @@ class UserController extends Controller
         $genres = Genre::select('id', 'genre_name')->get();
         $areas = Area::select('id', 'area_name')->get();
 
-        $blogs = Blog::select('blog_title', 'created_at', 'service_id', 'blog_text')
+        $blogs = Blog::select('id', 'blog_title', 'created_at', 'service_id', 'blog_text')
                 ->with('service')
                 ->latest('created_at')
                 ->take(10)
