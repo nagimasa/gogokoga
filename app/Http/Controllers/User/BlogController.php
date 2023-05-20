@@ -10,14 +10,14 @@ use App\Models\Blog;
 
 class BlogController extends Controller
 {
-    public function index()
+    public function index($service)
     {
-        //
+        $blogs = Blog::where('service_id', $service)->get();
+        return view('user.blog-list', compact('blogs'));
     }
     public function show($service ,$blog)
     {
         $detail = Blog::find($blog);
-        // dd($detail);
         return view('user.blog-detail', compact('detail'));
     }
 }

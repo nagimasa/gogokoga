@@ -8,48 +8,22 @@
     <article class="bg-white mb-5">
         <section class="px-2 py-4 border-gray-300 border-b border-t">
             <h2 class="text-2xl category-title">カテゴリ別</h2>
-            @foreach($services as $service)
+            @foreach($blogs as $blog)
             <div class="item-pickup mb-10">
-                <a class="link-area" href="{{ route('user.detail', [$service->id])}}">
-                    <h3 class="text-xl p-4 text-white">{{ $service->service_name }}</h3>
+                <a class="link-area" href="{{ route('user.blog.show', [$blog->service_id, $blog->id])}}">
+                    <h3 class="text-xl p-4 text-white">{{ $blog->blog_title }}</h3>
                     <div class="p-2">
-                        @if($service->phototop)
-                            <div class="img-box">
-                                <img src="{{ secure_asset($service->phototop->top_image_name) }}">
+                        <div class="py-2">
+                        @if($blog->blog_text)
+                            <div class="text-clip">
+                                <p>{!! $blog->blog_text !!}</p>
                             </div>
+                            <p class="created-at p-2 text-xs text-right">{{ $blog->created_at->format('y/m/d')}}</p>
+
                         @endif
-                        <div class="py-2 border-b">
-                            @if($service->coupon)
-                                <span class="badge-coupon">クーポン</span>
-                            @endif
-                            @if($service->reqruit)
-                                <span class="badge-reqruit">求人</span>
-                            @endif
                         </div>
-                        <dl class="item-data">
-                            <div class="flex py-2 border-b">
-                                <dt class="font-bold w-32 text-right">地域：</dt>
-                                <dd class="w-full">{{ $service->area->area_name}}</dd>
-                            </div>
-                            <div class="flex py-2 border-b">
-                            @if($service->comments)
-                                <dt class="font-bold w-32 text-right">コメント：</dt>
-                                <dd class="w-full">{{ $service->comments->comment}}</dd>
-                            @endif
-                            </div>
-                            <div class="flex py-2 border-b ">
-                                <dt class="font-bold w-32 text-right">住所：</dt>
-                                <dd class="w-full">{{ $service->address}}</dd>
-                            </div>
-                        </dl>
                     </div>
                 </a>
-                <dl class="item-data">
-                    <div class="flex pl-2 pb-2 border-b item-data">
-                        <dt class="font-bold w-32 text-right">問い合わせ：</dt>
-                        <dd class="w-full"><a href="tel:{{ $service->tel}}">{{ $service->tel }}</a></dd>
-                    </div>
-                </dl>
             </div>
             @endforeach
         </section>

@@ -26,6 +26,12 @@
 .copyright {
 	background: #4DA869;
 }
+.text-clip {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
 
 
 
@@ -108,12 +114,12 @@ TOPページ
 .blog-btn {
 	position: fixed;
 	left: 60%;
-	top: 60%;
+	top: 80%;
 }
 .call-btn {
 	position: fixed;
 	left: 80%;
-	top: 60%;
+	top: 80%;
 }
 
 

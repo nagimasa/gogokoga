@@ -3,7 +3,7 @@
 
 <main class="detail">
 
-        <a class="blog-btn" href="">
+        <a class="blog-btn" href="{{ route('user.blog.index', $detail->id )}}">
             <img src="{{ asset('storage/images/blog-btn.svg')}}">
         </a>
 
