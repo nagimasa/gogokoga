@@ -35,6 +35,9 @@ Route::get('/blog/{service}/{blog}', [BlogController::class, 'show'])->name('blo
 Route::get('/drive/{category}', [DriveController::class, 'index'])->name('drive');
 Route::get('/drive/detail/{id}', [DriveController::class, 'detail'])->name('d-detail');
 
+
+Route::get('aboutus', [UserController::class, 'aboutus'])->name('aboutus');
+
 // Route::get('/taxi/{service}', [TaxiController::class, 'index'])->name('taxi.index');
 // Route::get('/taxi/{service}/{detail}', [TaxiController::class, 'show'])->name('taxi.show');
 

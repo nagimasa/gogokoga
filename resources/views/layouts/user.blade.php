@@ -31,7 +31,7 @@
     </head>
     <body class="bg-gray-200">
     <header class="header mb-2">
-        <div class="header__inner">
+        <div class="header__inner m-auto sm:max-w-3xl">
             <div class="flex">
                 <div class="home">
                     <a href="{{ route('user.index') }}"><h1 class=" pt-4"><i class="fa-solid fa-house fa-2xl text-white"></i></h1></a>

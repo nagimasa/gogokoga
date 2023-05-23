@@ -1,7 +1,7 @@
 
 @include('layouts.user')
 
-<main class="index">
+<main class="index sm:max-w-3xl sm:m-auto">
     <div class="bg-white mb-5">
         <div class=" px-2 py-4 border-gray-300 border-b border-t">
             <div class="roudend mb-2">
@@ -35,60 +35,60 @@
     <article class="bg-white mb-5">
         <section class="px-2 py-4 border-gray-300 border-b border-t">
             <h2 class="text-2xl category-title">カテゴリ別</h2>
-            <div class="flex flex-wrap justify-between">
+            <div class="flex flex-wrap justify-start m-auto">
                 <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'restaurant']) }}">
                 
-                        <img src="{{ asset('storage/images/restaurant-btn.jpg') }}">
+                        <img class="w-full" src="{{ asset('storage/images/restaurant-btn.jpg') }}">
                     
                 </a>
-                <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'beauty']) }}">
+                <a class="category-item m-auto pb-3" href="{{ route('user.category', ['category' => 'beauty']) }}">
                 
-                        <img src="{{ asset('storage/images/beauty-btn.jpg') }}">
+                        <img class="w-full" src="{{ asset('storage/images/beauty-btn.jpg') }}">
                     
                 </a>
-                <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'hotel']) }}">
+                <a class="category-item m-auto pb-3" href="{{ route('user.category', ['category' => 'hotel']) }}">
                     
-                        <img src="{{ asset('storage/images/hotel-btn.jpg') }}">
-                    
-                </a>
-                <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'school']) }}">
-                    
-                        <img src="{{ asset('storage/images/school-btn.jpg') }}">
+                        <img class="w-full" src="{{ asset('storage/images/hotel-btn.jpg') }}">
                     
                 </a>
-                <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'activity']) }}">
+                <a class="category-item m-auto pb-3" href="{{ route('user.category', ['category' => 'school']) }}">
                     
-                        <img src="{{ asset('storage/images/activity-btn.jpg') }}">
-                    
-                </a>
-                <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'shop']) }}">
-                    
-                        <img src="{{ asset('storage/images/shop-btn.jpg') }}">
+                        <img class="w-full" src="{{ asset('storage/images/school-btn.jpg') }}">
                     
                 </a>
-                <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'life']) }}">
+                <a class="category-item m-auto pb-3" href="{{ route('user.category', ['category' => 'activity']) }}">
                     
-                        <img src="{{ asset('storage/images/life-btn.jpg') }}">
-                    
-                </a>
-                <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'hospital']) }}">
-                    
-                        <img src="{{ asset('storage/images/hospital-btn.jpg') }}">
+                        <img class="w-full" src="{{ asset('storage/images/activity-btn.jpg') }}">
                     
                 </a>
-                <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'walfare']) }}">
+                <a class="category-item m-auto pb-3" href="{{ route('user.category', ['category' => 'shop']) }}">
                     
-                        <img src="{{ asset('storage/images/walfare-btn.jpg') }}">
+                        <img class="w-full" src="{{ asset('storage/images/shop-btn.jpg') }}">
                     
                 </a>
-                <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'company']) }}">
+                <a class="category-item m-auto pb-3" href="{{ route('user.category', ['category' => 'life']) }}">
                     
-                        <img src="{{ asset('storage/images/company-btn.jpg') }}">
+                        <img class="w-full" src="{{ asset('storage/images/life-btn.jpg') }}">
+                    
+                </a>
+                <a class="category-item m-auto pb-3" href="{{ route('user.category', ['category' => 'hospital']) }}">
+                    
+                        <img class="w-full" src="{{ asset('storage/images/hospital-btn.jpg') }}">
+                    
+                </a>
+                <a class="category-item m-auto pb-3" href="{{ route('user.category', ['category' => 'walfare']) }}">
+                    
+                        <img class="w-full" src="{{ asset('storage/images/walfare-btn.jpg') }}">
+                    
+                </a>
+                <a class="category-item m-auto pb-3" href="{{ route('user.category', ['category' => 'company']) }}">
+                    
+                        <img class="w-full" src="{{ asset('storage/images/company-btn.jpg') }}">
                     
                 </a>
                 <a class="category-item pb-3" href="{{ route('user.category', ['category' => 'city']) }}">
                     
-                        <img src="{{ asset('storage/images/city-btn.jpg') }}">
+                        <img class="w-full" src="{{ asset('storage/images/city-btn.jpg') }}">
                     
                 </a>
             </div>
@@ -120,10 +120,10 @@
             <h2 class="text-2xl blog-title">交通</h2>
             <div class="flex flex-nowrap justify-around">
                 <a class="pr-1" href="{{ route('user.drive', ['category' => 'drive']) }}">
-                    <img src="{{ asset('storage/images/drive-btn.jpg') }}">
+                    <img class="w-full" src="{{ asset('storage/images/drive-btn.jpg') }}">
                 </a>
                 <a href="{{ route('user.drive', ['category' => 'taxi']) }}">
-                    <img src="{{ asset('storage/images/taxi-btn.jpg') }}">
+                    <img class="w-full" src="{{ asset('storage/images/taxi-btn.jpg') }}">
                 </a>
             </div>
         </section>
@@ -134,10 +134,13 @@
 
     <article class="bg-white mb-5 reqruit">
         <section class="px-2 py-4 border-gray-300 border-b border-t">
-            <h2 class="text-2xl reqruit-title">求人</h2>
-            <a href="{{ route('user.reqruit') }}">
-            <div class="">
-                <img src="{{ asset('storage/images/reqruit-btn.jpg') }}">
+            <div class="m-auto w-full">
+                <h2 class="text-2xl reqruit-title">求人</h2>
+                <a href="{{ route('user.reqruit') }}">
+                    <div class="">
+                        <img class="w-full" src="{{ asset('storage/images/reqruit-btn.jpg') }}">
+                    </div>
+                </a>
             </div>
         </section>
     </article>

@@ -1,15 +1,16 @@
 
 @include('layouts.user')
 
-<main class="category">
+<main class="category sm:max-w-3xl sm:m-auto">
 
 
 
     <article class="bg-white mb-5">
         <section class="px-2 py-4 border-gray-300 border-b border-t">
             <h2 class="text-2xl reqruit-title">求人情報</h2>
+            <div class="flex flex-wrap justify-start m-auto">
             @foreach($reqruits as $reqruit)
-            <div class="item-pickup mb-10">
+            <div class="item-pickup mb-10 mx-auto">
                 <a class="link-area" href="{{ route('user.detail', [$reqruit->service_id])}}">
                     <h3 class="text-xl p-4 text-white">{{ $reqruit->service->service_name }}</h3>
                     <div class="p-2">
@@ -37,49 +38,6 @@
                 </dl>
             </div>
             @endforeach
-        </section>
-    </article>
-
-
-
-    <article class="bg-white mb-5 blog">
-        <section class="px-2 py-4 border-gray-300 border-b border-t">
-            <h2 class="text-2xl blog-title">ブログの更新</h2>
-            <div class="blog-area p-4">
-                <div class="blog-item pb-2 border-b border-gray-200">
-                    {{-- ここに店舗カテゴリを判定してバッチを表示させる仕組みを入れる --}}
-                    <h3 class="text-base mb-2">店舗名</h3>
-                    <p class="text-xs mb-2">更新日時</p>
-                    <p class="text-xs font-bold mb-2">スタッフコメント</p>
-                </div>
-            </div>
-        </section>
-    </article>
-
-
-    <article class="bg-white mb-5 transpotation">
-        <section class="px-2 py-4 border-gray-300 border-b border-t">
-            <h2 class="text-2xl blog-title">交通</h2>
-            <div class="flex flex-wrap justify-around">
-                <a href="">
-                    <div class="category-item mb-1">
-                    </div>
-                </a>
-                <a href="">
-                    <div class="category-item mb-1">
-                    </div>
-                </a>
-            </div>
-        </section>
-    </article>
-
-
-
-
-    <article class="bg-white mb-5 reqruit">
-        <section class="px-2 py-4 border-gray-300 border-b border-t">
-            <h2 class="text-2xl reqruit-title">求人</h2>
-            <div class="">
             </div>
         </section>
     </article>

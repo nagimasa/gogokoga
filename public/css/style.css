@@ -32,7 +32,10 @@
     -webkit-line-clamp: 3;
     overflow: hidden;
 }
-
+li {
+	list-style-type: disc;
+	list-style-position: inside;
+}
 
 
 
@@ -50,7 +53,7 @@ TOPページ
     border-radius: 5px;
 }
 .index .category-item {
-	width: 48%;
+	width: 49%;
 }
 
 
@@ -90,6 +93,15 @@ TOPページ
 	border-radius: 1rem; 
 	color: #D72FFF;
 	padding: 0.3rem 1rem;
+}
+
+
+
+@media (min-width: 640px) {
+	.category .item-pickup,
+	.search .item-pickup {
+		width: 49%;
+	}
 }
 
 
