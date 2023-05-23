@@ -94,6 +94,14 @@ TOPページ
 
 
 
+@media (min-width: 640px) {
+	.category .item-pickup {
+		width: 49%;
+	}
+}
+
+
+
 
 
 /******************************
