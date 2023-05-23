@@ -1,5 +1,5 @@
 <footer class="bg-white mb-5 transpotation">
-    <section class="px-2 py-4 border-gray-300 border-b border-t">
+    <section class="px-2 py-4 border-gray-300 border-b border-t  sm:max-w-3xl m-auto">
         <p class="publish-btn text-center text-white py-4 font-bold mb-4">掲載のお問い合わせ</p>
         <ul>
             <li class="text-xs pb-2"><a href="">当サイトについて</a></li>
