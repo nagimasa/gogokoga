@@ -1,21 +1,23 @@
 
 @include('layouts.user')
 
-<main class="detail">
+<main class="detail sm:max-w-3xl sm:m-auto">
 
+        @if($detail->blog)
         <a class="blog-btn" href="{{ route('user.blog.index', $detail->id )}}">
             <img src="{{ asset('storage/images/blog-btn.svg')}}">
         </a>
+        @endif
 
         <a class="call-btn" href="tel:{{ $detail->tel }}">
             <img src="{{ asset('storage/images/call-btn.svg')}}">
         </a>
 
     <article class="bg-white mb-5 px-2 py-10">
-        <section class="border-gray-300">
+        <section class="border-gray-300 m-auto">
             <h1 class="text-2xl">{{ $detail->service_name}}<span class="subtitle text-xs font-bold">{{ $detail->area->area_name}}</span></h1>
             @if($detail->phototop)
-                <img src="{{ secure_asset($detail->phototop->top_image_name) }}">
+                <img class="w-full rounded" src="{{ secure_asset($detail->phototop->top_image_name) }}">
             @endif
 
             @if($detail->tags)
@@ -129,7 +131,7 @@
             <h3>{{ $detail->coupon->coupon_title}}</h3>
             <p>{!! $detail->coupon->coupon_text !!}</p>
                 @if($detail->coupon->coupon_image)
-                    <img src="{{ asset($detail->coupon->coupon_image )}}">
+                    <img class="sm:w-1/2" src="{{ asset($detail->coupon->coupon_image )}}">
                 @endif
             @endif
         </section>
@@ -373,12 +375,11 @@
 
 
 
-    <article class="bg-white mb-5 typograph">
+    {{-- <article class="bg-white mb-5 typograph">
         <section class="px-2 py-4 border-gray-300 border-b border-t">
             <h2 class="text-2xl typograph-title">51音順</h2>
             <div class="search-item p-4 border-b border-gray-200 flex justify-around">
                 <div class="flex justify-around w-full">
-                    {{-- controllerから「あ〜な」を表示させる --}}
                     <a href="">
                         あ
                     </a>
@@ -396,7 +397,6 @@
                     </a>
                 </div>
                 <div class="flex justify-around w-full border-l">
-                    {{-- controllerから「は〜わ」を表示させる --}}
                     <a href="">
                         あ
                     </a>
@@ -415,14 +415,8 @@
                 </div>
             </div>
         </section>
-    </article>
+    </article> --}}
 
 </main>
 
-</body>
-
-
-
-<script src="{{ asset('js/menu.js') }}"></script>
-<script src="{{ asset('js/gallery.js') }}"></script>
-</html>
+@include('layouts.user-footer')

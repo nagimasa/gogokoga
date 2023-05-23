@@ -32,7 +32,10 @@
     -webkit-line-clamp: 3;
     overflow: hidden;
 }
-
+li {
+	list-style-type: disc;
+	list-style-position: inside;
+}
 
 
 
@@ -95,7 +98,8 @@ TOPページ
 
 
 @media (min-width: 640px) {
-	.category .item-pickup {
+	.category .item-pickup,
+	.search .item-pickup {
 		width: 49%;
 	}
 }

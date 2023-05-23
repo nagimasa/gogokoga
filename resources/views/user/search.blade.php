@@ -1,7 +1,7 @@
 
 @include('layouts.user')
 
-<main class="search">
+<main class="search sm:max-w-3xl sm:m-auto">
     <div class="bg-white mb-5">
         <div class=" px-2 py-4 border-gray-300 border-b border-t">
             <div class="roudend mb-2">
@@ -35,8 +35,9 @@
     <article class="bg-white mb-5">
         <section class="px-2 py-4 border-gray-300 border-b border-t">
             <h2 class="text-2xl search-title sub-title">検索結果</h2>
+            <div class="flex flex-wrap justify-start m-auto">
             @foreach($search_services as $service)
-            <div class="item-pickup mb-10">
+            <div class="item-pickup mb-10 mx-auto">
                 <a class="link-area" href="{{ route('user.detail', [$service->id])}}">
                     <h3 class="text-xl p-4 text-white">{{ $service->service_name }}</h3>
                     <div class="p-2">
@@ -79,6 +80,7 @@
                 </dl>
             </div>
             @endforeach
+            </div>
         </section>
     </article>
 
