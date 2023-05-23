@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\BlogController;
 use App\Http\Controllers\User\DriveController;
+use App\Http\Controllers\User\ContactController;
 // use App\Http\Controllers\User\TaxiController;
 
 
@@ -37,6 +38,16 @@ Route::get('/drive/detail/{id}', [DriveController::class, 'detail'])->name('d-de
 
 
 Route::get('aboutus', [UserController::class, 'aboutus'])->name('aboutus');
+Route::get('rule', [UserController::class, 'rule'])->name('rule');
+
+
+// 問い合わせフォーム
+Route::get('/contact', [ContactControlle::class, 'index'])->name('contact.index');
+//確認ページ
+Route::post('/contact/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
+//送信完了ページ
+Route::post('/contact/thanks', [ContactController::class, 'send'])->name('contact.send');
+
 
 // Route::get('/taxi/{service}', [TaxiController::class, 'index'])->name('taxi.index');
 // Route::get('/taxi/{service}/{detail}', [TaxiController::class, 'show'])->name('taxi.show');
