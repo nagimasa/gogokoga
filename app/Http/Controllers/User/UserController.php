@@ -126,6 +126,11 @@ class UserController extends Controller
         // dd($reqruits);
         return view('user.reqruit', compact('reqruits'));
     }
+
+    public function aboutus()
+    {
+        return view('user.aboutus');
+    }
     
 
 
