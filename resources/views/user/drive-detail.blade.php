@@ -261,9 +261,11 @@
         </section>
     </article>
 
+
+    @if($detail->photogalls)
     <article class="bg-white mb-5 px-2 py-10">
         <section class="border-gray-300">
-            <h2 class="text-2xl sub-title photo-title">ギャラリー</h2>
+            <h2 class="text-2xl sub-title photo-title">ギャラリーお</h2>
         <div id="my_gal11">
 
             <!-- ここから写真部分。↓ -->
@@ -272,11 +274,9 @@
                 
                 <!-- ここからデータ。↓ -->
                     <!-- title属性にオンマウスで表示されるツールチップ。不要ならば削除。 -->
-                    @if($detail->photogall)
                         @foreach($detail->photogall as $photogall)
                             <img src="{{ secure_asset($photogall->image_name) }}">
                         @endforeach
-                    @endif
                 <!-- ここまでデータ。↑ -->
                 
             </div>    
@@ -296,6 +296,7 @@
             <!-- ここまでギャラリー。↑ -->
         </section>
     </article>
+    @endif
 
 
 {{-- 

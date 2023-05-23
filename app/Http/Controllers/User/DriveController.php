@@ -32,6 +32,7 @@ class DriveController extends Controller
     public function detail($id)
     {
         $detail = Service::find($id);
+        // dd($detail->photogall);
         return view('user.drive-detail', compact('detail'));
     }
 
