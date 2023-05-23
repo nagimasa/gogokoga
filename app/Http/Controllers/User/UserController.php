@@ -93,15 +93,15 @@ class UserController extends Controller
                 return view('user.category', compact('services'));
                 break;
 
-            case $category === 'drive';
-                $services = Service::where('genre_id', 12)->get();
-                return view('user.category', compact('services'));
-                break;
+            // case $category === 'drive';
+            //     $services = Service::where('genre_id', 12)->get();
+            //     return view('user.category', compact('services'));
+            //     break;
                 
-            case $category === 'taxi';
-                $services = Service::where('genre_id', 13)->get();
-                return view('user.category', compact('services'));
-                break;
+            // case $category === 'taxi';
+            //     $services = Service::where('genre_id', 13)->get();
+            //     return view('user.category', compact('services'));
+            //     break;
                 
             case $category === 'reqruits';
                 $services = Service::where('genre_id', 14)->get();

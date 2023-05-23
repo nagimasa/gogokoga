@@ -122,13 +122,15 @@
   GET|HEAD        admin/verify-email/{id}/{hash} ................. admin.verification.verify › Admin\Auth\VerifyEmailController@__invoke
   POST            adminlte/darkmode/toggle .......... adminlte.darkmode.toggle › JeroenNoten\LaravelAdminLte › DarkModeController@toggle
   GET|HEAD        api/user ............................................................................................................. 
-  GET|HEAD        blogs .................................................................... user.blog.index › User\BlogController@index
-  GET|HEAD        blogs/{blog_id} ............................................................ user.blog.show › User\BlogController@show
+  GET|HEAD        blog/{service} ........................................................... user.blog.index › User\BlogController@index
+  GET|HEAD        blog/{service}/{blog} ...................................................... user.blog.show › User\BlogController@show
   GET|HEAD        category/{category} ..................................................... user.category › User\UserController@category
   GET|HEAD        confirm-password ................................ user.password.confirm › User\Auth\ConfirmablePasswordController@show
   POST            confirm-password ............................................... user. › User\Auth\ConfirmablePasswordController@store
   GET|HEAD        dashboard ............................................................................................. user.dashboard
   GET|HEAD        detail/{id} ................................................................. user.detail › User\UserController@detail
+  GET|HEAD        drive/{category} ............................................................. user.drive › User\DriveController@index
+  GET|HEAD        drive/{detail} ........................................................... user.drive.show › User\DriveController@show
   POST            email/verification-notification ..... user.verification.send › User\Auth\EmailVerificationNotificationController@store
   GET|HEAD        forgot-password ................................. user.password.request › User\Auth\PasswordResetLinkController@create
   POST            forgot-password .................................... user.password.email › User\Auth\PasswordResetLinkController@store
@@ -237,5 +239,5 @@
   GET|HEAD        verify-email ......................... user.verification.notice › User\Auth\EmailVerificationPromptController@__invoke
   GET|HEAD        verify-email/{id}/{hash} ......................... user.verification.verify › User\Auth\VerifyEmailController@__invoke
 
-                                                                                                                    Showing [237] routes
+                                                                                                                    Showing [239] routes
 

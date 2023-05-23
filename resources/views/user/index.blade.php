@@ -101,7 +101,7 @@
         <section class="px-2 py-4 border-gray-300 border-b border-t">
             <h2 class="text-2xl blog-title">ブログの更新</h2>
             <div class="blog-area p-4">
-                    @foreach($blogs as $blog)
+                @foreach($blogs as $blog)
                     <a href="{{ route('user.blog.show', [$blog->service->id ,$blog->id])}}">
                     <div class="blog-item pb-2 border-b border-gray-200">
                         <p class="service-name">{{ $blog->service->service_name}}</p>
@@ -109,7 +109,7 @@
                         <p class="created-at text-xs">{{ $blog->created_at->format('y/m/d')}}</p>
                     </div>
                     </a>
-                    @endforeach
+                @endforeach
             </div>
         </section>
     </article>
@@ -119,10 +119,10 @@
         <section class="px-2 py-4 border-gray-300 border-b border-t">
             <h2 class="text-2xl blog-title">交通</h2>
             <div class="flex flex-nowrap justify-around">
-                <a class="pr-1" href="{{ route('user.category', ['category' => 'drive']) }}">
+                <a class="pr-1" href="{{ route('user.drive', ['category' => 'drive']) }}">
                     <img src="{{ asset('storage/images/drive-btn.jpg') }}">
                 </a>
-                <a href="{{ route('user.category', ['category' => 'taxi']) }}">
+                <a href="{{ route('user.drive', ['category' => 'taxi']) }}">
                     <img src="{{ asset('storage/images/taxi-btn.jpg') }}">
                 </a>
             </div>

@@ -34,7 +34,7 @@
         <div class="header__inner">
             <div class="flex">
                 <div class="home">
-                    <h1 class=" pt-4"><i class="fa-solid fa-house fa-2xl text-white"></i></h1>
+                    <a href="{{ route('user.index') }}"><h1 class=" pt-4"><i class="fa-solid fa-house fa-2xl text-white"></i></h1></a>
                 </div>
                 <p class="text-white text-xs pt-4">福岡県古賀市で活躍するお店や企業を応援する地域密着型の情報サイト</p>
                 <button id="js-humberger" type="button" class="humberger" aria-controls="navigation" aria-expanded="false">
