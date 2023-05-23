@@ -29,14 +29,36 @@
     <article class="bg-white mb-5 px-2 py-10">
         <section class="border-gray-300">
             <h2 class="text-2xl sub-title service-title">サービス内容</h2>
-            @if($detail->menus)
+            @if($detail->first_fee)
             <dl class="">
-                @foreach($detail->menus as $menu)
-                    <div class="py-2 border-b flex justify-between">
-                        <dt class="w-60">{{ $menu->menu_name}}</dt>
-                        <dd class="">{{ $menu->menu_fee}}円</dd>
-                    </div>
-                @endforeach
+                <div class="py-2 border-b flex justify-between">
+                    <dt class="w-60">初乗り料金：</dt>
+                    <dd class="">{{ $detail->first_fee}}円</dd>
+                </div>
+            </dl>
+            @endif
+            @if($detail->add_fee)
+            <dl class="">
+                <div class="py-2 border-b flex justify-between">
+                    <dt class="w-60">追加料金：</dt>
+                    <dd class="">{{ $detail->add_fee}}円</dd>
+                </div>
+            </dl>
+            @endif
+            @if($detail->stay_fee)
+            <dl class="">
+                <div class="py-2 border-b flex justify-between">
+                    <dt class="w-60">待機料金：</dt>
+                    <dd class="">{{ $detail->stay_fee}}円</dd>
+                </div>
+            </dl>
+            @endif
+            @if($detail->cancel_fee)
+            <dl class="">
+                <div class="py-2 border-b flex justify-between">
+                    <dt class="w-60">キャンセル料金：</dt>
+                    <dd class="">{{ $detail->cancel_fee}}</dd>
+                </div>
             </dl>
             @endif
         </section>
@@ -309,7 +331,7 @@
     </article> --}}
 
 
-
+@if($detail->reqruit)
     <article class="bg-white mb-5 px-2 py-10">
         <section class="border-gray-300" id="{{ $detail->reqruit->service_id}}">
             <h2 class="text-2xl sub-title reqruit-title">求人</h2>
@@ -369,7 +391,7 @@
             @endif
         </section>
     </article>
-
+@endif
 
 
 
