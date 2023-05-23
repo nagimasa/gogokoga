@@ -127,11 +127,17 @@ class UserController extends Controller
         return view('user.reqruit', compact('reqruits'));
     }
 
+
     public function aboutus()
     {
         return view('user.aboutus');
     }
     
+
+    public function rule()
+    {
+        return view('user.rule');
+    }
 
 
 

@@ -4,7 +4,7 @@
         <ul>
             <li class="text-xs pb-2"><a href="{{ Route('user.aboutus')}}">当サイトについて</a></li>
             <li class="text-xs pb-2"><a href="">掲載のお問い合わせ</a></li>
-            <li class="text-xs pb-2"><a href="">掲載規約</a></li>
+            <li class="text-xs pb-2"><a href="{{ Route('user.rule')}}">掲載規約</a></li>
         </ul>
     </section>
     <section class="copyright py-7">
