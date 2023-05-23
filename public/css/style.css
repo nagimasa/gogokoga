@@ -218,7 +218,7 @@ TOPページ
 /** サムネイル一覧。 **/
 #my_gal11 .gallery{
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	flex-wrap: wrap;
 }
 /* #my_gal11 .gallery{
