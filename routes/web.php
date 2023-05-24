@@ -42,7 +42,7 @@ Route::get('rule', [UserController::class, 'rule'])->name('rule');
 
 
 // 問い合わせフォーム
-Route::get('/contact', [ContactControlle::class, 'index'])->name('contact.index');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 //確認ページ
 Route::post('/contact/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
 //送信完了ページ
