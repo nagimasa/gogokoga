@@ -4,6 +4,10 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\ContactSendMail;
+
 
 class ContactController extends Controller
 {
@@ -16,13 +20,13 @@ class ContactController extends Controller
     {
         //バリデーションを実行（結果に問題があれば処理を中断してエラーを返す）
         $request->validate([
-            'service_name' => 'required',
-            'name' => 'required',
-            'kana_name' => 'required',
-            'tel' => 'required',
-            'email' => 'required|email',
+            'service_name'  => 'required',
+            'name'          => 'required',
+            'kana_name'     => 'required',
+            'tel'           => 'required',
+            'email'         => 'required|email',
             'email_confirm' => 'required|email',
-            'content' => 'required',
+            'content'       => 'required',
         ]);
         
         //フォームから受け取ったすべてのinputの値を取得
@@ -36,13 +40,13 @@ class ContactController extends Controller
     {
         //バリデーションを実行（結果に問題があれば処理を中断してエラーを返す）
         $request->validate([
-            'service_name' => 'required',
-            'name' => 'required',
-            'kana_name' => 'required',
-            'tel' => 'required',
-            'email' => 'required|email',
+            'service_name'  => 'required',
+            'name'          => 'required',
+            'kana_name'     => 'required',
+            'tel'           => 'required',
+            'email'         => 'required|email',
             'email_confirm' => 'required|email',
-            'content' => 'required',
+            'content'       => 'required',
         ]);
 
         //フォームから受け取ったactionの値を取得
@@ -51,22 +55,26 @@ class ContactController extends Controller
         //フォームから受け取ったactionを除いたinputの値を取得
         $inputs = $request->except('action');
 
+        Mail::to($inputs['email'])->send(new ContactSendmail($inputs));
+
+        return view('user.thanks');
+
         //actionの値で分岐
-        if($action !== 'submit'){
-            return redirect()
-                ->route('user.contact.index')
-                ->withInput($inputs);
+        // if($action !== 'submit'){
+        //     return redirect()
+        //         ->route('user.contact.index')
+        //         ->withInput($inputs);
 
-        } else {
-            //入力されたメールアドレスにメールを送信
-            Mail::to($inputs['email'])->send(new ContactSendmail($inputs));
+        // } else {
+        //     //入力されたメールアドレスにメールを送信
+        //     Mail::to($inputs['email'])->send(new ContactSendmail($inputs));
 
-            //再送信を防ぐためにトークンを再発行
-            $request->session()->regenerateToken();
+        //     //再送信を防ぐためにトークンを再発行
+        //     $request->session()->regenerateToken();
 
-            //送信完了ページのviewを表示
-            return view('contact.thanks');
-            
-        }
+        //     //送信完了ページのviewを表示
+        //     return view('contact.thanks');
+
+        // }
     }
 }

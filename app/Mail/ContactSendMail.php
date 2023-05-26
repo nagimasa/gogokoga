@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
@@ -41,7 +42,7 @@ class ContactSendMail extends Mailable
         return $this
         ->from('test@test.com')
         ->subject('お問い合わせありがとうございました')
-        ->view('user.contact.mail')
+        ->view('user.send')
         ->with([
             'service_name'  => $this->service_name,
             'name'          => $this->name,
@@ -61,7 +62,8 @@ class ContactSendMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Contact Send Mail',
+            from: new Address('nagimasa.0114@gmail.com', 'わたし'),
+            subject: 'サブジェクト',
         );
     }
 
@@ -73,7 +75,7 @@ class ContactSendMail extends Mailable
     public function content()
     {
         return new Content(
-            view: 'view.name',
+            text: 'user.send',
         );
     }
 
