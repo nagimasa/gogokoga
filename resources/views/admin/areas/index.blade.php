@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
@@ -27,8 +27,8 @@
                         @foreach($areas as $area)
                         <tr class="divide-y">
                           <td class="w-8 py-4 text-center">{{ $area->id }}</td>
-                          <td class=" text-center"><a class="text-indigo-600 underline" href="{{ route('admin.areas.show', ['area'=>$area->id])}}">{{ $area->area_name }}</a></td>
-                          <td class="text-center">{{ $area->area_name_kana }}</td>
+                          <td class=""><a class="text-indigo-600 underline" href="{{ route('admin.areas.show', ['area'=>$area->id])}}">{{ $area->area_name }}</a></td>
+                          <td class="">{{ $area->area_name_kana }}</td>
                         </tr>
                         @endforeach
                     </table>

@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
@@ -27,9 +27,9 @@
                         @foreach($tags as $tag)
                         <tr class="divide-y">
                           <td class="w-8 py-4 text-center">{{ $tag->id }}</td>
-                          <td class="text-center"><a class="text-indigo-600 underline" href="{{ route('admin.tags.show', ['tag'=>$tag->id])}}">{{ $tag->tag_name }}</a></td>
-                          <td class="text-center">{{ $tag->tag_name_kana }}</td>
-                          <td class="text-center">{{ $tag->genre->genre_name }}</td>
+                          <td class=""><a class="text-indigo-600 underline" href="{{ route('admin.tags.show', ['tag'=>$tag->id])}}">{{ $tag->tag_name }}</a></td>
+                          <td class="">{{ $tag->tag_name_kana }}</td>
+                          <td class="">{{ $tag->genre->genre_name }}</td>
                         </tr>
                         @endforeach
                     </table>
