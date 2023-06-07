@@ -85,6 +85,7 @@ class AjaxController extends Controller
 
         if($owner->subscribed('main')) { // 課金履歴あり
 
+            // $status = 'canceled';
             // 以下のif文が正しく機能していない。statusの情報はちゃんと取得できている
             // 解：cancelledをcanceledに書き換えたところエラーが出なくなった。
             // 　　米英語がcanceledらしい
