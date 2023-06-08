@@ -15,7 +15,7 @@ use App\Models\Coupon;
 use App\Models\Owner;
 use App\Models\Tag;
 use App\Models\PhotoGall;
-use App\Models\Phototop;
+use App\Models\PhotoTop;
 
 class Service extends Model
 {
@@ -121,6 +121,6 @@ class Service extends Model
     // TOP用画像との１対１
     public function phototop()
     {
-        return $this->hasOne(Phototop::class);
+        return $this->hasOne(PhotoTop::class);
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Service;
 
-class Phototop extends Model
+class PhotoTop extends Model
 {
     use HasFactory;
 
