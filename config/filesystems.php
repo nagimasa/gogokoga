@@ -41,7 +41,7 @@ return [
                 ],
                 'dir' => [
                     'public' => 0755,
-                    'private' => 0744,
+                    'private' => 0755,
                 ]
             ]
         ],
