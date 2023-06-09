@@ -114,7 +114,7 @@ class PhotoGallController extends Controller
                 if(Storage::exists($photogall_directory)){
                     $file->save(storage_path() ."/app/public" ."/". $photogall_images ."/". $each_path ."/". "resized-{$filename}");
                 }else{
-                    Storage::makeDirectory($photogall_directory);
+                    Storage::makeDirectory($photogall_directory, '0644');
                     $file->save(storage_path() ."/app/public". "/". $photogall_images ."/". $each_path ."/". "resized-{$filename}");
                 }
                 // データベースにデータを保存
