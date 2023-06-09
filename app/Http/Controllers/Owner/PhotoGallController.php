@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Service;
-use App\Models\Photogall;
+use App\Models\PhotoGall;
 
 
 use Intervention\Image\ImageManagerStatic as Image;
@@ -48,8 +48,8 @@ class PhotoGallController extends Controller
     public function index($id)
     {
         $service = Service::findOrFail($id);
-        $photogalls = Photogall::where('service_id', $id)->get();
-        $count = Photogall::where('service_id', $id)->count();
+        $photogalls = PhotoGall::where('service_id', $id)->get();
+        $count = PhotoGall::where('service_id', $id)->count();
 
         return view('owner.photogalls.index', compact('photogalls', 'id', 'count', 'service'));
     }
@@ -118,7 +118,7 @@ class PhotoGallController extends Controller
                     $file->save(storage_path() ."/app/public". "/". $photogall_images ."/". $each_path ."/". "resized-{$filename}");
                 }
                 // データベースにデータを保存
-                Photogall::create([
+                PhotoGall::create([
                     'service_id' => $request->service_id,
                     // 'image_name' => storage_path(). $photogall_images .'/'. $each_path .'/'. "resized-{$filename}",
                     'image_name' => 'storage/' . $photogall_images .'/'. $each_path .'/'. "resized-{$filename}",
@@ -148,7 +148,7 @@ class PhotoGallController extends Controller
     public function edit(Request $request, $id, $select_photo)
     {
         // select_photoはRouteで設定した'photogalls/edit/{photogalls}/{photo}'の{photo}を取得している
-        $photo = Photogall::findOrFail($select_photo);
+        $photo = PhotoGall::findOrFail($select_photo);
         $service = Service::findOrFail($photo->service_id);
 
         return view('owner.photogalls.edit', compact('photo', 'service'));
@@ -174,7 +174,7 @@ class PhotoGallController extends Controller
      */
     public function destroy(Request $request, $id, $select_photo)
     {
-        $photo = Photogall::findOrFail($select_photo);
+        $photo = PhotoGall::findOrFail($select_photo);
         $service_id = $photo->service_id;
         // dd($photo, $service_id, $request);
 
@@ -195,7 +195,7 @@ class PhotoGallController extends Controller
         Storage::disk('public')->delete($delete_path);
         
 
-        Photogall::findOrFail($select_photo)->delete();
+        PhotoGall::findOrFail($select_photo)->delete();
         return redirect()->route('owner.photogalls.index', $service_id);
     }
 }
