@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-12 px-2">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="text-gray-900">
                     <h2 class="text-xl bg-blue-600 text-white p-6">メニュー名の登録</h2>
@@ -54,7 +54,7 @@
                                             <a href="{{ route('admin.menus.show', $service->id) }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">
                                                 戻る
                                             </a>
-                                            <button type="submit" class="btn btn-primary text-white bg-blue-600 border-0 py-2 px-6 mb-2 hover:bg-blue-700 rounded">保存</button>
+                                            <button type="submit" class="btn-primary text-white bg-blue-600 border-0 py-2 px-6 mb-2 hover:bg-blue-700 rounded">保存</button>
                                         </div>
                                     </div>
                                 </form>
