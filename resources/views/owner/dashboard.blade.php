@@ -5,10 +5,10 @@
         </h2>
     </x-slot>
 
-    <div class="md:flex wrap">
+    <div class="md:flex wrap max-w-7xl mx-auto">
 
         <div class="py-6 px-2 md:w-1/3">
-            <div class="max-w-7xl mx-auto sm:px-2">
+            <div class="mx-auto sm:px-2">
                 <div class="bg-white overflow-hidden shadow-sm rounded-lg border-t-8 border-blue-700">
                     <div class="p-6 text-gray-900">
                         <h3 class="font-bold text-2xl pb-6">基本設定</h3>
@@ -48,12 +48,11 @@
 
 
         
-        <div class="py-6 px-2 md:w-1/3">
+        {{-- <div class="py-6 px-2 md:w-1/3">
             <div class="max-w-7xl mx-auto sm:px-2">
                 <div class="bg-white overflow-hidden shadow-sm rounded-lg border-t-8 border-green-700">
                     <div class="p-6 text-gray-900">
                         <h3 class="font-bold text-2xl pb-6">特別設定</h3>
-                        {{-- <a href="{{ route('') }}"></a> --}}
                         <div class="border-t pb-4">
                             <h4 class="font-bold text-xl py-2">ストリートビュー</h4>
                             <ul>
@@ -68,17 +67,10 @@
                                 <li class="pl-4"><a href="">登録・編集</a></li>
                             </ul>
                         </div>
-                        {{-- <div class="border-t pb-4">
-                            <h4 class="font-bold text-xl py-2">タグ</h4>
-                            <ul>
-                                <li class="pl-4"><a href="">確認</a></li>
-                                <li class="pl-4"><a href="">登録・編集</a></li>
-                            </ul>
-                        </div> --}}
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
 
         
