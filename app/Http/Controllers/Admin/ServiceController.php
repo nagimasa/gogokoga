@@ -30,7 +30,7 @@ class ServiceController extends Controller
      
     public function index()
     {
-        $services = Service::with('genre:id,genre_name', 'comments:id,service_id', 'menus:id,service_id')->paginate(3);
+        $services = Service::with('genre:id,genre_name', 'comments:id,service_id', 'menus:id,service_id')->paginate(10);
         // $menus = Menu::select('id', 'service_id')->get();
         $genres = Genre::select('id', 'genre_name')->get();
         $areas = Area::select('id', 'area_name')->get();
