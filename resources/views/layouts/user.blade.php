@@ -133,7 +133,7 @@
                     </ul>
                   </div>
                 <li class="list-none">
-                  <a href="{{ route('user.category', ['category' => 'reqruit']) }}" class="global-navigation__link text-base">
+                  <a  href="{{ route('user.reqruit') }}" class="global-navigation__link text-base">
                     求人
                   </a>
                 </li> 
