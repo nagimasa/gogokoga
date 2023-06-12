@@ -13,13 +13,12 @@
                         <h2 class="text-xl text-white p-6">{{ $service->service_name }}のコメント設定</h2>
 
 
-
                         @if(!empty($comment->comment))
                         <div class=" pr-6 pt-6">
                             {{ Form::open(['route' => ['owner.comments.destroy', $service->id], 'method' => 'post']) }}
                             @csrf
                             @method('delete')
-                            {{ Form::submit('削除', ['class' => 'btn text-white bg-red-600 border-0 py-2 px-6 mb-2 hover:bg-red-700 rounded']) }}
+                            {{ Form::submit('削除', ['class' => 'text-white bg-red-600 border-0 py-2 px-6 mb-2 hover:bg-red-700 rounded']) }}
                             {{ Form::close() }}
                         </div>
                         @endif
@@ -47,7 +46,7 @@
                             <a href="{{ route('owner.comments.show', [$service->id]) }}" class="text-white bg-gray-500 border-0 py-2 px-6 mb-2 hover:bg-gray-600 rounded">
                                 戻る
                             </a>
-                            {{ Form::submit('送信', ['class' => 'btn text-white bg-blue-600 border-0 py-2 px-6 mb-2 hover:bg-blue-700 rounded']) }}
+                            {{ Form::submit('送信', ['class' => 'text-white bg-blue-600 border-0 py-2 px-6 mb-2 hover:bg-blue-700 rounded']) }}
                             {{ Form::close() }}
                         </div>
                      </div>
