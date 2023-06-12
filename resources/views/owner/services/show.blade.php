@@ -9,7 +9,7 @@
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="text-gray-900">
-                    <h2 class="text-xl bg-blue-600 text-white p-6">サービス名：{{ $service->service_name }}</h2>
+                    <h2 class="text-xl bg-blue-600 text-white p-6">{{ $service->service_name }}</h2>
 
                     <div class="p-6">
                         <div class="py-6">

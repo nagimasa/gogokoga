@@ -9,7 +9,7 @@
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="text-gray-900">
-                    <h2 class="text-xl bg-blue-600 text-white p-6">{{ $service->service_name }}の一覧（計：{{ $count }}件）</h2>
+                    <h2 class="text-xl bg-blue-600 text-white p-6">{{ $service->service_name }}のブログ一覧（計：{{ $count }}件）</h2>
                     <div class="p-6">
                         <table class="w-full">
                             <tr class="border-b">
