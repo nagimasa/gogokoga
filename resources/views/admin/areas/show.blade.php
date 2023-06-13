@@ -18,8 +18,8 @@
                         </div>
                         <hr>
                         <div class="py-6">
-                            <p>地域名</p>
-                            <p>{{ $area->area_name }}</p>
+                            <p>地域名（カナ）</p>
+                            <p>{{ $area->area_name_kana }}</p>
                         </div>
                         <hr>
                         <div class="py-6 flex justify-between">

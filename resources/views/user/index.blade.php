@@ -105,7 +105,7 @@
                     <a href="{{ route('user.blog.show', [$blog->service->id ,$blog->id])}}">
                     <div class="blog-item pb-2 border-b border-gray-200">
                         <p class="service-name">{{ $blog->service->service_name}}</p>
-                        <p class="blog-title text-xs">{{ $blog->blog_title}}</p>
+                        <p class="text-xs">{{ $blog->blog_title}}</p>
                         <p class="created-at text-xs">{{ $blog->created_at->format('y/m/d')}}</p>
                     </div>
                     </a>
