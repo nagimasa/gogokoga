@@ -121,12 +121,12 @@
                   <div id="accordion1" class="accordion js-accordion">
                     <ul class="accordion__list">
                       <li class="list-none">
-                        <a href="{{ route('user.category', ['category' => 'drive']) }}" class="accordion__link text-base">
+                        <a href="{{ route('user.drive', ['category' => 'drive']) }}" class="accordion__link text-base">
                           運転代行
                         </a>
                       </li>
                       <li class="list-none">
-                        <a href="{{ route('user.category', ['category' => 'taxi']) }}" class="accordion__link text-base">
+                        <a href="{{ route('user.drive', ['category' => 'taxi']) }}" class="accordion__link text-base">
                           タクシー
                         </a>
                       </li>

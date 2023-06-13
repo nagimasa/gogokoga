@@ -41,17 +41,17 @@
                     <hr>
                     <table class="w-full overflow-x-scroll flex-shrink-0">
                         <tr>
-                            <th class="w-8 py-4">ID</th>
-                            <th class="w-40">サービス名</th>
-                            <th class="">ジャンル</th>
-                            <th class="">会員種別</th>
-                            <th class="">ひと言</th>
-                            <th class="">クーポン</th>
-                            <th class="">管理者</th>
-                            <th class="">求人</th>
-                            <th class="">メニュー</th>
-                            <th class="">ブログ</th>
-                            <th class="">画像</th>
+                            <th class="w-8 py-4 text-center">ID</th>
+                            <th class="w-40 text-center">サービス名</th>
+                            <th class="text-center">ジャンル</th>
+                            <th class="text-center">会員種別</th>
+                            <th class="text-center">ひと言</th>
+                            <th class="text-center">クーポン</th>
+                            <th class="text-center">管理者</th>
+                            <th class="text-center">求人</th>
+                            <th class="text-center">メニュー</th>
+                            <th class="text-center">ブログ</th>
+                            <th class="text-center">画像</th>
                         </tr>
 
                         @foreach($services as $service)
