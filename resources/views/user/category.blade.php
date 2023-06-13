@@ -57,12 +57,11 @@
         </section>
     </article>
 
-    <article class="bg-white mb-5 typograph">
+    {{-- <article class="bg-white mb-5 typograph">
         <section class="px-2 py-4 border-gray-300 border-b border-t">
             <h2 class="text-2xl typograph-title">51音順</h2>
             <div class="search-item p-4 border-b border-gray-200 flex justify-around">
                 <div class="flex justify-around w-full">
-                    {{-- controllerから「あ〜な」を表示させる --}}
                     <a href="">
                         あ
                     </a>
@@ -80,7 +79,6 @@
                     </a>
                 </div>
                 <div class="flex justify-around w-full border-l">
-                    {{-- controllerから「は〜わ」を表示させる --}}
                     <a href="">
                         あ
                     </a>
@@ -99,7 +97,7 @@
                 </div>
             </div>
         </section>
-    </article>
+    </article> --}}
 
 </main>
 
