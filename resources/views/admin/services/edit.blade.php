@@ -177,6 +177,7 @@
     
     
                             {{-- ここから飲食店 --}}
+                            @if($service->genre_id == 1)
                             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                                 <h3 class="text-xl text-blue-600 p-6">飲食店用</h3>
                                 <div class="py-6">
@@ -194,11 +195,13 @@
                                 </div>
                                 <hr>
                             </div>
+                            @endif
                             {{-- ここまで飲食店 --}}
     
     
     
                             {{-- ここからタクシー/代行 --}}
+                            @if($service->genre_id == 12 || $service->genre_id == 13)
                             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                                 <h3 class="text-xl text-blue-600 p-6">タクシー・運転代行用</h3>
                                 <div class="py-6">
@@ -221,8 +224,8 @@
                                     {{ Form::text('stay_fee', $service->stay_fee, ['class' => 'w-1/2 rounded form-control ', 'id' => 'lastName', 'placeholder' => '例：10分につき500円'])}}
                                 </div>
                                 <hr>
-    
                             </div>
+                            @endif
                             {{-- ここまでタクシー/代行 --}}
     
                             <div class="py-6 flex justify-between">
