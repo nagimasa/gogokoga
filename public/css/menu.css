@@ -165,3 +165,17 @@
     .accordion__link {
         color: #172e59;
     }
+    .humberger.-active .humberger__line::before {
+        top: 0;
+        transform: rotate(45deg);
+        background: green;
+    }
+    .humberger.-active .humberger__line::after {
+        top: 0;
+        transform: rotate(-45deg);
+        background: green;
+    }
+    .humberger.-active .humberger__text::before {
+      content: '閉じる';
+      color: green;
+    }

@@ -10,7 +10,7 @@
             <h2 class="text-2xl category-title">カテゴリ別</h2>
             <div class="flex flex-wrap justify-start m-auto">
                 @foreach($services as $service)
-                <div class="item-pickup mb-10 mx-auto">
+                <div class="item-pickup mb-10 mx-auto w-full">
                     <a class="link-area" href="{{ route('user.detail', [$service->id])}}">
                         <h3 class="text-xl p-4 text-white">{{ $service->service_name }}</h3>
                         <div class="p-2">
