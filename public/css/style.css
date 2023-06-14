@@ -124,11 +124,13 @@ TOPページ
 .detail .photo-title::after    { content: "PHOTO";}
 .detail .reqruit-title::after  { content: "REQRUIT";}
 .blog-btn {
+	z-index: 10000;
 	position: fixed;
 	left: 60%;
 	top: 80%;
 }
 .call-btn {
+	z-index: 10000;
 	position: fixed;
 	left: 80%;
 	top: 80%;
