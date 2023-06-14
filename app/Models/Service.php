@@ -16,6 +16,7 @@ use App\Models\Owner;
 use App\Models\Tag;
 use App\Models\PhotoGall;
 use App\Models\Phototop;
+use App\Models\Blog;
 
 class Service extends Model
 {
