@@ -1,7 +1,7 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-アドミン用
+サイト管理者用ログイン
     <form method="POST" action="{{ route('admin.login') }}">
         @csrf
 
