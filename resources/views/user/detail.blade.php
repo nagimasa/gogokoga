@@ -3,7 +3,7 @@
 
 <main class="detail sm:max-w-3xl sm:m-auto">
 
-        @if($detail->blog)
+        @if($detail->blogs)
         <a class="blog-btn" href="{{ route('user.blog.index', $detail->id )}}">
             <img src="{{ asset('storage/images/blog-btn.svg')}}">
         </a>

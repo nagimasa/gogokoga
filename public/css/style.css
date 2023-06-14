@@ -229,6 +229,7 @@ TOPページ
 
 /** サムネイル一覧。 **/
 #my_gal11 .gallery{
+	margin-top: 1rem;
 	display: flex;
 	justify-content: flex-start;
 	flex-wrap: wrap;
