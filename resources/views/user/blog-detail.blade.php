@@ -1,7 +1,7 @@
 
 @include('layouts.user')
 
-<main class="blog-show">
+<main class="blog-show sm:max-w-3xl sm:m-auto">
         <a class="call-btn" href="tel:{{ $detail->tel }}">
             <img src="{{ asset('storage/images/call-btn.svg')}}">
         </a>

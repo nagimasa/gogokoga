@@ -57,57 +57,57 @@
                      <div id="accordion1" class="accordion js-accordion">
                        <ul class="accordion__list">
                          <li class="list-none">
-                           <a href="{{ route('user.category', ['category' => 'restaurant']) }}" class="accordion__link text-base">
+                           <a href="{{ route('user.category', ['category' => 'restaurant']) }}" class="accordion__link text-base block">
                              飲食店
                            </a>
                          </li>
                         <li class="list-none">
-                          <a href="{{ route('user.category', ['category' => 'beauty']) }}" class="accordion__link text-base">
+                          <a href="{{ route('user.category', ['category' => 'beauty']) }}" class="accordion__link text-base block">
                           美容
                           </a>
                         </li>
                         <li class="list-none">
-                          <a href="{{ route('user.category', ['category' => 'hotel']) }}" class="accordion__link text-base">
+                          <a href="{{ route('user.category', ['category' => 'hotel']) }}" class="accordion__link text-base block">
                           宿泊
                           </a>
                         </li>
                         <li class="list-none">
-                          <a href="{{ route('user.category', ['category' => 'school']) }}" class="accordion__link text-base">
+                          <a href="{{ route('user.category', ['category' => 'school']) }}" class="accordion__link text-base block">
                           習い事
                           </a>
                         </li>
                         <li class="list-none">
-                          <a href="{{ route('user.category', ['category' => 'activity']) }}" class="accordion__link text-base">
+                          <a href="{{ route('user.category', ['category' => 'activity']) }}" class="accordion__link text-base block">
                           遊び
                           </a>
                         </li>
                         <li class="list-none">
-                          <a href="{{ route('user.category', ['category' => 'shop']) }}" class="accordion__link text-base">
+                          <a href="{{ route('user.category', ['category' => 'shop']) }}" class="accordion__link text-base block">
                           ショップ
                           </a>
                         </li>
                         <li class="list-none">
-                          <a href="{{ route('user.category', ['category' => 'life']) }}" class="accordion__link text-base">
+                          <a href="{{ route('user.category', ['category' => 'life']) }}" class="accordion__link text-base block">
                           生活
                           </a>
                         </li>
                         <li class="list-none">
-                          <a href="{{ route('user.category', ['category' => 'hospital']) }}" class="accordion__link text-base">
+                          <a href="{{ route('user.category', ['category' => 'hospital']) }}" class="accordion__link text-base block">
                           医療
                           </a>
                         </li>
                         <li class="list-none">
-                          <a href="{{ route('user.category', ['category' => 'walfare']) }}" class="accordion__link text-base">
+                          <a href="{{ route('user.category', ['category' => 'walfare']) }}" class="accordion__link text-base block">
                           福祉
                           </a>
                         </li>
                         <li class="list-none">
-                          <a href="{{ route('user.category', ['category' => 'company']) }}" class="accordion__link text-base">
+                          <a href="{{ route('user.category', ['category' => 'company']) }}" class="accordion__link text-base block">
                           企業
                         </a>  
                         </li>
                         <li class="list-none">
-                          <a href="{{ route('user.category', ['category' => 'city']) }}" class="accordion__link text-base">
+                          <a href="{{ route('user.category', ['category' => 'city']) }}" class="accordion__link text-base block">
                           古賀市施設
                           </a>
                         </li>
@@ -121,19 +121,19 @@
                   <div id="accordion1" class="accordion js-accordion">
                     <ul class="accordion__list">
                       <li class="list-none">
-                        <a href="{{ route('user.drive', ['category' => 'drive']) }}" class="accordion__link text-base">
+                        <a href="{{ route('user.drive', ['category' => 'drive']) }}" class="accordion__link text-base block">
                           運転代行
                         </a>
                       </li>
                       <li class="list-none">
-                        <a href="{{ route('user.drive', ['category' => 'taxi']) }}" class="accordion__link text-base">
+                        <a href="{{ route('user.drive', ['category' => 'taxi']) }}" class="accordion__link text-base block">
                           タクシー
                         </a>
                       </li>
                     </ul>
                   </div>
                 <li class="list-none">
-                  <a  href="{{ route('user.reqruit') }}" class="global-navigation__link text-base">
+                  <a  href="{{ route('user.reqruit') }}" class="global-navigation__link text-base block">
                     求人
                   </a>
                 </li> 
